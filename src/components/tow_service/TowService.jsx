@@ -1,0 +1,182 @@
+import { Truck, Clock, MapPin, Shield } from 'lucide-react';
+import { Container, Row, Col } from "react-bootstrap"
+import ImageWithFallback from "../additional/ImageWithFallback";
+import { phone } from '../additional/contactData';
+
+let data = [
+    {   
+        icon: Clock,
+        first_text: "24/7",
+        second_text: "Работаем круглосуточно",
+    },
+    {
+        icon: MapPin,
+        first_text: "Работаем",
+        second_text: "По городу и области",
+    },
+    {
+        icon: Shield,
+        first_text: "Любое авто",
+        second_text: "До 3 тонн",
+    },
+]
+
+function createInfoPanels() {
+    return data.map((arr, index) => {
+        let Icon = arr.icon
+        return (
+            <div
+                key={index + 100}
+                className="d-flex align-items-center gap-3 p-3"
+                style={{
+                    background: "rgba(255, 255, 255, 0.05)",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    borderRadius: "16px",
+                    flex: "1 1 calc(50% - 10px)",
+                    minWidth: "160px",
+                    transition: "all 0.3s ease"
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
+                    e.currentTarget.style.borderColor = "var(--color-red-600)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+                }}
+            >
+                <div
+                    className="d-flex align-items-center justify-content-center"
+                    style={{
+                        width: "40px",
+                        height: "40px",
+                        background: "rgba(172, 0, 0, 1)",
+                        borderRadius: "10px",
+                        flexShrink: 0
+                    }}
+                >
+                    <Icon />
+                </div>
+
+                <div
+                    style={{
+                        color: 'white',
+                    }}
+                    className="d-flex flex-column"
+                >
+                    <span
+                        className="text-white fw-bold"
+                        style={{ fontSize: "0.9rem", lineHeight: "1.2" }}
+                    >
+                        {arr.first_text}
+                    </span>
+                    <span
+                        className="text-neutral-500"
+                        style={{ fontSize: "0.8rem" }}
+                    >
+                        {arr.second_text}
+                    </span>
+                </div>
+            </div>
+        )
+    })
+}
+
+export default function TowService() {
+    return (
+        <Container
+            fluid
+            className='px-3 px-sm-5'
+            style={{
+                background: "black"
+            }}
+        >
+            <Row>
+                <Col className='pt-5'>
+                    <h1
+                        style={{
+                            color: "white",
+                        }}
+                        className='h2 text-center '>
+                        ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ
+                    </h1>
+                </Col>
+            </Row>
+            <Row className="justify-content-center py-5 px-2">
+                <Col
+                    xs={12} lg={10}
+                    style={{
+                        background: "#1a1a1a",
+                        borderRadius: "35px",
+                        border: "1px solid rgba(255,255,255,0.1)",
+                        overflow: "hidden",
+                        padding: 0
+                    }}
+                >
+                    <Row className="g-0 align-items-stretch">
+                        <Col xs={12} lg={6} className="order-1 order-lg-2">
+                            <div style={{ height: "100%", minHeight: "300px", position: "relative" }}>
+                                <ImageWithFallback
+                                    src="https://avatars.mds.yandex.net/i?id=cf5df4551e7390bfdb07fe60056d6df9_l-9699538-images-thumbs&n=13"
+                                    alt="Услуги эвакуатора"
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        objectFit: "cover"
+                                    }}
+                                />
+                            </div>
+                        </Col>
+                        <Col xs={12} lg={6} className="order-2 order-lg-1 p-4 p-md-5">
+                            <div className="d-flex align-items-center gap-3 mb-4">
+                                <div className="p-3 bg-red-600 rounded-3" >
+                                    <Truck size={35} color="white" />
+                                </div>
+                                <h2 className="text-white fw-bold mb-0">Услуги эвакуатора</h2>
+                            </div>
+
+                            <p
+                                className="text-neutral-400 mb-4"
+                                style={{ fontSize: "1.2rem", lineHeight: "1.6rem", color: "rgba(255, 255, 255, 0.7)" }}
+                            >
+                                Профессиональная помощь на дороге.
+                                <br />
+                                Быстро, надежно.
+                            </p>
+
+                            <div className="row mb-4">
+                                <div className="col-12">
+                                    <div
+                                        style={{
+                                            display: "grid",
+                                            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                                            gap: "12px"
+                                        }}
+                                    >
+                                        {createInfoPanels()}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a
+                                href={"tel:+"+phone}
+                                className="d-flex d-md-inline-flex align-items-center justify-content-center gap-2 text-white px-5 py-3 rounded-pill transition-all"
+                                style={{
+                                    background: "var(--color-red-600)",
+                                    textDecoration: "none",
+                                    fontWeight: "700",
+                                    boxShadow: "0 8px 20px rgba(220, 38, 38, 0.3)"
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
+                                onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
+                            >
+                                <Truck size={20} />
+                                <span>ВЫЗВАТЬ ЭВАКУАТОР</span>
+                            </a>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
+    );
+}
