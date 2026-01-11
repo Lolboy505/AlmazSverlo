@@ -1,5 +1,6 @@
 import { Check } from 'lucide-react';
 import { Container, Row, } from 'react-bootstrap';
+import cursorImg from '@/images/WhiteCursor.png'
 
 const materials = [
     'ЖЕЛЕЗОБЕТОН',
@@ -64,7 +65,7 @@ export default function Materials() {
                                 Работаем с материалами
                             </h2>
                             <h2>
-                                <img src="src\images\WhiteCursor.png"
+                                <img src={cursorImg}
                                     style={{
                                         width: "30px",
                                         height: "auto",
