@@ -4,20 +4,21 @@ import ImageWithFallback from "../additional/ImageWithFallback";
 import { phone } from '../additional/contactData';
 
 let data = [
-    {   
+    {
         icon: Clock,
-        first_text: "24/7",
-        second_text: "Работаем круглосуточно",
+        title: "ВРЕМЯ РАБОТЫ",
+        description: "С 6:00 до 22:00 часов",
+        descriptionAdd: "График работы c Пн-Сб",
     },
     {
         icon: MapPin,
-        first_text: "Работаем",
-        second_text: "По городу и области",
+        title: "РАБОТАЕМ",
+        description: "По городу и области",
     },
     {
         icon: Shield,
-        first_text: "Любое авто",
-        second_text: "До 3 тонн",
+        title: "ЛЮБОЕ АВТО",
+        description: "До 5 тонн, а также перевозка бусов с МАКСИ базой",
     },
 ]
 
@@ -27,13 +28,13 @@ function createInfoPanels() {
         return (
             <div
                 key={index + 100}
-                className="d-flex align-items-center gap-3 p-3"
+                className="d-flex align-items-center justify-content-center p-3"
                 style={{
                     background: "rgba(255, 255, 255, 0.05)",
                     border: "1px solid rgba(255, 255, 255, 0.1)",
                     borderRadius: "16px",
                     flex: "1 1 calc(50% - 10px)",
-                    minWidth: "160px",
+                    minWidth: "200px",
                     transition: "all 0.3s ease"
                 }}
                 onMouseEnter={(e) => {
@@ -52,7 +53,7 @@ function createInfoPanels() {
                         height: "40px",
                         background: "rgba(172, 0, 0, 1)",
                         borderRadius: "10px",
-                        flexShrink: 0
+                        flexShrink: 0,
                     }}
                 >
                     <Icon />
@@ -60,21 +61,24 @@ function createInfoPanels() {
 
                 <div
                     style={{
+                        width: "100%",
                         color: 'white',
                     }}
-                    className="d-flex flex-column"
+                    className="p-2 d-flex flex-column text-center"
                 >
                     <span
-                        className="text-white fw-bold"
+                        className="text-white fw-bold pb-2"
                         style={{ fontSize: "0.9rem", lineHeight: "1.2" }}
                     >
-                        {arr.first_text}
+                        {arr.title}
                     </span>
                     <span
                         className="text-neutral-500"
                         style={{ fontSize: "0.8rem" }}
                     >
-                        {arr.second_text}
+                        {arr.description}
+                        <br />
+                        {arr.descriptionAdd && arr.descriptionAdd}
                     </span>
                 </div>
             </div>
@@ -147,10 +151,10 @@ export default function TowService() {
                             <div className="row mb-4">
                                 <div className="col-12">
                                     <div
+                                        className="gap-4"
                                         style={{
                                             display: "grid",
                                             gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                                            gap: "12px"
                                         }}
                                     >
                                         {createInfoPanels()}
@@ -159,8 +163,8 @@ export default function TowService() {
                             </div>
 
                             <a
-                                href={"tel:+"+phone}
-                                className="d-flex d-md-inline-flex align-items-center justify-content-center gap-2 text-white px-5 py-3 rounded-pill transition-all"
+                                href={"tel:+" + phone}
+                                className="d-flex d-flex align-items-center justify-content-center gap-3 text-white px-5 py-3 rounded-pill transition-all"
                                 style={{
                                     background: "var(--color-red-600)",
                                     textDecoration: "none",
