@@ -39,7 +39,7 @@ export default function Footer() {
                         cursor: 'pointer'
                     }}
                 >
-                    Создано Pentemiden
+                    Создано Pentemiven
                 </a>
             </div>
         </footer>
