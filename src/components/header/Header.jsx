@@ -58,7 +58,12 @@ export default function Header() {
     }
 
     return (
-        <header className="sticky-top">
+        <header 
+            className="sticky-top"
+            style={{
+                zIndex: 10
+            }}
+        >
             <Navbar
                 collapseOnSelect
                 expand="md"

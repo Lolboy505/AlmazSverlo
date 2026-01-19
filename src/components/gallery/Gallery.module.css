@@ -22,3 +22,27 @@ div[style*="cursor: pointer"]:hover div {
   opacity: 1 !important;
 }
 
+/* Новвоведения */
+
+/* Плавное увеличение превью при наведении */
+.hover-zoom {
+    transition: transform 0.3s ease;
+}
+
+.hover-zoom:hover {
+    transform: scale(1.1);
+}
+
+/* Появление надписи "Увеличить" */
+.hover-opacity-100 {
+    transition: opacity 0.3s ease;
+}
+
+div:hover > .hover-opacity-100 {
+    opacity: 1 !important;
+}
+
+/* Убираем синее свечение у кнопок Bootstrap */
+.btn:focus {
+    box-shadow: none !important;
+}

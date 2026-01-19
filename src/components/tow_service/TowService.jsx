@@ -1,13 +1,13 @@
 import { Truck, Clock, MapPin, Shield } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap"
 import ImageWithFallback from "../additional/ImageWithFallback";
-import { phone } from '../additional/contactData';
+import { fromTimeTow, phone, toTimeTow } from '../additional/contactData';
 
 let data = [
     {
         icon: Clock,
         title: "ВРЕМЯ РАБОТЫ",
-        description: "С 6:00 до 22:00 часов",
+        description: `С ${fromTimeTow} до ${toTimeTow} часов`,
         descriptionAdd: "График работы c Пн-Сб",
     },
     {
@@ -98,6 +98,7 @@ export default function TowService() {
             <Row>
                 <Col className='pt-5'>
                     <h1
+                        id="AddService"
                         style={{
                             color: "white",
                         }}

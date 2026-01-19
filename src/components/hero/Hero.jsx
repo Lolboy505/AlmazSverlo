@@ -1,6 +1,7 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"
 import { buttonStyle } from "../additional/buttonStyle"
-import redWall from '@/images/RedWallMobail.jpeg'; // 1. Импортируем
+import redWall from '@/images/RedWallMobail.jpeg';
+import style_h1 from '@/components/hero/hero.module.css' 
 
 export default function Hero() {
     function setHovered(e) {
@@ -19,7 +20,7 @@ export default function Hero() {
     return (
         <Container
             style={{
-                height: 'clamp(300px, 30vh, 600px)',
+                height: 'clamp(400px, 30vh, 600px)',
                 backgroundImage: `url(${redWall})`,
                 backgroundSize: "cover",
                 color: "white",
@@ -30,43 +31,54 @@ export default function Hero() {
             fluid
             className="text-center p-0"
         >
-            <div 
+            <div
+                className="gap-2"
                 style={{
                     background: "linear-gradient(180deg , rgb(0,0,0,0.01) , black)",
                     width: "100%",
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "center"
+                    justifyContent: "center",
                 }}
             >
-                <Row className="pt-4 ">
-                    <h1
-                        className="h1"
-                    >
-                        АЛМАЗНОЕ СВЕРЛЕНИЕ
+                <Row className="pt-4 px-2">
+                    <h1 style={style_h1}>
+                        АЛМАЗНОЕ СВЕРЛЕНИЕ В ЛУГАНСКЕ 
                     </h1>
                 </Row>
-                <Row>
-                    <p className="h2">
-                        разных диаметров
-                    </p>
+                <Row className="d-flex justify-content-center">
+                    <h2 style={{...style_hero}}>
+                        Профессиональное сверление отверстий различного диаметра под все виды коммуникаций
+                    </h2>
                 </Row>
-                <Row>
-                    <p className="h7">
-                        Профессиональное сверление отверстий под все виды коммуникаций
-                    </p>
-                </Row>
-                <Row className=" d-flex justify-content-center pb-5 ">
+                <Row className=" d-flex flex-column align-items-center justify-content-center pb-5 pt-2 pt-lg-4">
                     <Nav.Link
-                        className="d-flex text-center 
-                        justify-content-center col-6 col-lg-3"
+                        className=" d-flex text-center justify-content-center col-8 col-lg-6"
                         href="#order"
                         onMouseEnter={(event) => setHovered(event)}
                         onMouseLeave={(event) => setUnhovered(event)}
                         style={{ ...buttonStyle }}
                     >
-                        Оформить заказ
+                        <div className="h5 mb-1">
+                            Оформить заказ
+                        </div>
+                    </Nav.Link>
+                    <Nav.Link
+                        className="mt-2 d-flex text-center justify-content-center col-6 col-lg-5"
+                        href="#AddService"
+                        onMouseEnter={(event) => setHovered(event)}
+                        onMouseLeave={(event) => setUnhovered(event)}
+                        style={{
+                            ...buttonStyle,
+                            
+                            background: 'var(--color-red-700)',
+                            // background: 'grey',
+                        }}
+                    >
+                        <div className="h6 mb-1">
+                            Дополнительные услуги
+                        </div>
                     </Nav.Link>
                 </Row>
             </div>
@@ -74,3 +86,6 @@ export default function Hero() {
     )
 }
 
+let style_hero = {
+  fontSize: "clamp(1rem, 4vw, 1.3rem)",
+}

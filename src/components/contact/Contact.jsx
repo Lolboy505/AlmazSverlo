@@ -1,34 +1,35 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import urlPDPC from '@/documents/PersonalDataProccessingConsent.pdf'
+import urlPP from '@/documents/PrivacyPolicy.pdf'
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
-import { phone, email, formatPhoneNumber } from '@/components/additional/contactData'
+import { phone, email, formatPhoneNumber, fromTime, toTime } from '@/components/additional/contactData'
 import CloseIcon from '../additional/CloseIcon';
 import ContactItem from './ContactItem';
 
+const nullForm = {
+    name: '',
+    phone: '',
+    message: '',
+    isAgreed: false,
+}
 export default function Contact() {
-    const [formData, setFormData] = useState({
-        name: '',
-        phone: '',
-        message: '',
-    });
+    const [formData, setFormData] = useState(nullForm);
+    const [formDatalast, setFormDatalast] = useState(nullForm);
 
-    let tmpFormData = {
-        name: '',
-        phone: '',
-        message: '',
-    }
+    let tmpFormData = nullForm
 
     let contactData = [
         {
             label: "Телефон",
             value: formatPhoneNumber(),
-            href: "tel:+"+phone,
+            href: "tel:+" + phone,
             icon: <Phone size={30} />,
         },
         {
             label: "Email",
             value: email,
-            href: "mailto:"+email,
+            href: "mailto:" + email,
             icon: <Mail size={30} />,
         },
         {
@@ -39,7 +40,7 @@ export default function Contact() {
         },
         {
             label: "Режим работы",
-            value: "Ежедневно с 8:00 до 20:00",
+            value: `Ежедневно с ${fromTime} до ${toTime}`,
             href: null,
             icon: <Clock size={30} />,
         },
@@ -128,6 +129,18 @@ export default function Contact() {
             alert('Пожалуйста, введите ваш номер телефона корректно. \n+7 (XXX) XXX-XX-XX');
             return true;
         }
+        else if (!formData.isAgreed) {
+            alert('Вы не согласились на обработку персональных данных и политику конфиденциальности')
+            return true
+        }
+        else if (
+            formDatalast.message === formData.message &&
+            formDatalast.name === formData.name &&
+            formDatalast.phone === formData.phone
+        ) {
+            alert("Вы уже отправляли эту заявку")
+            return true
+        }
     }
 
     const handleSubmit = (e) => {
@@ -141,20 +154,18 @@ export default function Contact() {
                 name: replaceWrongText(formData.name),
                 phone: replaceWrongText(formData.phone),
                 message: replaceWrongText(formData.message),
+                isAgreed: formData.isAgreed
             }
+            setFormDatalast(tmpFormData)
             //далее отправляем tmp-шку
             setFormData((tmpFormData))
+            // console.log()
             alert('Спасибо за обращение! Мы свяжемся с вами в ближайшее время.');
         }
     };
 
     const handleClear = () => {
-        tmpFormData = {
-            name: '',
-            phone: '',
-            message: '',
-        }
-        setFormData(tmpFormData)
+        setFormData(nullForm)
     }
 
     return (
@@ -243,6 +254,31 @@ export default function Contact() {
                                 </div>
                             </div>
 
+                            <div className="mb-3 form-check text-start">
+                                <input
+                                    type="checkbox"
+                                    name="acess"
+                                    id="privacy_policy"
+                                    className="form-check-input"
+                                    required
+                                    onClick={() => (setFormData((prev) => ({ ...prev, isAgreed: !prev.isAgreed })))}
+                                />
+
+                                <span className="form-check-label text-white-50 shadow-sm">
+                                    Я согласен на обработку <a
+                                        href={urlPDPC}
+                                        className="text-decoration-underline text-white"
+                                    >
+                                        персональных данных
+                                    </a> и согласен с <a
+                                        href={urlPP}
+                                        className="text-decoration-underline text-white"
+                                    >
+                                        политикой конфиденциальности
+                                    </a>
+                                </span>
+                            </div>
+
                             <button
                                 type="submit"
                                 className="w-100 py-3 fw-bold d-flex align-items-center justify-content-center gap-2 rounded-3 shadow-lg"
@@ -268,10 +304,6 @@ export default function Contact() {
                             >
                                 <CloseIcon /> очистка формы
                             </button>
-
-                            <p className="text-center text-neutral-500 mt-3 mb-0" style={{ fontSize: '0.75rem' }}>
-                                Нажимая кнопку "отправить заявку", вы соглашаетесь с политикой <a href="src\documents\PersonalDataProcessingPolicy.pdf" className="text-decoration-underline text-neutral-500">конфиденциальности</a>
-                            </p>
                         </form>
                     </div>
                 </Col>

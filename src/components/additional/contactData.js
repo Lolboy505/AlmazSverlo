@@ -6,6 +6,9 @@ const vkontakte = "https://vk.com"
 const fromTime = '8:00'
 const toTime = '20:00' 
 
+const fromTimeTow = '6:00'
+const toTimeTow = '22:00'
+
 const fullName = "Фамилия Имя Отчество" 
 const TIN = "56165165116" // ИНН
 const PSRNSP = "372487349973274" // ОГРНИП
@@ -23,6 +26,10 @@ export {
     TIN,
     PSRNSP,
     fullName,
+    fromTime,
+    toTime,
+    fromTimeTow,
+    toTimeTow,
     // функции
     formatPhoneNumber,
 }

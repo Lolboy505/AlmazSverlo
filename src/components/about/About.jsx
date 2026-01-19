@@ -65,7 +65,9 @@ export default function About() {
                             {textSecond}
                         </p>
                     </div>
-                    <Gallery/>           
+
+                    <Gallery/>       
+                        
                 </Row>
             </Container>
         </Container >

@@ -11,7 +11,7 @@ const buttonStyle = {
         alignItems: "center",
         gap: "10px",
         textAlign: "center",
-        boxShadow: "0 4px 6px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.3)", // Объемная тень в покое
+        boxShadow: "0 4px 6px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.3)", 
         transform: "translateY(0)", 
     };
 
