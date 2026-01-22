@@ -1,11 +1,15 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
+import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address } from '@/components/additional/contactData'
 import urlPDPC from '@/documents/PersonalDataProccessingConsent.pdf'
 import urlPP from '@/documents/PrivacyPolicy.pdf'
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
-import { phone, email, formatPhoneNumber, fromTime, toTime } from '@/components/additional/contactData'
 import CloseIcon from '../additional/CloseIcon';
 import ContactItem from './ContactItem';
+import axios from 'axios';
+
+let addressFetch = "http://10.10.10.108:5000/api/order";
+// 'http://localhost:5000/api/order'; // Для локалки
 
 const nullForm = {
     name: '',
@@ -13,9 +17,14 @@ const nullForm = {
     message: '',
     isAgreed: false,
 }
+
 export default function Contact() {
     const [formData, setFormData] = useState(nullForm);
     const [formDatalast, setFormDatalast] = useState(nullForm);
+    const [isLoading, setIsLoading] = useState(false)
+
+    console.log(formData)
+
 
     let tmpFormData = nullForm
 
@@ -34,21 +43,23 @@ export default function Contact() {
         },
         {
             label: "Адрес",
-            value: "Работаем по всему городу",
+            value: address,
             href: null,
             icon: <MapPin size={30} />,
         },
         {
             label: "Режим работы",
-            value: `Ежедневно с ${fromTime} до ${toTime}`,
+            value: `Ежедневно с ${fromTime} до ${toTime}, График: ${schedule}`,
             href: null,
             icon: <Clock size={30} />,
         },
     ]
 
-    const replaceWrongText = (val) => {
+    const replaceWrongText = (val, flagZalip = true) => {
         // Ограничиваем "залипание" символов (не более 5 одинаковых букв подряд)
-        val = val.replace(/(.)\1{4,}/g, '$1$1$1$1');
+        if (flagZalip) {
+            val = val.replace(/(.)\1{4,}/g, '$1$1$1$1');
+        }
         // не работает в во время onChange
 
         // удаляем потенциально опасные скриптовые символы < >
@@ -121,6 +132,10 @@ export default function Contact() {
             alert('Пожалуйста, введите ваше имя.');
             return true;
         }
+        else if (formData.isAgreed === false) {
+            alert('Вы не согласились на обработку персональных данных и политику конфиденциальности')
+            return true;
+        }
         else if (formData.phone.trim() === '') {
             alert('Пожалуйста, введите ваш телефон.');
             return true;
@@ -143,26 +158,40 @@ export default function Contact() {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // ДОДЕЛАТЬ отправку формы
-        if (isWrongForm()) {
+
+        if (isWrongForm() || isLoading) {
             return null
         }
         else {
+            setIsLoading(true);
+
             tmpFormData = {
                 name: replaceWrongText(formData.name),
-                phone: replaceWrongText(formData.phone),
+                phone: replaceWrongText(formData.phone, false),
                 message: replaceWrongText(formData.message),
                 isAgreed: formData.isAgreed
             }
-            setFormDatalast(tmpFormData)
-            //далее отправляем tmp-шку
-            setFormData((tmpFormData))
-            // console.log()
-            alert('Спасибо за обращение! Мы свяжемся с вами в ближайшее время.');
+
+            try {
+                const response = await axios.post(addressFetch, tmpFormData)
+
+                if (response.data.success) {
+                    alert('Заявка отправлена успешно! ');
+                    console.log(`Заявка успешно отправлена на сервер:`, tmpFormData, response.data.success); // Для отладки
+
+                    setFormData(tmpFormData)
+                    setFormDatalast(tmpFormData)
+                }
+            } catch (error) {
+                console.error('Ошибка:', error);
+                alert(error.response?.data?.error || 'Ошибка при соединении с сервером');
+            } finally {
+                setIsLoading(false)
+            }
         }
-    };
+    }
 
     const handleClear = () => {
         setFormData(nullForm)
@@ -202,7 +231,7 @@ export default function Contact() {
                     <div className="p-4 p-md-5 rounded-4 h-100" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                         <h3 className="text-white h4 mb-4 fw-bold text-center text-md-start">Оставить заявку</h3>
 
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={(e) => handleSubmit(e)}>
                             <div className="row g-1">
 
                                 <div className="col-md-12 flex-column flex-md-row d-flex m-0 p-0 gap-2">
@@ -230,7 +259,7 @@ export default function Contact() {
                                                 placeholder="+7 (___) ___-__-__"
                                                 required
                                                 value={formatPhone(formData.phone)}
-                                                onChange={handlePhoneChange}
+                                                onChange={(e) => handlePhoneChange(e)}
                                                 className="bg-transparent border-secondary text-white p-3 custom-input w-100 rounded-3"
                                                 style={{ border: '1px solid #6c757d', outline: 'none' }}
                                             />
@@ -245,7 +274,7 @@ export default function Contact() {
                                             name="message"
                                             rows={4}
                                             value={formData.message}
-                                            onChange={handleMessageChange}
+                                            onChange={(e) => handleMessageChange(e)}
                                             placeholder="Опишите ваш проект..."
                                             className="bg-transparent border-secondary text-white p-3 custom-input w-100 rounded-3"
                                             style={{ border: '1px solid #6c757d', outline: 'none', resize: 'none' }}
@@ -280,16 +309,40 @@ export default function Contact() {
                             </div>
 
                             <button
+                                disabled={isLoading}
                                 type="submit"
-                                className="w-100 py-3 fw-bold d-flex align-items-center justify-content-center gap-2 rounded-3 shadow-lg"
+                                className={
+                                    `w-100 py-3 fw-bold d-flex align-items-center 
+                                    justify-content-center gap-2 rounded-3 shadow-lg`}
                                 style={{
                                     background: 'var(--color-red-600)',
                                     border: 'none',
                                     color: 'white',
-                                    cursor: 'pointer'
+                                    cursor: isLoading ? 'pointer' : ''
                                 }}
                             >
-                                <Send size={18} /> ОТПРАВИТЬ ЗАЯВКУ
+                                {isLoading ?
+                                    (
+                                        <>
+                                            <span
+                                                className="spinner-border"
+                                                role="status"
+                                                style={{
+                                                    height: "50px",
+                                                    width: "50px",
+                                                    color: "white",
+                                                }}
+                                            >
+
+                                            </span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={25} />  ОТПРАВИТЬ ЗАЯВКУ
+                                        </>
+                                    )
+                                }
+
                             </button>
 
                             <button

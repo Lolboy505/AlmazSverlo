@@ -31,7 +31,7 @@ export default function App({ children }) {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    zIndex: 10000,
+                    zIndex: 1000,
                     transition: 'opacity 0.5s ease'
                 }}>
                     <div 
@@ -43,7 +43,6 @@ export default function App({ children }) {
                             color:"var(--color-red-700)",
                         }}
                     >
-                        <span className="visually-hidden">Загрузка...</span>
                     </div>
                 </div>
             )}

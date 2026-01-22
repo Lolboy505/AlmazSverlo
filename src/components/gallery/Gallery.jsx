@@ -18,6 +18,7 @@ export default function Gallery() {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (!e.key) return;
       const key = e.key.toLowerCase();
 
       if (currentIndex === null) return;
@@ -96,7 +97,8 @@ export default function Gallery() {
                   zIndex: 11,
                   textDecoration: 'none',
                   background: 'linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.35) 100%)',
-                  borderRadius: '0 10px 10px 0'
+                  borderRadius: '0 10px 10px 0',
+                  cursor: 'pointer',
                 }}
                 onClick={(e) => { e.stopPropagation(); prevSlide(); }}
               >
@@ -112,6 +114,7 @@ export default function Gallery() {
                   textDecoration: 'none',
                   background: 'linear-gradient(-90deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.35) 100%)',
                   borderRadius: '10px 0 0 10px',
+                  cursor: 'pointer',
                 }}
                 onClick={(e) => { e.stopPropagation(); nextSlide(); }}
               >
@@ -135,6 +138,7 @@ export default function Gallery() {
                   borderRadius: "0 0 0 10px",
                   background: "var(--color-red-600)",
                   color: "var(--color-red-700)",
+                  cursor: 'pointer',
                   zIndex: 1,
                 }}
                 onClick={closeGallery}

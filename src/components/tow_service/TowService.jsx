@@ -1,19 +1,19 @@
 import { Truck, Clock, MapPin, Shield } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap"
 import ImageWithFallback from "../additional/ImageWithFallback";
-import { fromTimeTow, phone, toTimeTow } from '../additional/contactData';
+import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow } from '../additional/contactData';
 
 let data = [
     {
         icon: Clock,
         title: "ВРЕМЯ РАБОТЫ",
         description: `С ${fromTimeTow} до ${toTimeTow} часов`,
-        descriptionAdd: "График работы c Пн-Сб",
+        descriptionAdd: `График работы: ${scheduleTow}`,
     },
     {
         icon: MapPin,
         title: "РАБОТАЕМ",
-        description: "По городу и области",
+        description: addressTow,
     },
     {
         icon: Shield,
@@ -47,16 +47,16 @@ function createInfoPanels() {
                 }}
             >
                 <div
-                    className="d-flex align-items-center justify-content-center"
+                    className="p-2 d-flex align-items-center justify-content-center"
                     style={{
-                        width: "40px",
-                        height: "40px",
+                        width: "50px",
+                        height: "50px",
                         background: "rgba(172, 0, 0, 1)",
                         borderRadius: "10px",
                         flexShrink: 0,
                     }}
                 >
-                    <Icon />
+                    <Icon size={40} />
                 </div>
 
                 <div
@@ -134,8 +134,8 @@ export default function TowService() {
                         </Col>
                         <Col xs={12} lg={6} className="order-2 order-lg-1 p-4 p-md-5">
                             <div className="d-flex align-items-center gap-3 mb-4">
-                                <div className="p-3 bg-red-600 rounded-3" >
-                                    <Truck size={35} color="white" />
+                                <div className="p-2 bg-red-600 rounded-3" >
+                                    <Truck size={50} color="white" />
                                 </div>
                                 <h2 className="text-white fw-bold mb-0">Услуги эвакуатора</h2>
                             </div>
@@ -175,7 +175,7 @@ export default function TowService() {
                                 onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
                                 onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
                             >
-                                <Truck size={20} />
+                                <Truck size={40} />
                                 <span>ВЫЗВАТЬ ЭВАКУАТОР</span>
                             </a>
                         </Col>

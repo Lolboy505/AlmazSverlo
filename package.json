@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@fontsource/golos-text": "^5.2.8",
+    "axios": "^1.13.2",
     "bootstrap": "^5.3.8",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
