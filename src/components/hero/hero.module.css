@@ -1,6 +1,13 @@
 
 @media (370px >= width) {
-    h1{
+    .global__h1 {
         font-size: 1.5rem;
     }
+}
+
+@media (768px <= width) {
+    .global__h1 {
+        font-size: 2.5rem;
+    }
+    
 }

@@ -1,7 +1,7 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"
 import { buttonStyle } from "../additional/buttonStyle"
 import redWall from '@/images/RedWallMobail.jpeg';
-import style_h1 from '@/components/hero/hero.module.css' 
+import style from './hero.module.css'
 
 export default function Hero() {
     function setHovered(e) {
@@ -43,12 +43,17 @@ export default function Hero() {
                 }}
             >
                 <Row className="pt-4 px-2">
-                    <h1 style={style_h1}>
-                        АЛМАЗНОЕ СВЕРЛЕНИЕ В ЛУГАНСКЕ 
+                    <h1
+                        className={style.global__h1}
+                    >
+                        АЛМАЗНОЕ СВЕРЛЕНИЕ В ЛУГАНСКЕ
                     </h1>
                 </Row>
                 <Row className="d-flex justify-content-center">
-                    <h2 style={{...style_hero}}>
+                    <h2
+                        className="px-4"
+                        style={{ ...style_hero }}
+                    >
                         Профессиональное сверление отверстий различного диаметра под все виды коммуникаций
                     </h2>
                 </Row>
@@ -71,7 +76,7 @@ export default function Hero() {
                         onMouseLeave={(event) => setUnhovered(event)}
                         style={{
                             ...buttonStyle,
-                            
+
                             background: 'var(--color-red-700)',
                             // background: 'grey',
                         }}
@@ -87,5 +92,5 @@ export default function Hero() {
 }
 
 let style_hero = {
-  fontSize: "clamp(1rem, 4vw, 1.3rem)",
+    fontSize: "clamp(1rem, 4vw, 1.3rem)",
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import previewImg from './previewImg.module.css'
 import './Gallery.module.css';
 
 const imagesModules = import.meta.glob('@/gallery/*.{jpg,jpeg,png}', { eager: true });
@@ -66,16 +67,18 @@ export default function Gallery() {
           <div key={index} className="col-6 col-md-3">
             <div
               className="position-relative overflow-hidden rounded shadow-sm bg-dark"
-              style={{ height: '250px', cursor: 'pointer' }}
+              style={{ height: '250px', cursor: 'pointer'}}
               onClick={() => setCurrentIndex(index)}
             >
               <img
                 src={img.src}
                 alt={img.title}
-                className="w-100 h-100 object-fit-cover d-block transition-transform hover-zoom"
+                className="w-100 h-100 object-fit-cover"
               />
-              <div className="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-dark bg-opacity-50 opacity-0 hover-opacity-100 transition-opacity">
-                <span className="text-white h6">Увеличить &#128269;</span>
+              <div
+                className={previewImg.hoverImg}
+              >
+                <span className="text-white h5">Увеличить &#128269;</span>
               </div>
             </div>
           </div>
@@ -173,7 +176,7 @@ export default function Gallery() {
                   transform: isZoomed ? 'scale(2.5)' : 'scale(1)',
                   transition: 'transform 0.3s ease-in-out',
                   transformOrigin: `${zoomPoint.x}% ${zoomPoint.y}%`,
-                  maxHeight: isZoomed ? '90vh' : '80vh' 
+                  maxHeight: isZoomed ? '90vh' : '80vh'
                 }}
                 alt=""
                 onClick={handleImageClick}
