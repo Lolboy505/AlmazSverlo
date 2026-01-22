@@ -34,7 +34,7 @@ export default function ScrollToTop() {
         width: 'fit-content',
         marginLeft: 'auto',
         marginRight: '10px',
-        zIndex: 1050,
+        zIndex: 9,
         flexDirection: 'column',
       }}
     >
