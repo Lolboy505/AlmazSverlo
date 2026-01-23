@@ -348,6 +348,8 @@ export default function Contact() {
                             </button>
 
                             <button
+                                disabled={isLoading}
+                                type="button"
                                 onClick={handleClear}
                                 className='w-100 my-3 py-2 fw-bold d-flex align-items-center justify-content-center gap-2 rounded-3 shadow-lg'
                                 style={{
