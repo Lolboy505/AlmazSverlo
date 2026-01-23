@@ -23,7 +23,7 @@ export default function Contact() {
     const [formDatalast, setFormDatalast] = useState(nullForm);
     const [isLoading, setIsLoading] = useState(false)
 
-    console.log(formData)
+    console.log(formData) // Для отладки
 
 
     let tmpFormData = nullForm
@@ -286,11 +286,13 @@ export default function Contact() {
                             <div className="mb-3 form-check text-start">
                                 <input
                                     type="checkbox"
-                                    name="acess"
+                                    name="isAgreed"
                                     id="privacy_policy"
                                     className="form-check-input"
                                     required
-                                    onClick={() => (setFormData((prev) => ({ ...prev, isAgreed: !prev.isAgreed })))}
+                                    checked={formData.isAgreed}
+                                    onChange={() => setFormData((prev) => ({ ...prev, isAgreed: !prev.isAgreed }))}
+                                    style={{ cursor: 'pointer' }}
                                 />
 
                                 <span className="form-check-label text-white-50 shadow-sm">
