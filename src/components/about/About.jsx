@@ -1,22 +1,50 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import Gallery from '@/components/gallery/Gallery';
+import { useState, useEffect, useRef } from 'react';
+import styles from './Slider.module.css';
 
-let textFirst = "Мой опыт и современные технологии позволяют добиваться идеального результата даже в самых сложных материалах. Ценю свою репутацию, поэтому обеспечиваю персональный подход к каждому заказу. Работаю чисто, оперативно и на совесть — будь то частный сектор или крупный строительный объект."
+let discription = "Обращаясь ко мне, вы не платите диспетчерам и менеджерам. Мой опыт и современные технологии позволяют добиваться идеального результата даже в самых сложных материалах. Ценю свою репутацию, поэтому обеспечиваю персональный подход к каждому заказу. Работаю чисто, оперативно и на совесть — будь то частный сектор или крупный строительный объект."
+
+let texts = [
+    {
+        id: 1,
+        text: "Работаю без посредников — отвечаю за результат лично",
+    },
+    {
+        id: 2,
+        text: "Мой опыт — ваша гарантия результата",
+    },
+    {
+        id: 3,
+        text: "Прямой контакт с мастером — гарантия лучшей цены",
+    },
+]
+
+let textsFin = [...texts, texts[0]];
+
 let textSecond = null
-// "Работаем на совесть, обеспечивая персональный подход к каждому заказу — от частного дома до крупных строительных площадок."
-
-let styleImg = {
-    border: "3px solid var(--color-red-700)",
-    borderRadius: "30px",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-    transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-    cursor: "pointer",
-    zIndex: 1
-};
-
-const features = null;
 
 export default function About() {
+    const [index, setIndex] = useState(0);
+    const [isTransitioning, setIsTransitioning] = useState(true);
+    const sliderRef = useRef(null);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setIndex((prev) => prev + 1);
+            setIsTransitioning(true);
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const handleTransitionEnd = () => {
+        if (index === textsFin.length - 1) {
+            setIsTransitioning(false);
+            setIndex(0);
+        }
+    };
+
     return (
         <Container
             fluid
@@ -46,14 +74,24 @@ export default function About() {
                         className='px-3 px-md-4'
                     >
                         <h2
-                            className="display-7 fw-bold"
+                            className={styles.sliderContainer}
                         >
-                            <div className="h1 text-center">
-                                Почему выбирают меня?
-                            </div>
-                            <br />
-                            <div className="h2">
-                                Работаю без посредников — отвечаю за результат лично
+                            <div
+                                ref={sliderRef}
+                                onTransitionEnd={handleTransitionEnd}
+                                className={`${styles.sliderInner} ${!isTransitioning ? styles.noTransition : ''}`}
+                                style={{
+                                    transition: isTransitioning ? 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+                                    transform: `translateX(-${index * 100}%`,
+                                }}
+                            >
+                                {textsFin.map((arr, i) => (
+                                    <div key={i} className={styles.slide}>
+                                        <span className={styles.accent}>
+                                            {arr.text}
+                                        </span>
+                                    </div>
+                                ))}
                             </div>
                         </h2>
                         <p className="display-7 my-4"
@@ -61,7 +99,7 @@ export default function About() {
                                 fontWeight: "400",
                             }}
                         >
-                            {textFirst}
+                            {discription}
                         </p>
                         <p
                             className="display-7"

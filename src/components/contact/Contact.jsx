@@ -23,9 +23,6 @@ export default function Contact() {
     const [formDatalast, setFormDatalast] = useState(nullForm);
     const [isLoading, setIsLoading] = useState(false)
 
-    console.log(formData) // Для отладки
-
-
     let tmpFormData = nullForm
 
     let contactData = [
