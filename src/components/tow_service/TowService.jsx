@@ -2,6 +2,9 @@ import { Truck, Clock, MapPin, Shield } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap"
 import ImageWithFallback from "../additional/ImageWithFallback";
 import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow } from '../additional/contactData';
+import busImg from "@/images/BusEd.png";
+
+const urlPhotoZapas = 'https://avatars.mds.yandex.net/i?id=cf5df4551e7390bfdb07fe60056d6df9_l-9699538-images-thumbs&n=13'
 
 let data = [
     {
@@ -122,7 +125,7 @@ export default function TowService() {
                         <Col xs={12} lg={6} className="order-1 order-lg-2">
                             <div style={{ height: "100%", minHeight: "300px", position: "relative" }}>
                                 <ImageWithFallback
-                                    src="https://avatars.mds.yandex.net/i?id=cf5df4551e7390bfdb07fe60056d6df9_l-9699538-images-thumbs&n=13"
+                                    src={busImg}
                                     alt="Услуги эвакуатора"
                                     style={{
                                         width: "100%",
