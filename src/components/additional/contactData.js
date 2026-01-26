@@ -7,12 +7,10 @@ const address = "Работаем по всему городу"
 const addressTow = "По всему городу и области"
 
 const schedule = "Пн-Cб"
-
 const fromTime = '8:00'
 const toTime = '20:00' 
 
 const scheduleTow = "Пн-Сб"
-
 const fromTimeTow = '6:00'
 const toTimeTow = '22:00'
 
