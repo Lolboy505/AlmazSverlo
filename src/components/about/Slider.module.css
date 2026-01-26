@@ -31,5 +31,9 @@
 }
 
 .accent {
+    min-width: 100%;
+    font-size: 1.6rem;
+    padding: 10px 20px;
+    margin: 0 10px;
     color: white;
 }

@@ -59,15 +59,50 @@ export default function Gallery() {
   };
 
   return (
-    <div className="container py-5">
-      <h2 className="text-center mb-4 fw-bold">ФОТО С ОБЪЕКТОВ</h2>
+    <div className="container py-5 px-0"
+      style={{
+        background: "var(--color-card)",
+        borderRadius: "12px",
+        border: "1px solid rgba(255, 255, 255, 0.1)",
+        padding: "20px",
+      }}
+    >
+      <div
+        style={{
+          marginBottom: '20px',
+          display: 'flex',
+          justifyContent: 'center',
+        }}
+      >
+        <h2
+          className=" d-flex justify-content-center 
+        text-center mb-3 px-3 px-md-5 py-2"
+          style={{
+            color: 'white',
+            background: "var(--color-card)",
+            borderRadius: "12px",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+          }}
+        >
+          ФОТО С ОБЪЕКТОВ
+        </h2>
+      </div>
 
-      <div className="row g-3">
+      <div className="row g-1 g-lg-3 justify-content-center gap-2">
         {images.slice(0, 4).map((img, index) => (
-          <div key={index} className="col-6 col-md-3">
+          <div
+            key={index}
+            className="col-5 col-md-5"
+            style={{
+            }}
+          >
             <div
               className="position-relative overflow-hidden rounded shadow-sm bg-dark"
-              style={{ height: '250px', cursor: 'pointer'}}
+              style={{
+                border: "2px solid var(--color-red-800)",
+                height: '250px',
+                cursor: 'pointer',
+              }}
               onClick={() => setCurrentIndex(index)}
             >
               <img

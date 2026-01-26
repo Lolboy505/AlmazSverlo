@@ -1,5 +1,5 @@
 html {
-  overflow-y: scroll; 
+  overflow-y: scroll;
 }
 
 body {
@@ -16,6 +16,9 @@ body {
   --color-red-800: oklch(42.2% 0.181 27.701);
   --color-red-900: oklch(34.8% 0.150 27.883);
   --color-red-950: oklch(27.4% 0.120 28.066);
+
+  --color-container: #1a1a1a;
+  --color-card: rgba(255, 255, 255, 0.02);
 }
 
 /* Плавное изменение высоты */
@@ -30,27 +33,37 @@ body {
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 ::-webkit-scrollbar {
-    width: 10px; 
-    height: 10px; 
-}
-::-webkit-scrollbar-track {
-    background: #1a1a1a; 
-}
-::-webkit-scrollbar-thumb {
-    background: var(--color-red-600); 
-    border-radius: 5px;  
-    border: 2px solid #1a1a1a; 
-}
-::-webkit-scrollbar-thumb:hover {
-    cursor: pointer;
-}
-* {
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-red-600) #1a1a1a;
+  width: 10px;
+  height: 10px;
 }
 
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-red-600);
+  border-radius: 5px;
+  border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  cursor: pointer;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-red-600) #1a1a1a;
+}

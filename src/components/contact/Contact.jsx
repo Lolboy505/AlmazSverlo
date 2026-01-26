@@ -200,9 +200,6 @@ export default function Contact() {
                 <h2 className="text-white fw-bold mb-3" style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}>
                     Свяжитесь с нами
                 </h2>
-                <p className="text-neutral-400 mx-auto" style={{ maxWidth: "600px" }}>
-                    Оставьте заявку, и наш специалист перезвонит вам для консультации.
-                </p>
             </div>
 
             <Row className="g-4">
