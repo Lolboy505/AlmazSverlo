@@ -23,8 +23,6 @@ let texts = [
 
 let textsFin = [...texts, texts[0]];
 
-let textSecond = null
-
 export default function About() {
     const [index, setIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(true);
@@ -82,25 +80,21 @@ export default function About() {
                 fluid
                 className="pt-4 p-2"
                 style={{
-                    overflow: 'hidden',
-                    background: "var(--color-container)",
-                    borderRadius: "20px",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    overflow: "hidden",
                 }}
             >
                 <Row
-                    className="p-1 p-md-3 px-md-5 g-4 d-flex flex-column 
-                    flex-lg-row justify-content-center align-items-center
-                    align-items-lg-start"
+                    className="p-1 p-md-3 px-md-0 g-4 gap-4
+                    d-flex flex-column flex-lg-row 
+                    justify-content-center align-items-center align-items-lg-start"
                     style={{
                         overflow: 'hidden',
                         fontFamily: "Golos Text",
+                        textShadow: '0 0 20px black',
                     }}
                 >
                     <Col
-                        lg={6}
-                        xl={5}
-                        className="pt-4 d-flex flex-column 
+                        className="p-3 m-0 col-11 col-lg-5 d-flex flex-column 
                         justify-content-center align-items-center 
                         align-items-lg-start"
                         style={{
@@ -116,6 +110,7 @@ export default function About() {
                                 background: "var(--color-card)",
                                 borderRadius: "12px",
                                 border: "1px solid rgba(255, 255, 255, 0.1)",
+                                boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
                             }}
                         >
                             <div
@@ -136,41 +131,31 @@ export default function About() {
                                 ))}
                             </div>
                         </h2>
-                        <p className=" my-4 mt-3 px-2 px-md-3"
-                            style={{
-                                fontWeight: "400",
-                            }}
-                        >
+                        <div className="p-4 pb-0" style={{ fontWeight: "400" }}>
                             <div
+                                className="p-2 px-0"
                                 style={{
-                                    fontSize: "1.2rem",
-                                    margin: "0 0 10px 0",
-                                    padding: "none",
+                                    fontSize: "clamp(1rem, 5vw , 1.7rem)",
                                 }}
                             >
                                 {discription1}
                             </div>
+
                             <div
+                                className="p-2 px-0"
                                 style={{
-                                    fontSize: "1.1rem",
-                                    margin: "0 0 10px 0",
-                                    padding: "none",
+                                    fontSize: "clamp(1rem, 3.5vw, 1.5rem)",
+                                    lineHeight: "1.2",
                                 }}
                             >
                                 {discription2}
-
                             </div>
-                        </p>
-                        <p
-                            className="display-7"
-                            style={{
-                                color: "grey",
-                            }}
-                        >
-                            {textSecond}
-                        </p>
+                        </div>
+
                     </Col>
-                    <Col lg={6} xl={7} >
+                    <Col
+                        className="col-11 col-lg-5 p-0 m-0"
+                    >
                         <Gallery />
                     </Col>
                 </Row>

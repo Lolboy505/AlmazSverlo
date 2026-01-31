@@ -24,7 +24,7 @@ export default function Header() {
         {
             text: null,
             child: <Mail />,
-            href: "mailto:"+email,
+            href: "mailto:" + email,
         },
         {
             text: null,
@@ -39,7 +39,7 @@ export default function Header() {
         {
             text: formatPhoneNumber(),
             child: <Phone />,
-            href: "tel:+"+phone,
+            href: "tel:+" + phone,
         },
     ]
 
@@ -58,7 +58,7 @@ export default function Header() {
     }
 
     return (
-        <header 
+        <header
             className="sticky-top"
             style={{
                 zIndex: 10
@@ -68,8 +68,12 @@ export default function Header() {
                 collapseOnSelect
                 expand="md"
                 sticky='top'
-                className=''
-                style={{ backgroundColor: themeColor, color: "white", textShadow: "0px 1.5px 0px rgba(0, 0, 0, 0.8)" }}
+                className='d-flex flex-column'
+                style={{
+                    backgroundColor: themeColor,
+                    color: "white",
+                    textShadow: "0px 1.5px 0px rgba(0, 0, 0, 0.8)"
+                }}
             >
                 <Container className="px-2">
                     <Navbar.Brand href="#home" className="m-0">
@@ -93,53 +97,67 @@ export default function Header() {
                     />
                     <Navbar.Collapse
                         id="responsive-navbar-nav"
-                        style={{
-                            borderBottom: "1px grey solid",
-                            paddingBottom: "5px"
-                        }}
                     >
                         <Nav
-                            className="w-100 d-flex flex-column flex-md-row align-items-center justify-content-between py-0 py-md-0 gap-0"
+                            className="w-100 d-flex flex-column 
+                            align-items-end justify-content-end 
+                            py-0 py-md-0 gap-0
+                            "
                         >
                             <div
-                                className="d-flex flex-column align-items-center my-2 mx-2 my-md-0"
-                                style={{ fontFamily: "Golos Text" }}
+                                className="top__section 
+                                w-100 d-flex flex-column flex-md-row 
+                                align-items-center justify-content-between 
+                                py-0 py-md-0 gap-0"
                             >
-                                <h2
-                                    className="mb-0 text-center fw-bold"
+                                <div
+                                    className="d-flex flex-column align-items-center my-2 mx-2 my-md-0"
+                                    style={{ fontFamily: "Golos Text" }}
                                 >
-                                    АЛМАЗНОЕ СВЕРЛЕНИЕ
-                                </h2>
-                            </div>
-                            <div
-                                className="d-flex flex-wrap justify-content-center justify-content-lg-end"
-                            >
-                                {dataLink.map((Link, iter) => {
-                                    // выводит Кнопки у которых должна быть обязательно ссылка 
-                                    if(Link.href) {
-                                        return (
-                                            <Nav.Link
-                                                key={iter}
-                                                href={Link.href}
-                                                onMouseEnter={(event) => setHovered(event)}
-                                                onMouseLeave={(event) => setUnhovered(event)}
-                                                style={buttonStyle}
-                                                className='text-white'
-                                            >
-                                                {(Link.child && Link.text) ? (
-                                                    <>
-                                                        {Link.child}
-                                                        {Link.text}
-                                                    </>) :
-                                                    Link.text ? Link.text : Link.child ? Link.child : null}
-                                            </Nav.Link>
-                                        )
-                                    }
-                                })}
+                                    <h2
+                                        className="mb-0 text-center fw-bold"
+                                    >
+                                        АЛМАЗНОЕ СВЕРЛЕНИЕ
+                                    </h2>
+                                </div>
+                                <div
+                                    className="d-flex flex-wrap justify-content-center justify-content-lg-end"
+                                >
+                                    {dataLink.map((Link, iter) => {
+                                        // выводит Кнопки у которых должна быть обязательно ссылка 
+                                        if (Link.href) {
+                                            return (
+                                                <Nav.Link
+                                                    key={iter}
+                                                    href={Link.href}
+                                                    onMouseEnter={(event) => setHovered(event)}
+                                                    onMouseLeave={(event) => setUnhovered(event)}
+                                                    style={buttonStyle}
+                                                    className='text-white'
+                                                >
+                                                    {(Link.child && Link.text) ? (
+                                                        <>
+                                                            {Link.child}
+                                                            {Link.text}
+                                                        </>) :
+                                                        Link.text ? Link.text : Link.child ? Link.child : null}
+                                                </Nav.Link>
+                                            )
+                                        }
+                                    })}
+                                </div>
                             </div>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
+                <div
+                    className="bottom__section mt-1"
+                    style={{
+                        borderBottom: '1px solid grey',
+                        width: '100%',
+                    }}
+                >
+                </div>
             </Navbar>
         </header>
     )

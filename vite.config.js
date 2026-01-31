@@ -15,5 +15,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/AlmazSverlo/', // Оставляем для корректных путей в билде
+  base: '/' 
+  // '/AlmazSverlo/', // Оставляем для корректных путей в билде
 })

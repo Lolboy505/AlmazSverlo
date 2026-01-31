@@ -59,7 +59,7 @@ export default function Hero() {
                 </Row>
                 <Row className=" d-flex flex-column align-items-center justify-content-center pb-5 pt-2 pt-lg-4">
                     <Nav.Link
-                        className=" d-flex text-center justify-content-center col-8 col-lg-6"
+                        className=" d-flex text-center justify-content-center col-8 col-md-6 col-lg-5 col-xl-4"
                         href="#order"
                         onMouseEnter={(event) => setHovered(event)}
                         onMouseLeave={(event) => setUnhovered(event)}
@@ -70,15 +70,13 @@ export default function Hero() {
                         </div>
                     </Nav.Link>
                     <Nav.Link
-                        className="mt-2 d-flex text-center justify-content-center col-6 col-lg-5"
+                        className="mt-2 d-flex text-center justify-content-center col-6 col-md-5 col-lg-4 col-xl-3"
                         href="#AddService"
                         onMouseEnter={(event) => setHovered(event)}
                         onMouseLeave={(event) => setUnhovered(event)}
                         style={{
                             ...buttonStyle,
-
                             background: 'var(--color-red-700)',
-                            // background: 'grey',
                         }}
                     >
                         <div className="h6 mb-1">

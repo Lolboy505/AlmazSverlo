@@ -22,7 +22,7 @@ export default function Materials() {
         <Container
             style={{
                 color: 'white',
-                background: "rgba(255, 2, 2, 0.15)"
+                // background: "rgba(255, 2, 2, 0.12)"
             }}
             fluid
         >
@@ -40,11 +40,21 @@ export default function Materials() {
                 <div
                     className='p-4'
                     style={{
+                        // background: "var(--color-red-800)",             
+                        background: "linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)",
+                        backdropFilter: "blur(12px)",
+                        border: "1px solid rgba(255,255,255,0.18)",
+                        borderRadius: "30px",
+                        height: "100%",
+                        boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+                        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+
                         width: "84%",
-                        background: "var(--color-red-700)",
-                        borderRadius: "25px",
-                        boxShadow: "0 0 15px var(--color-red-700)",
-                        textShadow: "0px 0px 3px rgba(0,0,0,0.8)",
+                        // background: "black",
+                        // borderRadius: "25px",
+                        // border: '1px solid rgb(64, 64, 64)',
+                        // boxShadow: "0 0 20px var(--color-red-950)",
+                        // textShadow: "0px 0px 3px rgba(0,0,0,0.8)",
                     }}
                 >
                     <div className="d-flex row mb-2">
@@ -59,8 +69,8 @@ export default function Materials() {
                                 alignItems: 'center',
                                 background: "rgba(255,255,255,0.1)",
                                 borderRadius: "20px",
-                                border: "2px solid rgba(145, 0, 0, 1)",
-                                boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+                                border: "2px solid rgba(64, 64, 64)",
+                                boxShadow: "0 0 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.5)",
                                 padding: "15px 25px",
                             }}
                         >
@@ -79,7 +89,12 @@ export default function Materials() {
                         <Container>
                             <Row className='g-3 justify-content-center' >
                                 {materials.map((material, index) => (
-                                    <MaterialsContent {...paramForContent} key={index} index={index} material={material} />
+                                    <MaterialsContent
+                                        {...paramForContent}
+                                        key={index}
+                                        index={index}
+                                        material={material}
+                                    />
                                 ))}
                             </Row>
                         </Container>
@@ -112,16 +127,25 @@ const paramForContent = {
         flexShrink: "0",
     },
     styleBorder: {
-        transition: "transform 0.3s ease",
-        background: "rgba(255,255,255,0.1)",
-        borderRadius: "20px",
-        border: "2px solid rgba(145, 0, 0, 1)",
-        minWidth: "250px",
-        width: "100%",
-        maxWidth: "500px",
-        boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-        alignItems: "center",
+        background: "linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, rgba(255,255,255,0.05) 100%)",
+        backdropFilter: "blur(12px)",
+        border: "1px solid rgba(255,255,255,0.18)",
+        borderRadius: "30px",
+        height: "100%",
+        boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
         cursor: "pointer",
+
+        // transition: "transform 0.3s ease",
+        // background: "rgba(255,255,255,0.1)",
+        // borderRadius: "20px",
+        // border: "2px solid rgba(145, 0, 0, 1)",
+        minWidth: "250px",
+        width: "80%",
+        // maxWidth: "500px",
+        // boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+        // alignItems: "center",
+        // cursor: "pointer",
     },
     styleText: {
         marginLeft: '5px',

@@ -59,7 +59,7 @@ export default function Gallery() {
   };
 
   return (
-    <div className="container py-5 px-0"
+    <div className="container py-4 px-0"
       style={{
         background: "var(--color-card)",
         borderRadius: "12px",
@@ -76,19 +76,20 @@ export default function Gallery() {
       >
         <h2
           className=" d-flex justify-content-center 
-        text-center mb-3 px-3 px-md-5 py-2"
+        text-center mb-3 px-4 px-lg-6 py-2"
           style={{
             color: 'white',
             background: "var(--color-card)",
             borderRadius: "12px",
             border: "1px solid rgba(255, 255, 255, 0.1)",
+            boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
           }}
         >
           ФОТО С ОБЪЕКТОВ
         </h2>
       </div>
 
-      <div className="row g-1 g-lg-3 justify-content-center gap-2">
+      <div className="row g-2 g-lg-3 justify-content-center gap-2">
         {images.slice(0, 4).map((img, index) => (
           <div
             key={index}
@@ -99,7 +100,6 @@ export default function Gallery() {
             <div
               className="position-relative overflow-hidden rounded shadow-sm bg-dark"
               style={{
-                border: "2px solid var(--color-red-800)",
                 height: '250px',
                 cursor: 'pointer',
               }}
@@ -113,7 +113,7 @@ export default function Gallery() {
               <div
                 className={previewImg.hoverImg}
               >
-                <span className="text-white h5">Увеличить &#128269;</span>
+                <span className="text-white text-center h5">Увеличить &#128269;</span>
               </div>
             </div>
           </div>
