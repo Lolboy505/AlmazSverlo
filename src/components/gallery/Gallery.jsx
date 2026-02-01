@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import previewImg from './previewImg.module.css'
 import './Gallery.module.css';
 
-const imagesModules = import.meta.glob('@/gallery/*.{jpg,jpeg,png}', { eager: true });
+//jpg,jpeg,png НЕТ только WEBP
+
+const imagesModules = import.meta.glob('@/gallery/*.{webp,}', { eager: true });
 
 const images = Object.entries(imagesModules).map(([path, module], index) => {
   return {
@@ -16,6 +18,8 @@ export default function Gallery() {
   const [currentIndex, setCurrentIndex] = useState(null);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPoint, setZoomPoint] = useState({ x: 50, y: 50 });
+  const [isLoadedPrew, setLoadedPrew] = useState(false)
+  const [isLoadedGal, setLoadedGal] = useState(false)
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -76,7 +80,7 @@ export default function Gallery() {
       >
         <h2
           className=" d-flex justify-content-center 
-        text-center mb-3 px-4 px-lg-6 py-2"
+          text-center mb-3 px-4 px-lg-6 py-2"
           style={{
             color: 'white',
             background: "var(--color-card)",
@@ -89,35 +93,75 @@ export default function Gallery() {
         </h2>
       </div>
 
-      <div className="row g-2 g-lg-3 justify-content-center gap-2">
-        {images.slice(0, 4).map((img, index) => (
-          <div
-            key={index}
-            className="col-5 col-md-5"
-            style={{
-            }}
-          >
-            <div
-              className="position-relative overflow-hidden rounded shadow-sm bg-dark"
-              style={{
-                height: '250px',
-                cursor: 'pointer',
-              }}
-              onClick={() => setCurrentIndex(index)}
-            >
-              <img
-                src={img.src}
-                alt={img.title}
-                className="w-100 h-100 object-fit-cover"
-              />
-              <div
-                className={previewImg.hoverImg}
-              >
-                <span className="text-white text-center h5">Увеличить &#128269;</span>
-              </div>
-            </div>
-          </div>
-        ))}
+      <div
+        className="row g-2 g-lg-3 gap-2 
+          justify-content-center"
+      >
+        {
+          (!images.length) ?
+            (
+              <>
+                <div className="text-center">
+                  <h1>404</h1>
+                  <br />
+                  Sorry
+                  <br />
+                  something went wrong
+                </div>
+              </>
+            )
+            :
+            (
+              <>
+                {!isLoadedPrew && (
+                  <>
+                    <div className="spinner-border "></div>
+                    <br />
+                    <div className="text-center">Загрузка...</div>
+                  </>
+                )}
+
+
+                {
+                  images.slice(0, 4).map((img, index) => (
+                    <div
+                      key={index}
+                      className="col-5 col-md-5"
+                      style={{
+                      }}
+                    >
+                      <div
+                        className="position-relative overflow-hidden rounded shadow-sm bg-dark"
+                        style={{
+                          height: '250px',
+                          cursor: 'pointer',
+                        }}
+                        onClick={() => setCurrentIndex(index)}
+                      >
+                        {!isLoadedPrew && <div className="spinner">Загрузка...</div>}
+                        <img
+                          src={img.src}
+                          alt={img.title}
+                          loading="lazy"
+                          onLoad={() => setLoadedPrew(true)}
+                          style={{
+                            opacity: isLoadedPrew ? 1 : 0,
+                            transition: 'opacity 0.3s ease-in-out',
+                          }}
+                          className="w-100 h-100 object-fit-cover"
+                        />
+                        <div
+                          className={previewImg.hoverImg}
+                        >
+                          <span className="text-white text-center h5">Увеличить &#128269;</span>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                }
+              </>
+            )
+        }
       </div>
 
       {currentIndex !== null && (
@@ -129,7 +173,7 @@ export default function Gallery() {
           {!isZoomed && (
             <>
               <div
-                className="text-white position-fixed start-0 top-50 translate-middle-y px-3 d-block"
+                className=" position-fixed start-0 top-50 translate-middle-y px-3 d-block"
                 style={{
                   fontSize: '3rem',
                   zIndex: 11,
@@ -140,12 +184,22 @@ export default function Gallery() {
                 }}
                 onClick={(e) => { e.stopPropagation(); prevSlide(); }}
               >
-                <div>
-                  ‹
+                <div
+                  style={{
+                    zIndex: 13,
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none',
+                    msUserSelect: 'none',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                >
+                  <div>
+                    ‹
+                  </div>
                 </div>
               </div>
               <div
-                className="text-white position-fixed end-0 top-50 translate-middle-y px-3 d-block"
+                className=" position-fixed end-0 top-50 translate-middle-y px-3 d-block"
                 style={{
                   fontSize: '3rem',
                   zIndex: 11,
@@ -156,71 +210,116 @@ export default function Gallery() {
                 }}
                 onClick={(e) => { e.stopPropagation(); nextSlide(); }}
               >
-                <div>
-                  ›
+                <div
+                  style={{
+                    zIndex: 13,
+                    userSelect: 'none',
+                    WebkitUserSelect: 'none',
+                    msUserSelect: 'none',
+                    WebkitTapHighlightColor: 'transparent',
+                  }}
+                >
+                  <div
+                    style={{ pointerEvents: 'none' }}
+                  >
+                    ›
+                  </div>
                 </div>
               </div>
             </>
           )}
 
-          <div className="position-relative" style={{ maxWidth: '90%', maxHeight: '90%' }} onClick={(e) => e.stopPropagation()}>
+          <div
+            className="position-relative"
+            style={{
+              maxWidth: '90%',
+              maxHeight: '90%',
+              minHeight: '40%',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="overflow-hidden rounded shadow-lg bg-black">
-              <div
-                className="position-absolute top-0 end-0 m-0"
-                style={{
-                  display: "flex",
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: 'clamp(2rem, 2.5vw , 2.2rem)',
-                  height: 'clamp(2rem, 2.5vw , 2.2rem)',
-                  borderRadius: "0 0 0 10px",
-                  background: "var(--color-red-600)",
-                  color: "var(--color-red-700)",
-                  cursor: 'pointer',
-                  zIndex: 1,
-                }}
-                onClick={closeGallery}
-              >
-                <span
+              {isLoadedGal && (<>
+                <div
+                  className="position-absolute top-0 end-0 m-0"
                   style={{
-                    background: 'var(--color-red-800)',
-                    display: 'flex',
-                    position: 'absolute',
-                    height: '5px',
-                    width: 'clamp(1rem, 2.5vw , 1.5rem)',
-                    transform: 'rotate(45deg)'
-                  }}>
-                </span>
-                <span
-                  style={{
-                    background: 'var(--color-red-800)',
-                    display: 'flex',
-                    position: 'absolute',
-                    height: '5px',
-                    width: 'clamp(1rem, 2.5vw , 1.5rem)',
-                    transform: 'rotate(-45deg)'
+                    display: "flex",
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: 'clamp(2rem, 2.5vw , 2.2rem)',
+                    height: 'clamp(2rem, 2.5vw , 2.2rem)',
+                    borderRadius: "0 0 0 10px",
+                    background: "var(--color-red-600)",
+                    color: "var(--color-red-700)",
+                    cursor: 'pointer',
+                    zIndex: 10,
                   }}
+                  onClick={closeGallery}
                 >
-                </span>
-              </div>
+                  <span
+                    style={{
+                      background: 'var(--color-red-800)',
+                      display: 'flex',
+                      position: 'absolute',
+                      height: '5px',
+                      width: 'clamp(1rem, 2.5vw , 1.5rem)',
+                      transform: 'rotate(45deg)'
+                    }}>
+                  </span>
+                  <span
+                    style={{
+                      background: 'var(--color-red-800)',
+                      display: 'flex',
+                      position: 'absolute',
+                      height: '5px',
+                      width: 'clamp(1rem, 2.5vw , 1.5rem)',
+                      transform: 'rotate(-45deg)'
+                    }}
+                  >
+                  </span>
+                </div>
+
+              </>)}
+
+              {!isLoadedGal && (
+                <div
+                  className="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center"
+                  style={{ zIndex: 5 }}
+                >
+                  <div
+                    className="spinner-border" role="status"
+                    style={{
+                      width: '3rem',
+                      height: '3rem',
+                    }}
+                  >
+                    <span className="visually-hidden"></span>
+                  </div>
+                </div>
+              )}
+
               <img
+                key={currentIndex}
                 src={images[currentIndex].src}
-                className="img-fluid d-block"
+                alt={images[currentIndex].title}
+                onLoad={() => setLoadedGal(true)}
                 style={{
                   cursor: isZoomed ? 'zoom-out' : 'zoom-in',
                   transform: isZoomed ? 'scale(2.5)' : 'scale(1)',
                   transition: 'transform 0.3s ease-in-out',
                   transformOrigin: `${zoomPoint.x}% ${zoomPoint.y}%`,
-                  maxHeight: isZoomed ? '90vh' : '80vh'
+                  maxHeight: isZoomed ? '90vh' : '80vh',
+                  opacity: isLoadedGal ? 1 : 0,
                 }}
-                alt=""
+                className="img-fluid d-block"
                 onClick={handleImageClick}
               />
+
             </div>
 
-            {!isZoomed && (
+            {!isZoomed && isLoadedGal && (
               <div className="mt-3 text-center text-white position-relative">
-                <p className="fs-4 mb-0">{images[currentIndex].title}</p>
+                <div className="fs-4 mb-0">{images[currentIndex].title}</div>
               </div>
             )}
           </div>

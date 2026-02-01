@@ -2,7 +2,7 @@ import { Truck, Clock, MapPin, Shield } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap"
 import ImageWithFallback from "../additional/ImageWithFallback";
 import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow } from '../additional/contactData';
-import busImg from "@/images/BusEd.png";
+import busImg from "@/images/BusEd.webp";
 
 const urlPhotoZapas = 'https://avatars.mds.yandex.net/i?id=cf5df4551e7390bfdb07fe60056d6df9_l-9699538-images-thumbs&n=13'
 
