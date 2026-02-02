@@ -1,7 +1,8 @@
-import { Container, Row, } from 'react-bootstrap';
+import { Container, Row, } from 'react-bootstrap'
 import cursorImg from '@/images/WhiteCursor.png'
 import stylePointer from "./PointerMover.module.css"
-import MaterialsContent from './MaterialsContent';
+import MaterialsContent from './MaterialsContent'
+import { useInView } from 'react-intersection-observer'
 
 const materials = [
     'ЖЕЛЕЗОБЕТОН',
@@ -17,12 +18,15 @@ const materials = [
 ];
 
 export default function Materials() {
+    const { ref, inView } = useInView({
+        threshold: 0.4,
+        triggerOnce: true,
+    });
 
     return (
         <Container
             style={{
                 color: 'white',
-                // background: "rgba(255, 2, 2, 0.12)"
             }}
             fluid
         >
@@ -40,7 +44,6 @@ export default function Materials() {
                 <div
                     className='p-4'
                     style={{
-                        // background: "var(--color-red-800)",             
                         background: "linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)",
                         backdropFilter: "blur(12px)",
                         border: "1px solid rgba(255,255,255,0.18)",
@@ -48,13 +51,7 @@ export default function Materials() {
                         height: "100%",
                         boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-
                         width: "84%",
-                        // background: "black",
-                        // borderRadius: "25px",
-                        // border: '1px solid rgb(64, 64, 64)',
-                        // boxShadow: "0 0 20px var(--color-red-950)",
-                        // textShadow: "0px 0px 3px rgba(0,0,0,0.8)",
                     }}
                 >
                     <div className="d-flex row mb-2">
@@ -78,21 +75,22 @@ export default function Materials() {
                                 Работаем с материалами
                             </h2>
                             <div
-                                className={stylePointer.pointer}
+                                ref={ref}
+                                className={` ${stylePointer.pointer} ${inView ? stylePointer.animate : ''}`}
                                 style={{
                                     backgroundImage: `url(${cursorImg})`,
                                 }}
-                                alt=""
+                                alt="cursorIMG"
                             >
                             </div>
                         </div>
                         <Container>
-                            <Row className='g-3 justify-content-center' >
+                            <Row as='ul' className='g-3 justify-content-center' >
                                 {materials.map((material, index) => (
                                     <MaterialsContent
+                                        as='li'
                                         {...paramForContent}
                                         key={index}
-                                        index={index}
                                         material={material}
                                     />
                                 ))}
@@ -127,25 +125,21 @@ const paramForContent = {
         flexShrink: "0",
     },
     styleBorder: {
-        background: "linear-gradient(145deg, rgba(255, 255, 255, 0.16) 0%, rgba(255,255,255,0.05) 100%)",
-        backdropFilter: "blur(12px)",
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        msUserSelect: 'none',
+        WebkitTapHighlightColor: 'transparent',
+
+        willChange: "transform",
+        background: "rgba(255, 255, 255, 0.15)",
         border: "1px solid rgba(255,255,255,0.18)",
         borderRadius: "30px",
         height: "100%",
         boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        transition: "transform 0.5s cubic-bezier(0.175, 0.885, 0.22, 1.875)",
         cursor: "pointer",
-
-        // transition: "transform 0.3s ease",
-        // background: "rgba(255,255,255,0.1)",
-        // borderRadius: "20px",
-        // border: "2px solid rgba(145, 0, 0, 1)",
         minWidth: "250px",
         width: "80%",
-        // maxWidth: "500px",
-        // boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-        // alignItems: "center",
-        // cursor: "pointer",
     },
     styleText: {
         marginLeft: '5px',
@@ -155,7 +149,7 @@ const paramForContent = {
     },
     classNameFullContent: "col-12 col-md-6 d-flex justify-content-center justify-content-md-center",
     classNameContent: "gap-2 d-flex align-items-center p-2 px-3",
-    imgColor: "var(--color-red-700)",
+    imgColor: "var(--color-red-600)",
     imgSize: 25,
     classNameStyleText: "text-white h6 fw-bold mb-0",
 }
