@@ -202,8 +202,8 @@ export default function Contact() {
                 </h2>
             </div>
 
-            <Row className="g-4">
-                <Col lg={5}>
+            <Row className="g-4 d-flex justify-content-center">
+                <Col lg={6}>
                     <div className="h-100 d-flex flex-column gap-4">
                         <div className="p-4 rounded-4" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                             <h3 className="text-center display-7 mb-4 fw-bold">Контактная информация</h3>
@@ -221,7 +221,7 @@ export default function Contact() {
                     </div>
                 </Col>
 
-                <Col lg={7} id='order'>
+                {/* <Col lg={7} id='order'>
                     <div className="p-4 p-md-5 rounded-4 h-100" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
                         <h3 className="text-white h4 mb-4 fw-bold text-center text-md-start">Оставить заявку</h3>
 
@@ -357,7 +357,7 @@ export default function Contact() {
                             </button>
                         </form>
                     </div>
-                </Col>
+                </Col> */}
             </Row>
         </Container>
     );

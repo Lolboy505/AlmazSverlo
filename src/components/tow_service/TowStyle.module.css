@@ -5,15 +5,15 @@
 
 .mainCardContainer {
     background: #1a1a1a;
-    border-radius: 35px;
+    border-radius: 40px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
-    display: flex;
 }
 
 .imageWrapper {
+    width: 100%;
     height: 100%;
-    min-height: 250px;
+    min-height: 400px;
 }
 
 .imgCover {
@@ -23,92 +23,90 @@
     display: block;
 }
 
-.headerIconBox {
-    padding: 12px;
-    background: #ac0000;
-    border-radius: 12px;
-    display: flex;
-    flex-shrink: 0;
-}
-
-.heroText {
-    font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.5;
-}
-
 .infoGrid {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
+    width: 100%;
 }
 
 .infoCardWrapper {
     display: flex;
     align-items: center;
-    gap: 15px;
-    padding: 12px 20px;
+    gap: 16px;
+    padding: 16px 20px;
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
     transition: all 0.3s ease;
 }
 
 .infoCardWrapper:hover {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.1);
     border-color: #ac0000;
 }
 
 .infoCardIcon {
     flex-shrink: 0;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     background: #ac0000;
-    border-radius: 10px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 4px 15px rgba(172, 0, 0, 0.4);
 }
 
 .infoCardTitle {
     color: white;
-    font-weight: 700;
-    font-size: 1rem;
+    font-weight: 800;
+    font-size: 0.95rem;
     margin: 0;
-    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .infoCardText {
+    padding-top: 5px;
     color: rgba(255, 255, 255, 0.6);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin: 0;
+    line-height: 1.3;
+}
+
+.heroText {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.4;
 }
 
 .btnCallAction {
-    display: flex;
+    text-align: center;
+    display: inline-flex;
+    width: 100%;
+    max-width: 320px;
     justify-content: center;
     align-items: center;
     background: #ac0000;
     color: white;
     text-decoration: none;
-    text-align: center;
-    padding: 14px 28px;
-    border-radius: 50px;
-    font-weight: 800;
+    padding: 18px 20px;
+    border-radius: 100px;
+    font-weight: 900;
+    font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 8px 20px rgba(172, 0, 0, 0.3);
-    text-transform: uppercase;
+    margin-top: 10px;
 }
 
 .btnCallAction:hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
+    transform: scale(1.02);
+    filter: brightness(1.2);
     color: white;
 }
 
 @media (min-width: 992px) {
-    .mainCardContainer {
-        min-height: 500px;
-        max-height: 700px;
+    .mainCardContainer :global(.row) {
+        display: flex;
+        align-items: stretch;
     }
 }

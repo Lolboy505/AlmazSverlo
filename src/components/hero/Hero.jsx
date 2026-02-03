@@ -2,6 +2,7 @@ import { Container, Row, Col, Nav } from "react-bootstrap"
 import { buttonStyle } from "../additional/buttonStyle"
 import redWall from '@/images/RedWall_light.webp';
 import style from './hero.module.css'
+import { phone } from "../additional/contactData";
 
 export default function Hero() {
     function setHovered(e) {
@@ -66,7 +67,12 @@ export default function Hero() {
                         style={{ ...buttonStyle }}
                     >
                         <div className="h5 mb-1">
-                            Оформить заказ
+                            <a
+                                href={`tel:+${phone}`}
+                                className="text-white text-decoration-none fw-bold hover-red"
+                            >
+                                Оформить заказ
+                            </a>
                         </div>
                     </Nav.Link>
                     <Nav.Link
@@ -80,7 +86,7 @@ export default function Hero() {
                         }}
                     >
                         <div className="h6 mb-1">
-                            Дополнительные услуги
+                            Услуги эвакуатора
                         </div>
                     </Nav.Link>
                 </Row>

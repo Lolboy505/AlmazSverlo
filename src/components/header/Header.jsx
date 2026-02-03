@@ -12,11 +12,6 @@ let themeColor = "black"
 export default function Header() {
     let dataLink = [
         {
-            text: "Оформить заказ",
-            child: null,
-            href: "#order",
-        },
-        {
             text: "Контакты",
             child: null,
             href: "#contact",
@@ -26,11 +21,11 @@ export default function Header() {
             child: <Mail />,
             href: "mailto:" + email,
         },
-        {
-            text: null,
-            child: <VkIcon />,
-            href: vkontakte,
-        },
+        // {
+        //     text: null,
+        //     child: <VkIcon />,
+        //     href: vkontakte,
+        // },
         {
             text: null,
             child: <TelegramIcon />,

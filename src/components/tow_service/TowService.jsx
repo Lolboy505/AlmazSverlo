@@ -26,7 +26,8 @@ const SERVICE_DATA = [
     {
         icon: Phone,
         title: "КОНТАКТЫ",
-        description: `Номер телефона: ${formatPhoneNumber(phoneTow)}`,
+        description: `Номер телефона:`,
+        subDescription: formatPhoneNumber(phoneTow)
     },
 ];
 
@@ -50,13 +51,13 @@ export default function TowService() {
         <Container fluid className={styles.towServiceSection}>
             <Row className="pt-5 mx-0">
                 <Col>
-                    <h1 id="AddService" className="h2 text-center text-white text-uppercase fw-bold">
+                    <h2 id="AddService" className="h2 text-center text-white  fw-bold">
                         Дополнительные услуги
-                    </h1>
+                    </h2>
                 </Col>
             </Row>
 
-            <Row className="justify-content-center py-5 px-3 px-md-4 mx-0">
+            <Row className="justify-content-center py-5 px-2 px-md-4 mx-0">
                 <Col xs={12} lg={10} xl={9} className={`${styles.mainCardContainer} p-0`}>
                     <Row className="g-0 w-100">
                         <Col xs={12} lg={6} className="order-1 order-lg-2">
@@ -88,7 +89,12 @@ export default function TowService() {
                                 ))}
                             </div>
 
-                            <a href={`tel:+${phone}`} className={styles.btnCallAction}>
+                            <a
+                                href={`tel:+${phone}`}
+                                className={styles.btnCallAction}
+                                style={{
+                                    margin: '0 auto',
+                                }}>
                                 ВЫЗВАТЬ ЭВАКУАТОР
                             </a>
                         </Col>

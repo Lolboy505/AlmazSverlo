@@ -15,7 +15,7 @@ export default function Footer() {
                 }}>
                 <div className="text-center">
                     <p className="mx-2">
-                        ©2026 {nameOrg}. Все права защищены.
+                        ©2026 {nameOrg}. Все права защищены. Информация на сайте не является публичной офертой (ст. 437 ГК РФ).
                     </p>
                     <p className="m-0 p-0 col-12 ">
                         {fullName}

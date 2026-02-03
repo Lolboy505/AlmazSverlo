@@ -47,7 +47,7 @@ export default function Services() {
     >
       <Container className='pb-4'>
         <Row>
-          <h2 className="text-center mb-4">
+          <h2 className=" text-center mb-4">
             НАШИ УСЛУГИ
           </h2>
         </Row>
