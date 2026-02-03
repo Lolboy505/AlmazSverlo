@@ -19,7 +19,8 @@ const fullName = "Фамилия Имя Отчество"
 const TIN = "56165165116" // ИНН
 const PSRNSP = "372487349973274" // ОГРНИП
 
-function formatPhoneNumber(){
+function formatPhoneNumber(phone = null){
+    if (phone === null) return
     return `+${phone[0]} (${phone[1]}${phone[2]}${phone[3]}) ${phone[4]}${phone[5]}${phone[6]}-${phone[7]}${phone[8]}-${phone[9]}${phone[10]}`;
 }
 
@@ -41,6 +42,8 @@ export {
     scheduleTow,
     address,
     addressTow,
+    phoneTow,
     // функции
     formatPhoneNumber,
+
 }

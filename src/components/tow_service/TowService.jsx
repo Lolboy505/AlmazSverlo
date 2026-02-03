@@ -1,17 +1,17 @@
-import { Truck, Clock, MapPin, Shield } from 'lucide-react';
-import { Container, Row, Col } from "react-bootstrap"
+import React from 'react';
+import { Truck, Clock, MapPin, Shield, Phone } from 'lucide-react';
+import { Container, Row, Col } from "react-bootstrap";
 import ImageWithFallback from "../additional/ImageWithFallback";
-import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow } from '../additional/contactData';
+import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow, phoneTow, formatPhoneNumber } from '../additional/contactData';
 import busImg from "@/images/BusEd.webp";
+import styles from './TowStyle.module.css';
 
-const urlPhotoZapas = 'https://avatars.mds.yandex.net/i?id=cf5df4551e7390bfdb07fe60056d6df9_l-9699538-images-thumbs&n=13'
-
-let data = [
+const SERVICE_DATA = [
     {
         icon: Clock,
         title: "ВРЕМЯ РАБОТЫ",
         description: `С ${fromTimeTow} до ${toTimeTow} часов`,
-        descriptionAdd: `График работы: ${scheduleTow}`,
+        subDescription: `График работы: ${scheduleTow}`,
     },
     {
         icon: MapPin,
@@ -23,163 +23,73 @@ let data = [
         title: "ЛЮБОЕ АВТО",
         description: "До 5 тонн, а также перевозка бусов с МАКСИ базой",
     },
-]
+    {
+        icon: Phone,
+        title: "КОНТАКТЫ",
+        description: `Номер телефона: ${formatPhoneNumber(phoneTow)}`,
+    },
+];
 
-function createInfoPanels() {
-    return data.map((arr, index) => {
-        let Icon = arr.icon
-        return (
-            <div
-                key={index + 100}
-                className="d-flex align-items-center justify-content-center p-3"
-                style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    border: "1px solid rgba(255, 255, 255, 0.1)",
-                    borderRadius: "16px",
-                    flex: "1 1 calc(50% - 10px)",
-                    minWidth: "200px",
-                    transition: "all 0.3s ease"
-                }}
-                onMouseEnter={(e) => {
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
-                    e.currentTarget.style.borderColor = "var(--color-red-600)";
-                }}
-                onMouseLeave={(e) => {
-                    e.currentTarget.style.background = "rgba(255, 255, 255, 0.05)";
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
-                }}
-            >
-                <div
-                    className="p-2 d-flex align-items-center justify-content-center"
-                    style={{
-                        width: "50px",
-                        height: "50px",
-                        background: "rgba(172, 0, 0, 1)",
-                        borderRadius: "10px",
-                        flexShrink: 0,
-                    }}
-                >
-                    <Icon size={40} />
-                </div>
-
-                <div
-                    style={{
-                        width: "100%",
-                        color: 'white',
-                    }}
-                    className="p-2 d-flex flex-column text-center"
-                >
-                    <span
-                        className="text-white fw-bold pb-2"
-                        style={{ fontSize: "0.9rem", lineHeight: "1.2" }}
-                    >
-                        {arr.title}
-                    </span>
-                    <span
-                        className="text-neutral-500"
-                        style={{ fontSize: "0.8rem" }}
-                    >
-                        {arr.description}
-                        <br />
-                        {arr.descriptionAdd && arr.descriptionAdd}
-                    </span>
-                </div>
-            </div>
-        )
-    })
-}
+const InfoCard = ({ icon: Icon, title, description, subDescription }) => (
+    <div className={styles.infoCardWrapper}>
+        <div className={styles.infoCardIcon}>
+            <Icon size={24} color="white" />
+        </div>
+        <div className={styles.infoCardContent}>
+            <h4 className={styles.infoCardTitle}>{title}</h4>
+            <p className={styles.infoCardText}>
+                {description}
+                {subDescription && <><br />{subDescription}</>}
+            </p>
+        </div>
+    </div>
+);
 
 export default function TowService() {
     return (
-        <Container
-            fluid
-            className='px-3 px-sm-5'
-            style={{
-                background: "black"
-            }}
-        >
-            <Row>
-                <Col className='pt-5'>
-                    <h1
-                        id="AddService"
-                        style={{
-                            color: "white",
-                        }}
-                        className='h2 text-center '>
-                        ДОПОЛНИТЕЛЬНЫЕ УСЛУГИ
+        <Container fluid className={styles.towServiceSection}>
+            <Row className="pt-5 mx-0">
+                <Col>
+                    <h1 id="AddService" className="h2 text-center text-white text-uppercase fw-bold">
+                        Дополнительные услуги
                     </h1>
                 </Col>
             </Row>
-            <Row className="justify-content-center py-5 px-2">
-                <Col
-                    xs={12} lg={10}
-                    style={{
-                        background: "#1a1a1a",
-                        borderRadius: "35px",
-                        border: "1px solid rgba(255,255,255,0.1)",
-                        overflow: "hidden",
-                        padding: 0
-                    }}
-                >
-                    <Row className="g-0 align-items-stretch">
+
+            <Row className="justify-content-center py-5 px-3 px-md-4 mx-0">
+                <Col xs={12} lg={10} xl={9} className={`${styles.mainCardContainer} p-0`}>
+                    <Row className="g-0 w-100">
                         <Col xs={12} lg={6} className="order-1 order-lg-2">
-                            <div style={{ height: "100%", minHeight: "300px", position: "relative" }}>
+                            <div className={styles.imageWrapper}>
                                 <ImageWithFallback
                                     src={busImg}
                                     alt="Услуги эвакуатора"
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover"
-                                    }}
+                                    className={styles.imgCover}
                                 />
                             </div>
                         </Col>
-                        <Col xs={12} lg={6} className="order-2 order-lg-1 p-4 p-md-5">
+
+                        <Col xs={12} lg={6} className="order-2 order-lg-1 p-4 p-md-5 d-flex flex-column justify-content-center">
                             <div className="d-flex align-items-center gap-3 mb-4">
-                                <div className="p-2 bg-red-600 rounded-3" >
-                                    <Truck size={50} color="white" />
+                                <div className={styles.headerIconBox}>
+                                    <Truck size={32} color="white" />
                                 </div>
-                                <h2 className="text-white fw-bold mb-0">Услуги эвакуатора</h2>
+                                <h2 className="text-white fw-bold mb-0 h3">Услуги эвакуатора</h2>
                             </div>
 
-                            <p
-                                className="text-neutral-400 mb-4"
-                                style={{ fontSize: "1.2rem", lineHeight: "1.6rem", color: "rgba(255, 255, 255, 0.7)" }}
-                            >
-                                Профессиональная помощь на дороге.
-                                <br />
+                            <p className={styles.heroText}>
+                                Профессиональная помощь на дороге.<br />
                                 Быстро, надежно.
                             </p>
 
-                            <div className="row mb-4">
-                                <div className="col-12">
-                                    <div
-                                        className="gap-4"
-                                        style={{
-                                            display: "grid",
-                                            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                                        }}
-                                    >
-                                        {createInfoPanels()}
-                                    </div>
-                                </div>
+                            <div className={`${styles.infoGrid} my-4`}>
+                                {SERVICE_DATA.map((item, idx) => (
+                                    <InfoCard key={idx} {...item} />
+                                ))}
                             </div>
 
-                            <a
-                                href={"tel:+" + phone}
-                                className="d-flex d-flex align-items-center justify-content-center gap-3 text-white px-5 py-3 rounded-pill transition-all"
-                                style={{
-                                    background: "var(--color-red-600)",
-                                    textDecoration: "none",
-                                    fontWeight: "700",
-                                    boxShadow: "0 8px 20px rgba(220, 38, 38, 0.3)"
-                                }}
-                                onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
-                                onMouseLeave={(e) => e.currentTarget.style.transform = "translateY(0)"}
-                            >
-                                <Truck size={40} />
-                                <span>ВЫЗВАТЬ ЭВАКУАТОР</span>
+                            <a href={`tel:+${phone}`} className={styles.btnCallAction}>
+                                ВЫЗВАТЬ ЭВАКУАТОР
                             </a>
                         </Col>
                     </Row>

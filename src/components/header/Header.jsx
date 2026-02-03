@@ -37,7 +37,7 @@ export default function Header() {
             href: telegram,
         },
         {
-            text: formatPhoneNumber(),
+            text: formatPhoneNumber(phone),
             child: <Phone />,
             href: "tel:+" + phone,
         },

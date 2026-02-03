@@ -28,7 +28,7 @@ export default function Contact() {
     let contactData = [
         {
             label: "Телефон",
-            value: formatPhoneNumber(),
+            value: formatPhoneNumber(phone),
             href: "tel:+" + phone,
             icon: <Phone size={30} />,
         },
