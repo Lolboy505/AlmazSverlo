@@ -1,5 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Drill, Home, Droplet, Wind, Zap, Settings } from 'lucide-react';
+import cardStyle from "./Services.module.css"
 
 const services = [
   {
@@ -46,9 +47,9 @@ export default function Services() {
     >
       <Container className='pb-4'>
         <Row>
-          <h1 className="text-center mb-4">
+          <h2 className="text-center mb-4">
             НАШИ УСЛУГИ
-          </h1>
+          </h2>
         </Row>
         <Row className="g-4 justify-content-center">
           {services.map((service, index) => {
@@ -58,38 +59,9 @@ export default function Services() {
                 key={index}
                 className="col-12 col-md-6 col-lg-4"
               >
-                <div
-                  style={{
-                    background: "linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)",
-                    backdropFilter: "blur(12px)",
-                    border: "1px solid rgba(255,255,255,0.18)",
-                    borderRadius: "30px",
-                    height: "100%",
-                    boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-                    transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                    cursor: "pointer"
-                  }}
-                  className="p-3 d-flex flex-column align-items-center text-center"
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = "translateY(-12px)";
-                    e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.4)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = "translateY(0px)";
-                    e.currentTarget.style.boxShadow = "0 10px 30px rgba(0,0,0,0.2)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.18)";
-                  }}
-                >
-                  <div className="mb-3 d-flex justify-content-center align-items-center"
-                    style={{
-                      background: "var(--color-red-700)",
-                      borderRadius: "18px",
-                      width: "60px",
-                      height: "60px",
-                      boxShadow: "0 8px 20px rgba(185, 28, 28, 0.4)",
-                      flexShrink: 0
-                    }}
+                <div className={cardStyle.cardContainer}>
+                  <div
+                    className={cardStyle.iconWrapper}
                   >
                     <Icon size={32} color="white" />
                   </div>
