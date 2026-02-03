@@ -85,7 +85,12 @@ export default function Materials() {
                             </div>
                         </div>
                         <Container>
-                            <Row as='ul' className='g-3 justify-content-center' >
+                            <Row as='ul'
+                                className='
+                                p-0
+                                g-2 g-md-3 
+                                justify-content-center'
+                            >
                                 {materials.map((material, index) => (
                                     <MaterialsContent
                                         as='li'

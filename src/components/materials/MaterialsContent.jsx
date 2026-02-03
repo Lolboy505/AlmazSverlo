@@ -9,17 +9,19 @@ export default function MaterialsContent({ styleBorder, styleImg, styleText, cla
 
     useEffect(() => {
         text.current.style.whiteSpace = "nowrap"
-    },[text])
+    }, [text])
 
     const handleClick = (e) => {
         if (flag) {
             box.current.style.transform = "translateY(-12px)"
             box.current.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)"
+            box.current.style.background = "rgb(99, 99, 99)"
             text.current.style.whiteSpace = ""
         }
         else {
             box.current.style.transform = "translateY(0px)";
             box.current.style.boxShadow = "0 0 10px rgba(0,0,0,0.3)"
+            box.current.style.background = "rgba(255, 255, 255, 0.15)"
             text.current.style.whiteSpace = "nowrap"
         }
         setFlag((prev) => (!prev))
@@ -41,7 +43,7 @@ export default function MaterialsContent({ styleBorder, styleImg, styleText, cla
                 <span
                     ref={text}
                     className={classNameStyleText}
-                    style={{ ...styleText}}
+                    style={{ ...styleText }}
                 >
                     {material}
                 </span>

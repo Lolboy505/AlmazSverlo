@@ -1,5 +1,6 @@
 const nameOrg = "AlmazSverlo"
 const phone = "79597777777" // указывать только цифры
+const phoneTow = "79597777777"
 const email = "info@drilling.ru"
 const telegram = "https://t.me"
 const vkontakte = "https://vk.com"
