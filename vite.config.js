@@ -16,6 +16,7 @@ export default defineConfig({
     },
   },
   base: 
-  // '/' 
-  '/AlmazSverlo/', // Оставляем для корректных путей в билде
+  '/' 
+  // '/AlmazSverlo/', // Оставляем для корректных путей
+  //  в билде для github где AlmazSverlo название репозитория 
 })
