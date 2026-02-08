@@ -10,7 +10,7 @@ const images = Object.entries(imagesModules).map(([path, module], index) => {
   return {
     id: index + 1,
     src: module.default,
-    title: `Работа №${index + 1}`,
+    title: `Обьект №${index + 1}`,
   };
 });
 

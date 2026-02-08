@@ -6,8 +6,9 @@ import { buttonStyle } from '../additional/buttonStyle'
 import { nameOrg } from '../additional/contactData'
 import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../additional/contactData'
 import style from './Header.module.css'
-import logo from '@/images/LogoRed.png';
 import ImageWithFallback from "../additional/ImageWithFallback"
+
+const logo = "/LogoRed.png";
 
 let themeColor = "black"
 
