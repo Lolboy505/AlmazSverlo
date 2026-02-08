@@ -1,7 +1,6 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"
 import { buttonStyle } from "../additional/buttonStyle"
 import redWall from '@/images/RedWall_light.webp';
-import style from './hero.module.css'
 import { phone } from "../additional/contactData";
 
 export default function Hero() {
