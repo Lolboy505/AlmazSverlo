@@ -3,7 +3,7 @@ import { TIN, fullName, nameOrg } from '@/components/additional/contactData'
 
 export default function Footer() {
     return (
-        <footer className="pt-4"
+        <footer className="py-4"
             style={{
                 borderTop: "1px solid grey"
             }}
