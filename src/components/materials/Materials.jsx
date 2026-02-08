@@ -1,4 +1,4 @@
-import { Container, Row, } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import cursorImg from '@/images/WhiteCursor.png'
 import stylePointer from "./PointerMover.module.css"
 import MaterialsContent from './MaterialsContent'
@@ -25,50 +25,36 @@ export default function Materials() {
 
     return (
         <Container
-            style={{
-                color: 'white',
-            }}
             fluid
         >
-            <Row>
-                <div style={{
-                    background: "linear-gradient(0deg , rgba(0,0,0,0.001) , black)",
-                    height: "60px"
-                }}>
-
-                </div>
-            </Row>
             <Row
-                className='d-flex pb-4 justify-content-center'
+                className='my-5 d-flex justify-content-center'
             >
-                <div
-                    className='p-4'
+                <Col
+                    className='py-4 col-12 col-sm-11'
                     style={{
                         background: "linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)",
                         backdropFilter: "blur(12px)",
                         border: "1px solid rgba(255,255,255,0.18)",
                         borderRadius: "30px",
-                        height: "100%",
                         boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
                         transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                        width: "84%",
                     }}
                 >
-                    <div className="d-flex row mb-2">
-                        <div
-                            className="mb-4"
+                    <Row
+                        className="mb-4 d-flex justify-content-center"
+                    >
+                        <Col
+                            className="col-11 col-md-10"
                             style={{
                                 display: 'flex',
                                 flexDirection: 'column',
-                                maxWidth: "600px",
-                                minHeight: "150px",
-                                margin: 'auto',
                                 alignItems: 'center',
                                 background: "rgba(255,255,255,0.1)",
                                 borderRadius: "20px",
                                 border: "2px solid rgba(64, 64, 64)",
                                 boxShadow: "0 0 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.5)",
-                                padding: "15px 25px",
+                                padding: "18px 25px",
                             }}
                         >
                             <h2 className="text-center h1">
@@ -83,36 +69,26 @@ export default function Materials() {
                                 alt="cursorIMG"
                             >
                             </div>
-                        </div>
-                        <Container>
-                            <Row as='ul'
-                                className='
-                                p-0
-                                g-2 g-md-3 
-                                justify-content-center'
-                            >
+                        </Col>
+                    </Row>
+                    <Row
+                        className='d-flex justify-content-center'
+                    >
+                        <Col
+                            className="col-12 d-flex row justify-content-center"
+                        >
+                            <Row className="p-0 col-12 d-flex justify-content-center">
                                 {materials.map((material, index) => (
                                     <MaterialsContent
-                                        as='li'
-                                        {...paramForContent}
                                         key={index}
+                                        {...paramForContent}
                                         material={material}
                                     />
                                 ))}
                             </Row>
-                        </Container>
-                    </div>
-                </div>
-            </Row>
-            <Row>
-                <div
-                    style={{
-                        width: "100%",
-                        height: "60px",
-                        background: "linear-gradient(180deg , rgba(0,0,0,0.001) , black)",
-                    }}
-                >
-                </div>
+                        </Col>
+                    </Row>
+                </Col>
             </Row>
         </Container>
     )
@@ -139,22 +115,24 @@ const paramForContent = {
         background: "rgba(255, 255, 255, 0.15)",
         border: "1px solid rgba(255,255,255,0.18)",
         borderRadius: "30px",
-        height: "100%",
         boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
         transition: "transform 0.5s cubic-bezier(0.175, 0.885, 0.22, 1.875)",
         cursor: "pointer",
         minWidth: "250px",
-        width: "80%",
+        height: "100%",
+        width: "100%",
     },
     styleText: {
-        marginLeft: '5px',
+        whiteSpace: 'nowrap',
         overflow: 'hidden',
+        paddingLeft: '5px',
         textOverflow: 'ellipsis',
-        fontSize: "clamp(1rem, 1.6vw, 1.4rem)",
+        fontSize: "clamp(1rem, 4vw, 1.3rem)",
+        textTransform: 'uppercase',
     },
-    classNameFullContent: "col-12 col-md-6 d-flex justify-content-center justify-content-md-center",
-    classNameContent: "gap-2 d-flex align-items-center p-2 px-3",
+    classNameFullContent: "p-1 mb-1 col-12 col-sm-6 col-lg-5 d-flex justify-content-center justify-content-md-center",
+    classNameContent: "py-2 px-3 gap-2 d-flex align-items-center",
     imgColor: "var(--color-red-600)",
     imgSize: 25,
-    classNameStyleText: "text-white h6 fw-bold mb-0",
+    classNameStyleText: "text-white fw-bold mb-0",
 }

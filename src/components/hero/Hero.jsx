@@ -21,80 +21,100 @@ export default function Hero() {
     return (
         <Container
             style={{
-                height: 'clamp(400px, 30vh, 600px)',
                 backgroundImage: `url(${redWall})`,
                 backgroundSize: "cover",
                 color: "white",
                 textShadow: "1px 2px 0px rgba(0, 0, 0, 0.8)",
                 fontSize: "clamp(1px, 2vh, 28px)",
-                overflow: "hidden"
+                overflowX: 'hidden',
             }}
             fluid
-            className="text-center p-0"
+            className="text-center p-0 mb-5"
         >
-            <div
-                className="gap-2"
-                style={{
-                    background: "linear-gradient(180deg , rgb(0,0,0,0.01) , black)",
-                    width: "100%",
-                    height: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                }}
-            >
-                <Row className="pt-4 px-2">
-                    <h1
-                        className={style.global__h1}
-                    >
-                        АЛМАЗНОЕ СВЕРЛЕНИЕ В ЛУГАНСКЕ
-                    </h1>
-                </Row>
-                <Row className="d-flex justify-content-center">
-                    <h2
-                        className="px-4"
-                        style={{ ...style_hero }}
-                    >
-                        Профессиональное сверление отверстий различного диаметра под все виды коммуникаций
-                    </h2>
-                </Row>
-                <Row className=" d-flex flex-column align-items-center justify-content-center pb-5 pt-2 pt-lg-4">
-                    <Nav.Link
-                        className=" d-flex text-center justify-content-center col-8 col-md-6 col-lg-5 col-xl-4"
-                        href="#order"
-                        onMouseEnter={(event) => setHovered(event)}
-                        onMouseLeave={(event) => setUnhovered(event)}
-                        style={{ ...buttonStyle }}
-                    >
-                        <div className="h5 mb-1">
-                            <a
-                                href={`tel:+${phone}`}
-                                className="text-white text-decoration-none fw-bold hover-red"
+            <Row className="p-0 m-0">
+                <Col
+                    className="p-0 m-0"
+                    style={{
+                        background: "linear-gradient(180deg , rgb(0,0,0,0.01) , black)",
+                    }}
+                >
+                    <Row className="pt-5">
+                        <Col className="">
+                            <h1 className="fw-bold text-uppercase">
+                                <span className={''}>Алмазное сверление</span>
+                                <span className={"d-block"}>&</span>
+                                <span className={''}>Услуги эвакуатора</span>
+                                <span className="d-block fs-2 fw-normal mt-2">в Луганске и области</span>
+                            </h1>
+                        </Col>
+                    </Row>
+                    <Row className="d-flex justify-content-center">
+                        <Col className="p-1">
+                            <h2
+                                className="d-block px-4 py-2 fw-bold"
+                                style={{
+                                    fontSize: 'clamp(1.2rem, 50%, 1.5rem)',
+                                }}
                             >
-                                Оформить заказ
-                            </a>
-                        </div>
-                    </Nav.Link>
-                    <Nav.Link
-                        className="mt-2 d-flex text-center justify-content-center col-6 col-md-5 col-lg-4 col-xl-3"
-                        href="#AddService"
-                        onMouseEnter={(event) => setHovered(event)}
-                        onMouseLeave={(event) => setUnhovered(event)}
-                        style={{
-                            ...buttonStyle,
-                            background: 'var(--color-red-700)',
-                        }}
-                    >
-                        <div className="h6 mb-1">
-                            Услуги эвакуатора
-                        </div>
-                    </Nav.Link>
-                </Row>
-            </div>
-        </Container>
+                                <span className="d-block">
+                                    Профессиональные решения для стройки
+                                </span>
+                                <span className="d-block">
+                                    и быстрая помощь на дорогах
+                                </span>
+                            </h2>
+                        </Col>
+                    </Row>
+                    <Row className="pb-4">
+                        <Col className="d-flex flex-column align-items-center justify-content-center">
+                            <Nav.Link
+                                className="col-9 col-sm-6 col-md-6 col-lg-5 col-xl-4 d-flex text-center justify-content-center"
+                                href={`tel:+${phone}`}
+                                onMouseEnter={(event) => setHovered(event)}
+                                onMouseLeave={(event) => setUnhovered(event)}
+                                style={{ ...buttonStyle }}
+                            >
+                                <div
+                                    className="h5 mb-1 text-white text-decoration-none fw-bold hover-red"
+                                >
+                                    Позвонить мастеру
+                                </div>
+                            </Nav.Link>
+                            <Nav.Link
+                                className="col-9 col-sm-6 col-md-6 col-lg-5 col-xl-4 mt-2 d-flex text-center justify-content-center"
+                                href="#AddService"
+                                onMouseEnter={(event) => setHovered(event)}
+                                onMouseLeave={(event) => setUnhovered(event)}
+                                style={{
+                                    ...buttonStyle,
+                                    background: 'var(--color-red-700)',
+                                }}
+                            >
+                                <div className="h5 mb-1">
+                                    Вызвать эвакуатор
+                                </div>
+                            </Nav.Link>
+                            <Nav.Link
+                                className="mt-1"
+                                href="#AddService"
+                            >
+                                <div
+                                    style={{
+                                        ...buttonStyle,
+                                        background: 'var(--color-red-800)',
+                                        margin: '2px',
+                                        padding: '6px 12px'
+                                    }}
+                                    className="h6 mb-1"
+                                >
+                                    Просмотреть услуги эвакуатора
+                                </div>
+                            </Nav.Link>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row >
+        </Container >
     )
 }
 
-let style_hero = {
-    fontSize: "clamp(1rem, 4vw, 1.3rem)",
-}

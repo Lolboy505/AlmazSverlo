@@ -5,15 +5,15 @@ import ScrollToTop from "./components/additional/ScrollToTop"
 
 export default function App() {
   return (
-    <>
-      <div style={{
-        background:"black"
-      }}>
-        <Header />
-        <MainData />
-        <Footer />
-        <ScrollToTop />
-      </div>
-    </>
+    <div
+      style={{
+        background: "black"
+      }}
+    >
+      <Header />
+      <MainData />
+      <Footer />
+      <ScrollToTop />
+    </div>
   )
 }

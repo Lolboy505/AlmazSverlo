@@ -18,7 +18,16 @@ export default function ImageWithFallback(props) {
       style={style}
     >
       <div className="flex items-center justify-center w-full h-full">
-        <img src={ERROR_IMG_SRC} alt="Error loading image" style={{filter:'invert(1)', opacity: '1'}} {...rest} data-original-url={src} />
+        <img
+          src={ERROR_IMG_SRC}
+          alt="Error loading image"
+          style={{
+            filter: 'invert(1)',
+            opacity: '1'
+          }}
+          {...rest}
+          data-original-url={src}
+        />
       </div>
     </div>
   ) : (

@@ -35,7 +35,7 @@ export default function About() {
             interval = setInterval(() => {
                 setIsTransitioning(true);
                 setIndex((prevIndex) => prevIndex + 1);
-            }, 6000); // Твой интервал
+            }, 6000);
         };
 
         const stopSlider = () => clearInterval(interval);
@@ -45,12 +45,10 @@ export default function About() {
             if (document.hidden) {
                 stopSlider();
             } else {
-                // Когда вернулись — сбрасываем индекс на валидный и запускаем заново
                 startSlider();
             }
         };
 
-        // Запускаем при монтировании
         startSlider();
         document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -70,96 +68,94 @@ export default function About() {
     return (
         <Container
             fluid
-            className="flex flex-column m-0 p-0 "
+            className="flex flex-column"
             style={{
                 color: "white",
-                overflow: 'visible',
             }}
         >
-            <Container
-                fluid
-                className="pt-4 p-2"
-                style={{
-                    overflow: "hidden",
-                }}
+            <Row
+                className="mt-2 d-flex align-items-center justify-content-center"
             >
-                <Row
-                    className="p-1 p-md-3 px-md-0 g-4 gap-4
-                    d-flex flex-column flex-lg-row 
-                    justify-content-center align-items-center align-items-lg-start"
-                    style={{
-                        overflow: 'hidden',
-                        fontFamily: "Golos Text",
-                        textShadow: '0 0 20px black',
-                    }}
+                <Col
+                    className="px-0 col-12"
                 >
-                    <Col
-                        className="p-3 m-0 col-11 col-lg-5 d-flex flex-column 
-                        justify-content-center align-items-center 
-                        align-items-lg-start"
+                    <Row
+                        className="g-0 gap-3 row-12
+                            d-flex flex-column flex-lg-row 
+                            justify-content-center align-items-center 
+                            align-items-lg-start"
                         style={{
-                            background: "var(--color-card)",
-                            borderRadius: "12px",
-                            border: "1px solid rgba(255, 255, 255, 0.1)",
+                            fontFamily: "Golos Text",
+                            textShadow: '0 0 20px black',
                         }}
                     >
-
-                        <h2
-                            className={styles.sliderContainer}
+                        <Col
+                            className="col-11 col-lg-5 d-flex flex-column 
+                                justify-content-center align-items-center 
+                                align-items-lg-start"
                             style={{
                                 background: "var(--color-card)",
                                 borderRadius: "12px",
                                 border: "1px solid rgba(255, 255, 255, 0.1)",
-                                boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
                             }}
                         >
                             <div
-                                ref={sliderRef}
-                                onTransitionEnd={handleTransitionEnd}
-                                className={`${styles.sliderInner} ${!isTransitioning ? styles.noTransition : ''}`}
+                                className={styles.sliderContainer}
                                 style={{
-                                    transition: isTransitioning ? 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
-                                    transform: `translateX(-${index * 100}%`,
+                                    background: "var(--color-card)",
+                                    borderRadius: "12px",
+                                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                                    boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
                                 }}
                             >
-                                {textsFin.map((arr, i) => (
-                                    <div key={i} className={styles.slide}>
-                                        <span className={styles.accent}>
-                                            {arr.text}
-                                        </span>
-                                    </div>
-                                ))}
+                                <div
+                                    ref={sliderRef}
+                                    onTransitionEnd={handleTransitionEnd}
+                                    className={`${styles.sliderInner} ${!isTransitioning ? styles.noTransition : ''}`}
+                                    style={{
+                                        transition: isTransitioning ? 'transform 1.2s cubic-bezier(0.4, 0, 0.2, 1)' : 'none',
+                                        transform: `translateX(-${index * 100}%`,
+                                    }}
+                                >
+                                    {textsFin.map((arr, i) => (
+                                        <h3 key={i} className={styles.slide}>
+                                            <span className={styles.accent}>
+                                                {arr.text}
+                                            </span>
+                                        </h3>
+                                    ))}
+                                </div>
                             </div>
-                        </h2>
-                        <div className="p-4 pb-0" style={{ fontWeight: "400" }}>
-                            <div
-                                className="p-2 px-0"
-                                style={{
-                                    fontSize: "clamp(1rem, 5vw , 1.7rem)",
-                                }}
-                            >
-                                {discription1}
+                            <div className="p-4" style={{ fontWeight: "400" }}>
+                                <div
+                                    className="p-2 px-0"
+                                    style={{
+                                        fontSize: "clamp(1rem, 5vw , 1.7rem)",
+                                    }}
+                                >
+                                    {discription1}
+                                </div>
+
+                                <div
+                                    className="p-2 px-0"
+                                    style={{
+                                        fontSize: "clamp(1rem, 3.5vw, 1.5rem)",
+                                        lineHeight: "1.2",
+                                    }}
+                                >
+                                    {discription2}
+                                </div>
                             </div>
 
-                            <div
-                                className="p-2 px-0"
-                                style={{
-                                    fontSize: "clamp(1rem, 3.5vw, 1.5rem)",
-                                    lineHeight: "1.2",
-                                }}
-                            >
-                                {discription2}
-                            </div>
-                        </div>
-
-                    </Col>
-                    <Col
-                        className="col-11 col-lg-5 p-0 m-0"
-                    >
-                        <Gallery />
-                    </Col>
-                </Row>
-            </Container>
+                        </Col>
+                        <Col
+                            className="col-11 col-lg-5"
+                        >
+                            <Gallery />
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
         </Container >
     );
 }

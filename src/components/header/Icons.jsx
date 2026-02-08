@@ -9,6 +9,11 @@ export function TelegramIcon({ size = 24, color = "white" }) {
             strokeWidth="1.5"
             strokeLinecap="round"
             strokeLinejoin="round"
+            style={{
+                // drop-shadow ложится именно по контуру линий (path)
+                filter: "drop-shadow(0px 1px 0.5px rgba(0, 0, 0, 1))",
+                overflow: 'visible'
+            }}
         >
             <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" />
         </svg>

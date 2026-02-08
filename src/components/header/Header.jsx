@@ -1,15 +1,18 @@
+import { useState } from 'react'
 import { Phone, Mail } from 'lucide-react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import { TelegramIcon, VkIcon } from './Icons'
 import { buttonStyle } from '../additional/buttonStyle'
+import { nameOrg } from '../additional/contactData'
 import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../additional/contactData'
-import './Header.module.css'
+import style from './Header.module.css'
 import logo from '@/images/LogoRed.png';
 import ImageWithFallback from "../additional/ImageWithFallback"
 
 let themeColor = "black"
 
 export default function Header() {
+    const [expanded, setExpanded] = useState(false);
     let dataLink = [
         {
             text: "Контакты",
@@ -18,7 +21,7 @@ export default function Header() {
         },
         {
             text: null,
-            child: <Mail />,
+            child: <Mail style={{ filter: "drop-shadow(0px 1px 0.5px rgba(0, 0, 0, 1))" }} />,
             href: "mailto:" + email,
         },
         // {
@@ -53,107 +56,96 @@ export default function Header() {
     }
 
     return (
-        <header
-            className="sticky-top"
-            style={{
-                zIndex: 10
-            }}
-        >
+        <header className="sticky-top" style={{
+            zIndex: 1000,
+            backgroundColor: themeColor,
+        }}>
             <Navbar
-                collapseOnSelect
+                expanded={expanded}
+                onToggle={() => setExpanded(!expanded)}
                 expand="md"
-                sticky='top'
-                className='d-flex flex-column'
+                variant="dark"
+                className="m-0 p-0 px-3 flex-column "
                 style={{
                     backgroundColor: themeColor,
-                    color: "white",
-                    textShadow: "0px 1.5px 0px rgba(0, 0, 0, 0.8)"
+                    textShadow: "0px 1.5px 0px rgba(0, 0, 0, 0.8)",
+                    transition: 'all 0.3s ease'
                 }}
             >
-                <Container className="px-2">
+                <Container fluid className="px-2 px-lg-5 py-2 d-flex justify-content-between align-items-center">
                     <Navbar.Brand href="#home" className="m-0">
                         <ImageWithFallback
                             src={logo}
                             alt="LogoBrand"
-                            style={{ maxWidth: "120px", height: "auto" }}
+                            style={{ maxWidth: "130px", height: "auto" }}
                         />
                     </Navbar.Brand>
+
                     <Navbar.Toggle
-                        onMouseEnter={(event) => setHovered(event)}
-                        onMouseLeave={(event) => setUnhovered(event)}
                         aria-controls="responsive-navbar-nav"
+                        className={`border-0 shadow-none ${style.custom_toggler}`}
                         style={{
                             backgroundColor: "var(--color-red-600)",
-                            borderRadius: "8px",
-                            transition: "all 0.3s ease",
-                            boxShadow: "0 4px 6px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.3)",
-                            transform: "translateY(0)",
+                            padding: "8px 10px",
+                            borderRadius: "8px"
                         }}
-                    />
-                    <Navbar.Collapse
-                        id="responsive-navbar-nav"
                     >
-                        <Nav
-                            className="w-100 d-flex flex-column 
-                            align-items-end justify-content-end 
-                            py-0 py-md-0 gap-0
-                            "
-                        >
-                            <div
-                                className="top__section 
-                                w-100 d-flex flex-column flex-md-row 
-                                align-items-center justify-content-between 
-                                py-0 py-md-0 gap-0"
-                            >
-                                <div
-                                    className="d-flex flex-column align-items-center my-2 mx-2 my-md-0"
-                                    style={{ fontFamily: "Golos Text" }}
+                        <div className={`${style.burger_icon}`}>
+                            <span className={`${style.burger_line}`}></span>
+                            <span className={`${style.burger_line}`}></span>
+                            <span className={`${style.burger_line}`}></span>
+                        </div>
+                    </Navbar.Toggle>
+
+                    <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+                        <Nav className="align-items-center w-100">
+                            <div className="d-flex flex-column flex-md-row w-100 align-items-center justify-content-between">
+                                <h2
+                                    className="m-0 ms-md-3 p-2 text-center fw-bold text-uppercase"
+                                    style={{
+                                        fontFamily: "Golos Text",
+                                        fontSize: "clamp(1.5rem, 4vw, 1.8rem)"
+                                    }}
                                 >
-                                    <h2
-                                        className="mb-0 text-center fw-bold"
-                                    >
-                                        АЛМАЗНОЕ СВЕРЛЕНИЕ
-                                    </h2>
-                                </div>
+                                    {nameOrg}
+                                </h2>
                                 <div
-                                    className="d-flex flex-wrap justify-content-center justify-content-lg-end"
+                                    className="gap-1 p-1 d-flex flex-wrap justify-content-center"
+                                    style={{
+                                        minWidth: "2px",
+                                    }}
                                 >
-                                    {dataLink.map((Link, iter) => {
-                                        // выводит Кнопки у которых должна быть обязательно ссылка 
-                                        if (Link.href) {
-                                            return (
-                                                <Nav.Link
-                                                    key={iter}
-                                                    href={Link.href}
-                                                    onMouseEnter={(event) => setHovered(event)}
-                                                    onMouseLeave={(event) => setUnhovered(event)}
-                                                    style={buttonStyle}
-                                                    className='text-white'
-                                                >
-                                                    {(Link.child && Link.text) ? (
-                                                        <>
-                                                            {Link.child}
-                                                            {Link.text}
-                                                        </>) :
-                                                        Link.text ? Link.text : Link.child ? Link.child : null}
-                                                </Nav.Link>
-                                            )
-                                        }
-                                    })}
+                                    {dataLink.map((link, iter) => (
+                                        link.href && (
+                                            <Nav.Link
+                                                key={iter}
+                                                href={link.href}
+                                                onClick={() => setExpanded(false)}
+                                                onMouseEnter={setHovered}
+                                                onMouseLeave={setUnhovered}
+                                                style={buttonStyle}
+                                                className="text-white d-flex align-items-center gap-2"
+                                            >
+                                                {link.child}
+                                                {link.text}
+                                            </Nav.Link>
+                                        )
+                                    ))}
                                 </div>
                             </div>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
-                <div
-                    className="bottom__section mt-1"
-                    style={{
-                        borderBottom: '1px solid grey',
-                        width: '100%',
-                    }}
-                >
-                </div>
+
             </Navbar>
-        </header>
+            <div
+                style={{
+                    borderBottom: '1px solid var(--color-red-700)',
+                    width: '100%',
+                    height: '2px',
+                }}
+            >
+            </div>
+        </header >
     )
 }

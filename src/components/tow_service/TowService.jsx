@@ -1,5 +1,4 @@
-import React from 'react';
-import { Truck, Clock, MapPin, Shield, Phone } from 'lucide-react';
+import { Clock, MapPin, Shield, Phone } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap";
 import ImageWithFallback from "../additional/ImageWithFallback";
 import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow, phoneTow, formatPhoneNumber } from '../additional/contactData';
@@ -51,16 +50,19 @@ export default function TowService() {
         <Container fluid className={styles.towServiceSection}>
             <Row className="pt-5 mx-0">
                 <Col>
-                    <h2 id="AddService" className="h2 text-center text-white  fw-bold">
-                        Дополнительные услуги
+                    <h2 id="AddService" className="mt-5 mb-lg-4 text-center text-uppercase">
+                        Услуги эвакуатора
                     </h2>
                 </Col>
             </Row>
 
-            <Row className="justify-content-center py-5 px-2 px-md-4 mx-0">
-                <Col xs={12} lg={10} xl={9} className={`${styles.mainCardContainer} p-0`}>
-                    <Row className="g-0 w-100">
-                        <Col xs={12} lg={6} className="order-1 order-lg-2">
+            <Row className="py-4 justify-content-center">
+                <Col
+                    className={`${styles.mainCardContainer} col-12 col-sm-10`}
+                >
+
+                    <Row className="">
+                        <Col className="col-12 col-lg-7 p-0">
                             <div className={styles.imageWrapper}>
                                 <ImageWithFallback
                                     src={busImg}
@@ -70,18 +72,17 @@ export default function TowService() {
                             </div>
                         </Col>
 
-                        <Col xs={12} lg={6} className="order-2 order-lg-1 p-4 p-md-5 d-flex flex-column justify-content-center">
-                            <div className="d-flex align-items-center gap-3 mb-4">
-                                <div className={styles.headerIconBox}>
-                                    <Truck size={32} color="white" />
-                                </div>
-                                <h2 className="text-white fw-bold mb-0 h3">Услуги эвакуатора</h2>
+                        <Col className="p-4 p-md-5 col-12 col-lg-5 d-flex flex-column justify-content-center">
+                            <div className="gap-3 mb-2">
+                                <h3 className="text-white fw-bold mb-0 h4">
+                                    <span className="d-block">
+                                        Профессиональная помощь на дороге.
+                                    </span>
+                                    <span className="d-block">
+                                        Быстро, надежно, качественно.
+                                    </span>
+                                </h3>
                             </div>
-
-                            <p className={styles.heroText}>
-                                Профессиональная помощь на дороге.<br />
-                                Быстро, надежно.
-                            </p>
 
                             <div className={`${styles.infoGrid} my-4`}>
                                 {SERVICE_DATA.map((item, idx) => (
@@ -95,12 +96,12 @@ export default function TowService() {
                                 style={{
                                     margin: '0 auto',
                                 }}>
-                                ВЫЗВАТЬ ЭВАКУАТОР
+                                вызвать эвакуатор
                             </a>
                         </Col>
-                    </Row>
-                </Col>
-            </Row>
-        </Container>
+                    </Row >
+                </Col >
+            </Row >
+        </Container >
     );
 }

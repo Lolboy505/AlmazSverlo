@@ -38,59 +38,57 @@ const services = [
 export default function Services() {
   return (
     <Container
-      className="py-0 py-lg-5 px-0"
+      className="py-0 py-lg-5 px-4"
       style={{
         background: "black",
         color: "white",
       }}
       fluid
     >
-      <Container className='pb-4'>
-        <Row>
-          <h2 className=" text-center mb-4">
-            НАШИ УСЛУГИ
-          </h2>
-        </Row>
-        <Row className="g-4 justify-content-center">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={index}
-                className="col-12 col-md-6 col-lg-4"
-              >
-                <div className={cardStyle.cardContainer}>
-                  <div
-                    className={cardStyle.iconWrapper}
-                  >
-                    <Icon size={32} color="white" />
-                  </div>
-
-                  <h3
-                    className="text-white fw-bold mb-3"
-                    style={{
-                      fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
-                      textShadow: "0 0 10px rgba(255,0,0,0.2)"
-                    }}
-                  >
-                    {service.title}
-                  </h3>
-
-                  <p
-                    className="text-neutral-400 m-0 p-0"
-                    style={{
-                      fontSize: "clamp(0.9rem, 1.3vw, 1.05rem)",
-                      lineHeight: "1.6"
-                    }}
-                  >
-                    {service.description}
-                  </p>
+      <Row>
+        <h2 className="mb-4 mb-lg-5 text-center text-uppercase">
+          Услуги алмазного сверления
+        </h2>
+      </Row>
+      <Row className="mx-sm-5 mx-md-2 mx-xl-5 g-4 justify-content-center">
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          return (
+            <div
+              key={index}
+              className="col-12 col-md-6 col-lg-4"
+            >
+              <div className={cardStyle.cardContainer}>
+                <div
+                  className={cardStyle.iconWrapper}
+                >
+                  <Icon size={32} color="white" />
                 </div>
+
+                <h3
+                  className="text-white fw-bold mb-3"
+                  style={{
+                    fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
+                    textShadow: "0 0 10px rgba(255,0,0,0.2)"
+                  }}
+                >
+                  {service.title}
+                </h3>
+
+                <p
+                  className="text-neutral-400 m-0 p-0"
+                  style={{
+                    fontSize: "clamp(0.9rem, 1.3vw, 1.05rem)",
+                    lineHeight: "1.6"
+                  }}
+                >
+                  {service.description}
+                </p>
               </div>
-            );
-          })}
-        </Row>
-      </Container>
+            </div>
+          );
+        })}
+      </Row>
     </Container>
   );
 }

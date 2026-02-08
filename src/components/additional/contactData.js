@@ -1,7 +1,7 @@
-const nameOrg = "AlmazSverlo"
-const phone = "79597777777" // указывать только цифры
-const phoneTow = "79597777777"
-const email = "info@drilling.ru"
+const nameOrg = "Алмаз-Помощь"
+const phone = "79592022681" // указывать только цифры
+const phoneTow = "79592022681"
+const email = "paul.poluschin@yandex.ru"
 const telegram = "https://t.me"
 const vkontakte = "https://vk.com"
 const address = "Работаем по всему городу"
@@ -15,8 +15,8 @@ const scheduleTow = "Пн-Сб"
 const fromTimeTow = '6:00'
 const toTimeTow = '22:00'
 
-const fullName = "Фамилия Имя Отчество" 
-const TIN = "56165165116" // ИНН
+const fullName = "Полушин Павел Леонтьевич" 
+const TIN = "940201505065" // ИНН
 const PSRNSP = "372487349973274" // ОГРНИП
 
 function formatPhoneNumber(phone = null){

@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+import { Col, Row } from 'react-bootstrap';
 import { useEffect, useState } from "react";
 import { useRef } from 'react';
 
@@ -28,7 +29,7 @@ export default function MaterialsContent({ styleBorder, styleImg, styleText, cla
     }
 
     return (
-        <div
+        <Col
             className={classNameFullContent}
         >
             <div
@@ -48,7 +49,7 @@ export default function MaterialsContent({ styleBorder, styleImg, styleText, cla
                     {material}
                 </span>
             </div>
-        </div>
+        </Col>
     )
 }
 

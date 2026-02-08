@@ -63,7 +63,7 @@ export default function Gallery() {
   };
 
   return (
-    <div className="container py-4 px-0"
+    <div className="py-4 px-0"
       style={{
         background: "var(--color-card)",
         borderRadius: "12px",
@@ -79,8 +79,10 @@ export default function Gallery() {
         }}
       >
         <h2
-          className=" d-flex justify-content-center 
-          text-center mb-3 px-4 px-lg-6 py-2"
+          className="
+          mb-3 px-4 px-lg-6 py-2
+          d-flex justify-content-center 
+          text-center text-uppercase"
           style={{
             color: 'white',
             background: "var(--color-card)",
@@ -89,7 +91,7 @@ export default function Gallery() {
             boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
           }}
         >
-          ФОТО С ОБЪЕКТОВ
+          Фото с обьектов
         </h2>
       </div>
 
@@ -131,7 +133,8 @@ export default function Gallery() {
                       }}
                     >
                       <div
-                        className="position-relative overflow-hidden rounded shadow-sm bg-dark"
+                        className="
+                        position-relative overflow-hidden rounded shadow-sm bg-dark"
                         style={{
                           height: '250px',
                           cursor: 'pointer',

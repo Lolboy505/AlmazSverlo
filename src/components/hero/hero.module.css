@@ -1,13 +1,16 @@
+.global__h1 {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
 
-@media (370px >= width) {
+@media (370px<=width) {
     .global__h1 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 }
 
-@media (768px <= width) {
+@media (768px<=width) {
     .global__h1 {
         font-size: 2.5rem;
     }
-    
 }
