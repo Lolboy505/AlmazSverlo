@@ -40,7 +40,7 @@ export default function ScrollToTop() {
         visibility: isVisible ? 'visible' : 'hidden',
         transition: 'all 0.4s ease-in-out',
         transform: isVisible ? 'scale(1)' : 'scale(0)',
-        zIndex: '1000',
+        zIndex: '5',
       }}
       onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-5px) scale(1.1)')}
       onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0) scale(1)')}

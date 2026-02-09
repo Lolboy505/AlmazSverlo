@@ -58,13 +58,13 @@ export default function Header() {
 
     return (
         <header className="sticky-top" style={{
-            zIndex: 1000,
+            zIndex: 5,
             backgroundColor: themeColor,
         }}>
             <Navbar
                 expanded={expanded}
                 onToggle={() => setExpanded(!expanded)}
-                expand="md"
+                expand="lg"
                 variant="dark"
                 className="m-0 p-0 px-3 flex-column "
                 style={{
@@ -100,7 +100,7 @@ export default function Header() {
 
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Nav className="align-items-center w-100">
-                            <div className="d-flex flex-column flex-md-row w-100 align-items-center justify-content-between">
+                            <div className="d-flex flex-column flex-lg-row w-100 align-items-center justify-content-between">
                                 <h2
                                     className="m-0 ms-md-3 p-2 text-center fw-bold text-uppercase"
                                     style={{

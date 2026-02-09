@@ -1,5 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Drill, Home, Droplet, Wind, Zap, Settings } from 'lucide-react';
+import { uslugi } from '../additional/sizes.js';
 import cardStyle from "./Services.module.css"
 
 const services = [
@@ -46,7 +47,12 @@ export default function Services() {
       fluid
     >
       <Row>
-        <h2 className="mb-4 mb-lg-5 text-center text-uppercase">
+        <h2
+          className="mb-4 mb-lg-5 text-center text-uppercase"
+          style={{
+            fontSize: uslugi,
+          }}
+        >
           Услуги алмазного сверления
         </h2>
       </Row>

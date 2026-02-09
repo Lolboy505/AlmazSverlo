@@ -1,7 +1,7 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"
 import { buttonStyle } from "../additional/buttonStyle"
 import redWall from '@/images/RedWall_light.webp';
-import { phone } from "../additional/contactData";
+import { phone, phoneTow } from "../additional/contactData";
 
 export default function Hero() {
     function setHovered(e) {
@@ -81,7 +81,7 @@ export default function Hero() {
                             </Nav.Link>
                             <Nav.Link
                                 className="col-9 col-sm-6 col-md-6 col-lg-5 col-xl-4 mt-2 d-flex text-center justify-content-center"
-                                href="#AddService"
+                                href={`tel:+${phoneTow}`}
                                 onMouseEnter={(event) => setHovered(event)}
                                 onMouseLeave={(event) => setUnhovered(event)}
                                 style={{

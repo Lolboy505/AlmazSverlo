@@ -4,6 +4,7 @@ import ImageWithFallback from "../additional/ImageWithFallback";
 import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow, phoneTow, formatPhoneNumber } from '../additional/contactData';
 import busImg from "@/images/BusEd.webp";
 import styles from './TowStyle.module.css';
+import { uslugi } from '../additional/sizes';
 
 const SERVICE_DATA = [
     {
@@ -50,7 +51,15 @@ export default function TowService() {
         <Container fluid className={styles.towServiceSection}>
             <Row className="pt-5 mx-0">
                 <Col>
-                    <h2 id="AddService" className="mt-5 mb-lg-4 text-center text-uppercase">
+                    <h2
+                        id="AddService"
+                        className="mt-5 mb-lg-4 text-center text-uppercase"
+                        style={{
+                            letterSpacing: '1.5px',
+                            fontSize: uslugi,
+                        }}
+                    >
+
                         Услуги эвакуатора
                     </h2>
                 </Col>

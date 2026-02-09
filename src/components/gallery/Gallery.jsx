@@ -42,11 +42,13 @@ export default function Gallery() {
 
   const nextSlide = () => {
     setIsZoomed(false);
+    setLoadedGal(false);
     setCurrentIndex((prev) => (prev + 1 === images.length ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
     setIsZoomed(false);
+    setLoadedGal(false);
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
@@ -286,17 +288,24 @@ export default function Gallery() {
 
               {!isLoadedGal && (
                 <div
-                  className="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center"
-                  style={{ zIndex: 5 }}
+                  className="position-relative d-flex flex-column align-items-center"
+                  style={{
+                    zIndex: 11,
+                    margin: 'auto',
+                    width: '300px',
+                    height: '300px',
+                  }}
                 >
                   <div
-                    className="spinner-border" role="status"
+                    className="spinner-border"
+                    role="status"
                     style={{
-                      width: '3rem',
-                      height: '3rem',
+                      marginTop: '60%',
+                      marginRight: '5%',
+                      width: '4rem',
+                      height: '4rem'
                     }}
                   >
-                    <span className="visually-hidden"></span>
                   </div>
                 </div>
               )}
@@ -317,7 +326,6 @@ export default function Gallery() {
                 className="img-fluid d-block"
                 onClick={handleImageClick}
               />
-
             </div>
 
             {!isZoomed && isLoadedGal && (
