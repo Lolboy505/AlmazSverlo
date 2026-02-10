@@ -1,9 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address } from '@/components/additional/contactData'
 import ContactItem from './ContactItem';
-import axios from 'axios';
 
 let mapYa = "https://yandex.ru/map-widget/v1/?um=constructor%3A1ded36965ecc1573ead6054582cbf6ebe1a3b47973a7e664fbcec8ef85f755f9&amp;source=constructor"
 

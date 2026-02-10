@@ -4,22 +4,22 @@ const phoneTow = "79592022681"
 const email = "paul.poluschin@yandex.ru"
 const telegram = "https://t.me"
 const vkontakte = "https://vk.com"
-const address = "Работаем по всему городу"
+const address = "Работаем по всему городу и области"
 const addressTow = "По всему городу и области"
 
 const schedule = "Пн-Cб"
 const fromTime = '8:00'
-const toTime = '20:00' 
+const toTime = '20:00'
 
 const scheduleTow = "Пн-Сб"
 const fromTimeTow = '6:00'
 const toTimeTow = '22:00'
 
-const fullName = "Полушин Павел Леонтьевич" 
+const fullName = "Полушин Павел Леонтьевич"
 const TIN = "940201505065" // ИНН
 const PSRNSP = "372487349973274" // ОГРНИП
 
-function formatPhoneNumber(phone = null){
+function formatPhoneNumber(phone = null) {
     if (phone === null) return
     return `+${phone[0]} (${phone[1]}${phone[2]}${phone[3]}) ${phone[4]}${phone[5]}${phone[6]}-${phone[7]}${phone[8]}-${phone[9]}${phone[10]}`;
 }

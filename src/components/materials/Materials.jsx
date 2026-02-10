@@ -127,7 +127,7 @@ const paramForContent = {
         overflow: 'hidden',
         paddingLeft: '5px',
         textOverflow: 'ellipsis',
-        fontSize: "clamp(1rem, 4vw, 1.3rem)",
+        fontSize: "clamp(1.2rem, 4vw, 1.3rem)",
         textTransform: 'uppercase',
     },
     classNameFullContent: "p-1 mb-1 col-12 col-sm-6 col-lg-5 d-flex justify-content-center justify-content-md-center",
