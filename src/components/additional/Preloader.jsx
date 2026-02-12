@@ -7,7 +7,7 @@ export default function App({ children }) {
         const handleLoad = () => {
             setTimeout(() => {
                 setIsLoading(false);
-            }, 500);
+            }, 10);
         };
 
         if (document.readyState === 'complete') {
@@ -34,13 +34,13 @@ export default function App({ children }) {
                     zIndex: 1000,
                     transition: 'opacity 0.5s ease'
                 }}>
-                    <div 
-                        className="spinner-border" 
+                    <div
+                        className="spinner-border"
                         role="status"
                         style={{
-                            height:"50px",
-                            width:"50px",
-                            color:"var(--color-red-700)",
+                            height: "50px",
+                            width: "50px",
+                            color: "var(--color-red-700)",
                         }}
                     >
                     </div>
