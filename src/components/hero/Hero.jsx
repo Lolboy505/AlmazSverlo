@@ -19,6 +19,7 @@ export default function Hero() {
     }
     return (
         <Container
+            id="home"
             style={{
                 backgroundImage: `url(${redWall})`,
                 backgroundSize: "cover",
@@ -56,10 +57,10 @@ export default function Hero() {
                                 }}
                             >
                                 <span className="d-block">
-                                    Профессиональные решения для стройки
+                                    Профессиональные решения для стройки.
                                 </span>
                                 <span className="d-block">
-                                    и быстрая помощь на дорогах
+                                    Быстрая помощь на дорогах.
                                 </span>
                             </h2>
                         </Col>

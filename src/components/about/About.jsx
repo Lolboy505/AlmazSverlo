@@ -1,10 +1,25 @@
+import { useState, useEffect, useRef } from 'react';
+import { Sparkles, GraduationCap, ShieldPlus } from 'lucide-react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Gallery from '@/components/gallery/Gallery';
-import { useState, useEffect, useRef } from 'react';
 import styles from './Slider.module.css';
 
 let discription1 = `Обращаясь ко мне, вы не платите диспетчерам и менеджерам.`
-let discription2 = `Мой опыт и современные технологии позволяют добиваться идеального результата даже в самых сложных материалах. Ценю свою репутацию, поэтому обеспечиваю персональный подход к каждому заказу. Работаю чисто, оперативно и на совесть — будь то частный сектор или крупный строительный объект.`
+let dExp = `Мой опыт и современные технологии позволяют добиваться идеального результата даже в самых сложных материалах.`
+let dRep = "Ценю свою репутацию, поэтому обеспечиваю персональный подход к каждому заказу"
+let dWork = "Работаю чисто, оперативно и на совесть — будь то частный сектор или крупный строительный объект."
+
+let icons = {
+    height: 'auto',
+    width: 'clamp(45px, 5vw , 60px)',
+}
+
+let textStyle = {
+    fontSize: 'clamp(1rem, 2.5vw, 1.4rem)',
+    lineHeight: '1.4'
+}
+
+let textDesSize = "clamp(1.1rem, 5vw , 1.7rem)"
 
 let texts = [
     {
@@ -35,7 +50,7 @@ export default function About() {
             interval = setInterval(() => {
                 setIsTransitioning(true);
                 setIndex((prevIndex) => prevIndex + 1);
-            }, 6000);
+            }, 5600);
         };
 
         const stopSlider = () => clearInterval(interval);
@@ -80,7 +95,7 @@ export default function About() {
                     className="px-0 col-12"
                 >
                     <Row
-                        className="g-0 gap-3 row-12
+                        className="g-0 gap-3 
                             d-flex flex-column flex-lg-row 
                             justify-content-center align-items-center 
                             align-items-lg-start"
@@ -90,7 +105,7 @@ export default function About() {
                         }}
                     >
                         <Col
-                            className="col-11 col-lg-5 d-flex flex-column 
+                            className="col-11 col-lg-5 col-xxl-4 d-flex flex-column 
                                 justify-content-center align-items-center 
                                 align-items-lg-start"
                             style={{
@@ -106,6 +121,7 @@ export default function About() {
                                     borderRadius: "12px",
                                     border: "1px solid rgba(255, 255, 255, 0.1)",
                                     boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
+                                    userSelect: 'none',
                                 }}
                             >
                                 <div
@@ -126,36 +142,56 @@ export default function About() {
                                     ))}
                                 </div>
                             </div>
-                            <div className="p-4" style={{ fontWeight: "400" }}>
+                            <div
+                                className="px-3 pb-3 d-flex flex-column justify-content-center align-items-center ">
                                 <div
-                                    className="p-2 px-0"
+                                    className="p-3 pt-4 text-center"
                                     style={{
-                                        fontSize: "clamp(1rem, 5vw , 1.7rem)",
+                                        maxWidth: 'clamp(500px, 5vw, 800px)',
+                                        letterSpacing: '0.5px',
+                                        fontSize: textDesSize,
                                     }}
                                 >
                                     {discription1}
                                 </div>
 
-                                <div
-                                    className="p-2 px-0"
-                                    style={{
-                                        fontSize: "clamp(1rem, 3.5vw, 1.5rem)",
-                                        lineHeight: "1.2",
-                                    }}
-                                >
-                                    {discription2}
+                                <div style={{
+                                    display: 'grid',
+                                    gridTemplateColumns: 'auto 1fr',
+                                    columnGap: '15px',
+                                    rowGap: '20px',
+                                    alignItems: 'start',
+                                    padding: '12px'
+                                }}>
+
+                                    <GraduationCap
+                                        style={icons}
+                                    />
+                                    <div style={textStyle}>
+                                        {dExp}
+                                    </div>
+
+                                    <ShieldPlus style={icons} />
+                                    <div style={textStyle}>
+                                        {dRep}
+                                    </div>
+
+                                    <Sparkles style={icons} />
+                                    <div style={textStyle}>
+                                        {dWork}
+                                    </div>
+
                                 </div>
                             </div>
-
                         </Col>
                         <Col
-                            className="col-11 col-lg-5"
+                            className="col-11 col-lg-5 "
                         >
                             <Gallery />
                         </Col>
                     </Row>
                 </Col>
-            </Row>
+            </Row >
         </Container >
     );
 }

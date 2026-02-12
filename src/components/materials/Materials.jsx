@@ -31,10 +31,9 @@ export default function Materials() {
                 className='my-5 d-flex justify-content-center'
             >
                 <Col
-                    className='py-4 col-12 col-sm-11'
+                    className='py-4 col-12 col-lg-11 col-xl-10'
                     style={{
                         background: "linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.05) 100%)",
-                        backdropFilter: "blur(12px)",
                         border: "1px solid rgba(255,255,255,0.18)",
                         borderRadius: "30px",
                         boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
@@ -45,7 +44,7 @@ export default function Materials() {
                         className="mb-4 d-flex justify-content-center"
                     >
                         <Col
-                            className="col-11 col-md-10"
+                            className="col-11 col-lg-9"
                             style={{
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -57,17 +56,26 @@ export default function Materials() {
                                 padding: "18px 25px",
                             }}
                         >
-                            <h2 className="text-center h1">
+                            <h2
+                                className="text-center"
+                                style={{
+                                    fontSize: 'clamp(2rem,5vw,2.5rem)',
+                                }}>
                                 Работаем с материалами
                             </h2>
-                            <div
-                                ref={ref}
-                                className={` ${stylePointer.pointer} ${inView ? stylePointer.animate : ''}`}
-                                style={{
-                                    backgroundImage: `url(${cursorImg})`,
-                                }}
-                                alt="cursorIMG"
-                            >
+                            <div className="pointer_container">
+                                <div
+                                    ref={ref}
+                                    className={`${stylePointer.pointer} ${inView ? stylePointer.animate : ''}`}
+                                    style={{
+                                        backgroundImage: `url(${cursorImg})`,
+                                    }}
+                                >
+                                </div>
+                                <div
+                                    className={`${stylePointer.shadow} ${inView ? stylePointer.animateShadow : ''}`}
+                                >
+                                </div>
                             </div>
                         </Col>
                     </Row>
@@ -127,11 +135,11 @@ const paramForContent = {
         overflow: 'hidden',
         paddingLeft: '5px',
         textOverflow: 'ellipsis',
-        fontSize: "clamp(1.2rem, 4vw, 1.3rem)",
+        fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
         textTransform: 'uppercase',
     },
-    classNameFullContent: "p-1 mb-1 col-12 col-sm-6 col-lg-5 d-flex justify-content-center justify-content-md-center",
-    classNameContent: "py-2 px-3 gap-2 d-flex align-items-center",
+    classNameFullContent: "py-1 mb-1 col-12 col-sm-6 col-lg-5 d-flex justify-content-center justify-content-md-center",
+    classNameContent: "py-2 px-3 gap-3 d-flex align-items-center",
     imgColor: "var(--color-red-600)",
     imgSize: 25,
     classNameStyleText: "text-white fw-bold mb-0",

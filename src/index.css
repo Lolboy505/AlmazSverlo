@@ -1,4 +1,5 @@
 html {
+  scroll-behavior: smooth;
   overflow-y: scroll;
 }
 
@@ -26,6 +27,10 @@ body {
 
   --color-container: #1a1a1a;
   --color-card: rgba(255, 255, 255, 0.1);
+}
+
+[id] {
+  scroll-margin-top: 130px;
 }
 
 .collapsing {

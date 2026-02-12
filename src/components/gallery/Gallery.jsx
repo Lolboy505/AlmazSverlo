@@ -82,14 +82,15 @@ export default function Gallery() {
       >
         <h2
           className="
-          mb-3 px-4 px-lg-6 py-2
+          mb-3 px-4 px-sm-5 px-md-6 px-lg-7 py-2
           d-flex justify-content-center 
           text-center text-uppercase"
           style={{
             color: 'white',
             background: "var(--color-card)",
             borderRadius: "12px",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
+            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
             boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
           }}
         >
@@ -136,9 +137,11 @@ export default function Gallery() {
                     >
                       <div
                         className="
-                        position-relative overflow-hidden rounded shadow-sm bg-dark"
+                        position-relative overflow-hidden 
+                        rounded shadow-sm bg-dark"
                         style={{
-                          height: '250px',
+                          width: 'auto',
+                          height: 'clamp(300px, 10vw , 900px)',
                           cursor: 'pointer',
                         }}
                         onClick={() => setCurrentIndex(index)}
