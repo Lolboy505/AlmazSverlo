@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 
 export default function App({ children }) {
-    const [isLoading, setIsLoading] = useState(true);
+    // return (<>{children}</>)
+    const [isLoading, setIsLoading] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
 
+    // не работатет в node.js
     useEffect(() => {
+        setIsMounted(true);
+        setIsLoading(true);
+
         const handleLoad = () => {
             setTimeout(() => {
                 setIsLoading(false);
@@ -17,6 +23,10 @@ export default function App({ children }) {
             return () => window.removeEventListener('load', handleLoad);
         }
     }, []);
+
+    if (!isMounted) {
+        return <>{children}</>;
+    }
 
     return (
         <>
@@ -47,7 +57,11 @@ export default function App({ children }) {
                 </div>
             )}
 
-            <div style={{ visibility: isLoading ? 'hidden' : 'visible' }}>
+            <div style={{
+                visibility: isLoading ? 'hidden' : 'visible',
+                opacity: isLoading ? 0 : 1,
+                transition: 'opacity 0.3s ease'
+            }}>
                 {children}
             </div>
         </>

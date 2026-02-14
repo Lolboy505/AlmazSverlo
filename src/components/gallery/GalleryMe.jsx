@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import previewImg from './previewImg.module.css'
-import './Gallery.module.css';
+import './GalleryMe.css';
 
 //jpg,jpeg,png НЕТ только WEBP
 
@@ -65,7 +65,7 @@ export default function Gallery() {
   };
 
   return (
-    <div className="py-4 px-0"
+    <div className="py-0 pb-4 px-0"
       style={{
         background: "var(--color-card)",
         borderRadius: "12px",
@@ -94,7 +94,7 @@ export default function Gallery() {
             boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
           }}
         >
-          Фото с обьектов
+          Галерея моих работ по бурению и сверлению в ЛНР
         </h2>
       </div>
 
@@ -141,7 +141,7 @@ export default function Gallery() {
                         rounded shadow-sm bg-dark"
                         style={{
                           width: 'auto',
-                          height: 'clamp(300px, 10vw , 900px)',
+                          height: 'clamp(250px, 18vw , 900px)',
                           cursor: 'pointer',
                         }}
                         onClick={() => setCurrentIndex(index)}

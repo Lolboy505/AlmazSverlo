@@ -1,6 +1,7 @@
 html {
   scroll-behavior: smooth;
   overflow-y: scroll;
+
 }
 
 body {
@@ -9,6 +10,7 @@ body {
   width: 100%;
   height: 100%;
   color: white;
+  background-color: black;
 }
 
 :root {
@@ -26,11 +28,14 @@ body {
   --color-red-950: rgb(84, 0, 0);
 
   --color-container: #1a1a1a;
-  --color-card: rgba(255, 255, 255, 0.1);
+  --color-card: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 20%, rgba(255, 255, 255, 0.03) 120%);
+  /*  */
+  --color-card-red-700-right: linear-gradient(to right, var(--color-red-800) 10%, black 65%);
+  --color-card-red-700-top: linear-gradient(to top, var(--color-red-800) 5%, black 70%);
 }
 
 [id] {
-  scroll-margin-top: 130px;
+  scroll-margin-top: 150px;
 }
 
 .collapsing {

@@ -9,23 +9,23 @@ import { uslugi } from '../additional/sizes';
 const SERVICE_DATA = [
     {
         icon: Clock,
-        title: "ВРЕМЯ РАБОТЫ",
+        title: "время работы",
         description: `С ${fromTimeTow} до ${toTimeTow} часов`,
         subDescription: `График работы: ${scheduleTow}`,
     },
     {
         icon: MapPin,
-        title: "РАБОТАЕМ",
+        title: "работаю",
         description: addressTow,
     },
     {
         icon: Shield,
-        title: "ЛЮБОЕ АВТО",
+        title: "любое авто",
         description: "До 5 тонн, а также перевозка бусов с МАКСИ базой",
     },
     {
         icon: Phone,
-        title: "КОНТАКТЫ",
+        title: "контакты",
         description: `Номер телефона:`,
         subDescription: formatPhoneNumber(phoneTow)
     },
@@ -59,8 +59,8 @@ export default function TowService() {
                             fontSize: uslugi,
                         }}
                     >
-
-                        Услуги эвакуатора
+                        Эвакуатор Луганск
+                        Вызов круглосуточно 24/7
                     </h2>
                 </Col>
             </Row>
@@ -69,8 +69,7 @@ export default function TowService() {
                 <Col
                     className={`${styles.mainCardContainer} col-12 col-sm-10`}
                 >
-
-                    <Row className="">
+                    <Row >
                         <Col className="col-12 col-lg-7 p-0">
                             <div className={styles.imageWrapper}>
                                 <ImageWithFallback
@@ -81,7 +80,8 @@ export default function TowService() {
                             </div>
                         </Col>
 
-                        <Col className="p-4 p-md-5 col-12 col-lg-5 d-flex flex-column justify-content-center">
+                        <Col className={`${styles.mainCardAbout} p-4 p-md-5 col-12 col-lg-5 d-flex flex-column justify-content-center`}
+                        >
                             <div className="gap-3 mb-2">
                                 <h3 className="text-white fw-bold mb-0 h4">
                                     <span className="d-block">

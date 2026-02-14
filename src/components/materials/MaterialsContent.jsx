@@ -1,9 +1,8 @@
 import { Check } from 'lucide-react';
-import { Col, Row } from 'react-bootstrap';
 import { useEffect, useState } from "react";
 import { useRef } from 'react';
 
-export default function MaterialsContent({ styleBorder, styleImg, styleText, classNameFullContent, classNameContent, imgColor, imgSize, classNameStyleText, material, index }) {
+export default function MaterialsContent({ styleBorder, styleImg, styleText, classNameFullContent, classNameContent, imgSize, classNameStyleText, material, index }) {
     let [flag, setFlag] = useState(true)
     let box = useRef(null)
     let text = useRef(null)
@@ -15,31 +14,29 @@ export default function MaterialsContent({ styleBorder, styleImg, styleText, cla
     const handleClick = (e) => {
         if (flag) {
             box.current.style.transform = "translateY(-12px)"
-            box.current.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)"
-            box.current.style.background = "rgb(99, 99, 99)"
+            box.current.style.backgroundImage = "var(--color-card-red-700-right)";
             text.current.style.whiteSpace = ""
         }
         else {
-            box.current.style.transform = "translateY(0px)";
-            box.current.style.boxShadow = "0 0 10px rgba(0,0,0,0.3)"
-            box.current.style.background = "rgba(255, 255, 255, 0.15)"
+            box.current.style.transform = "translateY(0px)"
+            box.current.style.backgroundImage = "var(--color-card)";
             text.current.style.whiteSpace = "nowrap"
         }
         setFlag((prev) => (!prev))
     }
 
     return (
-        <Col
+        <li
             className={classNameFullContent}
         >
             <div
                 ref={box}
                 className={classNameContent}
-                style={styleBorder}
+                style={{ ...styleBorder }}
                 onClick={(e) => handleClick(e)}
             >
                 <div style={styleImg}>
-                    <Check size={imgSize} color={imgColor} />
+                    <Check size={imgSize} width={100} color={"black"} />
                 </div>
                 <span
                     ref={text}
@@ -49,7 +46,7 @@ export default function MaterialsContent({ styleBorder, styleImg, styleText, cla
                     {material}
                 </span>
             </div>
-        </Col>
+        </li>
     )
 }
 

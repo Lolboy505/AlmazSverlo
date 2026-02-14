@@ -1,13 +1,17 @@
 .towServiceSection {
-    background: black;
+    background: '#000';
+    color: '#fff';
     width: 100%;
 }
 
 .mainCardContainer {
-    background: #1a1a1a;
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     overflow: hidden;
+}
+
+.mainCardAbout {
+    background: var(--color-card);
 }
 
 .imageWrapper {
@@ -60,6 +64,7 @@
 
 .infoCardTitle {
     color: white;
+    text-transform: uppercase;
     font-weight: 800;
     font-size: 0.95rem;
     margin: 0;

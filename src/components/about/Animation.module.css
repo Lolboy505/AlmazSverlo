@@ -1,0 +1,25 @@
+.animSvg {
+    animation: flouting 2s ease-in-out infinite alternate;
+}
+
+.d1 {
+    animation-delay: 0s;
+}
+
+.d2 {
+    animation-delay: .4s;
+}
+
+.d3 {
+    animation-delay: .8s;
+}
+
+@keyframes flouting {
+    0% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(-5px) rotateZ(-5deg);
+    }
+}

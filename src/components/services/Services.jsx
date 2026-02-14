@@ -3,6 +3,7 @@ import { Drill, Home, Droplet, Wind, Zap, Settings } from 'lucide-react';
 import { uslugi } from '../additional/sizes.js';
 import cardStyle from "./Services.module.css"
 
+
 const services = [
   {
     icon: Home,
@@ -37,9 +38,12 @@ const services = [
 ];
 
 export default function Services() {
+  let sizeTitle = "clamp(1.3rem, 3vw, 1.4rem)"
+  let sizeDes = "clamp(1rem, 2.5vw, 1.3rem)"
+
   return (
     <Container
-      className="py-0 py-lg-5 px-4"
+      className="py-0 py-lg-5 px-3"
       style={{
         background: "black",
         color: "white",
@@ -53,16 +57,16 @@ export default function Services() {
             fontSize: uslugi,
           }}
         >
-          Услуги алмазного сверления
+          Алмазное бурение и сверление отверстий в Луганске
         </h2>
       </Row>
       <Row className="mx-sm-5 mx-md-2 mx-xl-5 g-4 justify-content-center">
         {services.map((service, index) => {
           const Icon = service.icon;
           return (
-            <div
+            <Col
               key={index}
-              className="col-12 col-md-6 col-lg-4"
+              className="col-11 col-xs-11 col-sm-11 col-md-8 col-lg-5"
             >
               <div className={cardStyle.cardContainer}>
                 <div
@@ -74,7 +78,7 @@ export default function Services() {
                 <h3
                   className="text-white fw-bold mb-3"
                   style={{
-                    fontSize: "clamp(1.1rem, 2vw, 1.4rem)",
+                    fontSize: sizeTitle,
                     textShadow: "0 0 10px rgba(255,0,0,0.2)"
                   }}
                 >
@@ -82,16 +86,16 @@ export default function Services() {
                 </h3>
 
                 <p
-                  className="text-neutral-400 m-0 p-0"
+                  className="m-0 p-0"
                   style={{
-                    fontSize: "clamp(0.9rem, 1.3vw, 1.05rem)",
+                    fontSize: sizeDes,
                     lineHeight: "1.6"
                   }}
                 >
                   {service.description}
                 </p>
               </div>
-            </div>
+            </Col>
           );
         })}
       </Row>

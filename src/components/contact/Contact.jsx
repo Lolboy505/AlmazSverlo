@@ -1,36 +1,44 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+import { TelegramIcon } from '../additional/Icons';
 import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address } from '@/components/additional/contactData'
 import ContactItem from './ContactItem';
 
 let mapYa = "https://yandex.ru/map-widget/v1/?um=constructor%3A1ded36965ecc1573ead6054582cbf6ebe1a3b47973a7e664fbcec8ef85f755f9&amp;source=constructor"
 
 export default function Contact() {
+    let filter = { filter: "drop-shadow(0px 1px 0.5px rgba(0, 0, 0, 1))" }
 
     let contactData = [
         {
             label: "Телефон",
             value: formatPhoneNumber(phone),
             href: "tel:+" + phone,
-            icon: <Phone size={30} />,
+            icon: <Phone size={30} style={filter} />,
+        },
+        {
+            label: "Telegram",
+            value: "@AlmazPomosh",
+            href: "https://t.me/AlmazPomosh",
+            icon: <TelegramIcon size={30} style={filter} />
         },
         {
             label: "Email",
             value: email,
             href: "mailto:" + email,
-            icon: <Mail size={30} />,
+            icon: <Mail size={30} style={filter} />,
         },
         {
             label: "Адрес",
             value: address,
             href: null,
-            icon: <MapPin size={30} />,
+            icon: <MapPin size={30} style={filter} />,
         },
         {
             label: "Режим работы",
             value: `Ежедневно с ${fromTime} до ${toTime}, График: ${schedule}`,
             href: null,
-            icon: <Clock size={30} />,
+            icon: <Clock size={30} style={filter} />,
         },
     ]
 
@@ -42,7 +50,7 @@ export default function Contact() {
                 <h2
                     className="text-white fw-bold mb-3"
                     style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}>
-                    Контактная информация
+                    Заказать услуги частного мастера — Контакты
                 </h2>
             </div>
 

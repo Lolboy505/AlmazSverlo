@@ -15,8 +15,8 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: 
-  '/' 
+  base:
+    '/'
   // '/AlmazSverlo/', // Оставляем для корректных путей
   //  в билде для github где AlmazSverlo название репозитория 
 })

@@ -1,0 +1,95 @@
+.btn-glitch-neon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 10px 20px;
+
+    /* Динамический фон — увеличиваем размер для анимации перемещения */
+    background: linear-gradient(135deg,
+            var(--color-red-600),
+            var(--color-red-800),
+            var(--color-red-600));
+    background-size: 200% 200%;
+    animation: gradientMove 5s ease infinite, neonPulse 3s infinite alternate;
+
+    color: #ffffff !important;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+
+    /* Начальная тень */
+    box-shadow:
+        0 8px 15px rgba(170, 0, 6, 0.3),
+        inset 0 2px 3px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 3px rgba(0, 0, 0, 0.3);
+
+}
+
+/* 1. Анимация перелива градиента */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 2. Анимация пульсации неоновой тени */
+@keyframes neonPulse {
+    from {
+        box-shadow: 0 8px 15px rgba(170, 0, 6, 0.3),
+            inset 0 2px 3px rgba(255, 255, 255, 0.3);
+    }
+
+    to {
+        box-shadow: 0 12px 25px rgba(170, 0, 6, 0.6),
+            inset 0 2px 5px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Эффект при наведении — ускоряем всё */
+.btn-glitch-neon:hover {
+    transform: translateY(-5px) scale(1.04);
+    filter: brightness(1.2);
+    animation: gradientMove 1.5s ease infinite;
+    /* При наведении градиент течет быстрее */
+}
+
+/* Бегущий блик (Glare effect) - без изменений, он и так хорош */
+.btn-glitch-neon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: skewX(-25deg);
+    transition: 0.8s;
+}
+
+.btn-glitch-neon:hover::before {
+    left: 150%;
+}
+
+.btn-glitch-neon:active {
+    transform: translateY(-1px) scale(0.96);
+}

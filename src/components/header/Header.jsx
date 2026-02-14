@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { Phone, Mail } from 'lucide-react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
-import { TelegramIcon, VkIcon } from './Icons'
-import { buttonStyle } from '../additional/buttonStyle'
+import { TelegramIcon, VkIcon } from '../additional/Icons'
 import { nameOrg } from '../additional/contactData'
 import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../additional/contactData'
 import style from './Header.module.css'
 import ImageWithFallback from "../additional/ImageWithFallback"
 
-const logo = "/LogoRed.png";
+const logo = "/mLogo.jpg";
 
 let themeColor = "black"
 
@@ -42,76 +41,61 @@ export default function Header() {
         },
     ]
 
-    function setHovered(e) {
-        if (e) {
-            e.currentTarget.style.boxShadow = "0 8px 15px rgba(0,0,0,0.5)"
-            e.currentTarget.style.transform = "translateY(-3px)"
-        }
-    }
-
-    function setUnhovered(e) {
-        if (e) {
-            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.3)"
-            e.currentTarget.style.transform = "translateY(0)"
-        }
-    }
-
     return (
         <header className="sticky-top" style={{
             zIndex: 5,
-            backgroundColor: themeColor,
+            backgroundImage: themeColor,
         }}>
             <Navbar
                 expanded={expanded}
                 onToggle={() => setExpanded(!expanded)}
                 expand="lg"
                 variant="dark"
-                className="m-0 p-0 px-3 flex-column "
+                className="m-0 p-0 px-3"
                 style={{
                     backgroundColor: themeColor,
                     textShadow: "0px 1.5px 0px rgba(0, 0, 0, 0.8)",
                     transition: 'all 0.3s ease'
                 }}
             >
-                <Container fluid className="px-2 px-lg-5 py-2 d-flex justify-content-between align-items-center">
+                <Container fluid className="px-2 px-lg-5 py-1 d-flex justify-content-between align-items-center">
                     <Navbar.Brand href="#home" className="m-0">
                         <ImageWithFallback
                             src={logo}
                             alt="LogoBrand"
-                            style={{ maxWidth: "130px", height: "auto" }}
+                            style={{ maxWidth: "clamp(90px,10vw,100px)", height: "auto" }}
                         />
                     </Navbar.Brand>
 
                     <Navbar.Toggle
                         aria-controls="responsive-navbar-nav"
-                        className={`border-0 shadow-none ${style.custom_toggler}`}
-                        style={{
-                            backgroundColor: "var(--color-red-600)",
-                            padding: "8px 10px",
-                            borderRadius: "8px"
-                        }}
+                        className={`border-0 shadow-none d-flex d-lg-none align-items-center justify-content-center ${style.custom_toggler}`}
                     >
-                        <div className={`${style.burger_icon}`}>
-                            <span className={`${style.burger_line}`}></span>
-                            <span className={`${style.burger_line}`}></span>
-                            <span className={`${style.burger_line}`}></span>
+                        <div className={style.burger_icon}>
+                            <span className={style.burger_line}></span>
+                            <span className={style.burger_line}></span>
+                            <span className={style.burger_line}></span>
                         </div>
                     </Navbar.Toggle>
 
                     <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                         <Nav className="align-items-center w-100">
-                            <div className="d-flex flex-column flex-lg-row w-100 align-items-center justify-content-between">
-                                <h2
-                                    className="m-0 ms-md-3 p-2 text-center fw-bold text-uppercase"
+                            <div className="pb-1 d-flex flex-column flex-lg-row w-100 align-items-center justify-content-between">
+                                <span
+                                    className="m-0 p-2 pt-0"
                                     style={{
-                                        fontFamily: "Golos Text",
-                                        fontSize: "clamp(1.5rem, 4vw, 1.8rem)"
+                                        fontFamily: "'Golos Text', sans-serif",
+                                        fontSize: "clamp(1.4rem, 3.5vw, 1.7rem)",
+                                        fontWeight: 900,
+                                        textTransform: "uppercase",
+                                        letterSpacing: ".4rem",
+                                        lineHeight: "0.9",
                                     }}
                                 >
                                     {nameOrg}
-                                </h2>
+                                </span>
                                 <div
-                                    className="gap-1 p-1 d-flex flex-wrap justify-content-center"
+                                    className="gap-2 p-1 d-flex flex-wrap justify-content-center"
                                     style={{
                                         minWidth: "2px",
                                     }}
@@ -122,10 +106,11 @@ export default function Header() {
                                                 key={iter}
                                                 href={link.href}
                                                 onClick={() => setExpanded(false)}
-                                                onMouseEnter={setHovered}
-                                                onMouseLeave={setUnhovered}
-                                                style={buttonStyle}
-                                                className="text-white d-flex align-items-center gap-2"
+                                                className="
+                                                p-2
+                                                btn-glitch-neon 
+                                                text-white d-flex 
+                                                align-items-center gap-1"
                                             >
                                                 {link.child}
                                                 {link.text}
@@ -141,7 +126,8 @@ export default function Header() {
             </Navbar>
             <div
                 style={{
-                    borderBottom: '1px solid var(--color-red-700)',
+                    backgroundColor: 'black',
+                    borderBottom: '1px solid var(--color-red-900)',
                     width: '100%',
                     height: '2px',
                 }}

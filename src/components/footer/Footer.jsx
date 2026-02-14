@@ -29,6 +29,7 @@ export default function Footer() {
                         <p className="m-0 p-0 col-12 col-md-6">
                             ИНН: {TIN}
                         </p>
+                        <a href="/privacy.html" style={{ color: 'white' }} target="_blank" rel="noreferrer">Политика конфиденциальности</a>
                     </div>
                 </div>
             </div>

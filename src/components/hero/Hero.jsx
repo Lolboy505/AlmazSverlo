@@ -1,22 +1,9 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"
-import { buttonStyle } from "../additional/buttonStyle"
 import redWall from '@/images/RedWall_light.webp';
 import { phone, phoneTow } from "../additional/contactData";
 
 export default function Hero() {
-    function setHovered(e) {
-        if (e) {
-            e.currentTarget.style.boxShadow = "0 0px 30px rgba(255, 255, 255, 0.3)"
-            e.currentTarget.style.transform = "translateY(-3px)"
-        }
-    }
 
-    function setUnhovered(e) {
-        if (e) {
-            e.currentTarget.style.boxShadow = "0 4px 6px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.3)"
-            e.currentTarget.style.transform = "translateY(0)"
-        }
-    }
     return (
         <Container
             id="home"
@@ -38,75 +25,57 @@ export default function Hero() {
                         background: "linear-gradient(180deg , rgb(0,0,0,0.01) , black)",
                     }}
                 >
-                    <Row className="pt-5">
-                        <Col className="">
-                            <h1 className="fw-bold text-uppercase">
-                                <span className={''}>Алмазное сверление</span>
-                                <span className={"d-block"}>&</span>
-                                <span className={''}>Услуги эвакуатора</span>
-                                <span className="d-block fs-2 fw-normal mt-2">в Луганске и области</span>
+                    <Row className="pt-5 text-center">
+                        <Col>
+                            <h1 className="d-flex flex-column justify-content-center align-items-center fw-bold text-uppercase hero-h1-main">
+                                <span className="d-block reveal-text delay-1 mainTxt">Алмазное сверление</span>
+                                <span className="col-4 d-block reveal-text hero-amp delay-2">&</span>
+                                <span className="d-block reveal-text delay-3 mainTxt">Услуги эвакуатора</span>
+                                <span className="d-block reveal-text fw-normal mt-2 hero-sub-city delay-4">
+                                    в Луганске и области
+                                </span>
                             </h1>
                         </Col>
                     </Row>
-                    <Row className="d-flex justify-content-center">
-                        <Col className="p-1">
-                            <h2
-                                className="d-block px-4 py-2 fw-bold"
-                                style={{
-                                    fontSize: 'clamp(1.2rem, 50%, 1.5rem)',
-                                }}
-                            >
-                                <span className="d-block">
+
+                    <Row className="d-flex justify-content-center mt-1">
+                        <Col md={8} lg={6} className="p-1">
+                            <h3 className="hero-subtitle d-block px-4 py-2 delay-5">
+                                <span className="d-block p-1 reveal-text text-white">
                                     Профессиональные решения для стройки.
                                 </span>
-                                <span className="d-block">
-                                    Быстрая помощь на дорогах.
+                                <span className="d-block reveal-text text-white">
+                                    Быстрая помощь на дорогах
                                 </span>
-                            </h2>
+                            </h3>
                         </Col>
                     </Row>
-                    <Row className="pb-4">
+
+                    <Row className="pt-2 pb-4">
                         <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <Nav.Link
-                                className="col-9 col-sm-6 col-md-6 col-lg-5 col-xl-4 d-flex text-center justify-content-center"
-                                href={`tel:+${phone}`}
-                                onMouseEnter={(event) => setHovered(event)}
-                                onMouseLeave={(event) => setUnhovered(event)}
-                                style={{ ...buttonStyle }}
-                            >
-                                <div
-                                    className="h5 mb-1 text-white text-decoration-none fw-bold hover-red"
+                            <div className="col-12 col-md-8 d-flex flex-column flex-sm-row align-items-center justify-content-center">
+                                <Nav.Link
+                                    className="col-9 col-sm-5 col-md-6 col-lg-5 col-xl-4 m-0 p-1 d-flex text-center justify-content-center reveal-btn delay-6"
+                                    href={`tel:+${phone}`}
                                 >
-                                    Позвонить мастеру
-                                </div>
-                            </Nav.Link>
+                                    <div className="btn-glitch-neon h5 p-3 m-0 px-lg-4">
+                                        Позвонить мастеру
+                                    </div>
+                                </Nav.Link>
+                                <Nav.Link
+                                    className="col-9 col-sm-5 col-md-6 col-lg-5 col-xl-4 m-0 p-1 d-flex text-center justify-content-center reveal-btn delay-7"
+                                    href={`tel:+${phoneTow}`}
+                                >
+                                    <div className="btn-glitch-neon h5 m-0 p-3 px-lg-4">
+                                        Вызвать эвакуатор
+                                    </div>
+                                </Nav.Link>
+                            </div>
                             <Nav.Link
-                                className="col-9 col-sm-6 col-md-6 col-lg-5 col-xl-4 mt-2 d-flex text-center justify-content-center"
-                                href={`tel:+${phoneTow}`}
-                                onMouseEnter={(event) => setHovered(event)}
-                                onMouseLeave={(event) => setUnhovered(event)}
-                                style={{
-                                    ...buttonStyle,
-                                    background: 'var(--color-red-700)',
-                                }}
-                            >
-                                <div className="h5 mb-1">
-                                    Вызвать эвакуатор
-                                </div>
-                            </Nav.Link>
-                            <Nav.Link
-                                className="mt-1"
                                 href="#AddService"
+                                className="col-8 col-sm-6 col-md-6 col-lg-5 col-xl-4 pt-3 d-flex text-center justify-content-center reveal-btn delay-8"
                             >
-                                <div
-                                    style={{
-                                        ...buttonStyle,
-                                        background: 'var(--color-red-800)',
-                                        margin: '2px',
-                                        padding: '6px 12px'
-                                    }}
-                                    className="h6 mb-1"
-                                >
+                                <div className="btn-view-services">
                                     Просмотреть услуги эвакуатора
                                 </div>
                             </Nav.Link>

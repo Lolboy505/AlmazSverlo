@@ -1,62 +1,86 @@
-.collapsing {
-    will-change: all;
-    transition: height 0.4s ease-in-out, opacity 0.3s ease-in-out;
-    opacity: 0;
+/* Контейнер кнопки */
+.custom_toggler {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    background: linear-gradient(135deg, var(--color-red-600) 0%, #d32f2f 100%) !important;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3) !important;
 }
 
-.collapse.show {
-    will-change: all;
-    animation: slideDown 0.4s ease-out;
-    opacity: 1;
+.custom_toggler:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(211, 47, 47, 0.4) !important;
 }
 
-.custom_toggler .navbar_toggler_icon {
-    display: none;
+.custom_toggler:active {
+    transform: scale(0.95);
 }
 
+/* Бургер-иконка */
 .burger_icon {
     display: flex;
     flex-direction: column;
-    width: 40px;
-    height: 25px;
+    align-items: flex-end;
+    /* Выравнивание по правому краю для асимметрии */
+    width: 24px;
+    gap: 5px;
 }
 
 .burger_line {
     display: block;
-    width: 100%;
-    height: 3px;
-    margin: 3px 0 3px 0;
+    height: 2px;
+    /* Тоньше = элитнее */
     background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 0 2px black;
-    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
 }
 
+/* Асимметрия длин */
+.burger_line:nth-child(1) {
+    width: 100%;
+}
+
+.burger_line:nth-child(2) {
+    width: 100%;
+}
+
+.burger_line:nth-child(3) {
+    width: 100%;
+}
+
+/* Имя класса .navbar_collapse — это стандартный класс Bootstrap внутри Navbar.Collapse */
+@media (min-width: 992px) {
+    .navbar_collapse_custom {
+        display: flex;
+        flex-basis: auto;
+        /* Убираем анимацию открытия на десктопе, чтобы не дергалось */
+        height: auto;
+        visibility: visible;
+    }
+
+    /* Скрываем кнопку бургера на десктопе окончательно */
+    .custom_toggler {
+        display: none;
+    }
+}
+
+/* Состояние OPEN (Крестик) */
 .custom_toggler:not(:global(.collapsed)) .burger_line:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
+    transform: translateY(7px) rotate(45deg);
+    width: 100%;
 }
 
 .custom_toggler:not(:global(.collapsed)) .burger_line:nth-child(2) {
     opacity: 0;
-    /* transform: translateX(-1px); */
+    transform: translateX(20px);
 }
 
 .custom_toggler:not(:global(.collapsed)) .burger_line:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-
-.custom_toggler:hover .burger_line {
-    background-color: #f8f9fa;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    transform: translateY(-7px) rotate(-45deg);
+    width: 100%;
 }
