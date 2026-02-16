@@ -1,8 +1,44 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"
+import { formatPhoneNumber, phone, phoneTow } from "@/components/additional/contactData.js";
+import { useAppState } from "@/components/additional/StateContext"
+import { motion } from "framer-motion";
 import redWall from '@/images/RedWall_light.webp';
-import { phone, phoneTow } from "../additional/contactData";
+
+// 1. Настройка анимации (Варианты)
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            // Задержка между появлением каждой строчки
+            // staggerChildren: 0.15, 
+            delayChildren: 0.5,    // Общая задержка старта
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { type: "spring", stiffness: 40, damping: 15 }
+    }
+};
+
+const btnVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: {
+        scale: 1,
+        opacity: 1,
+        transition: { type: "spring", stiffness: 40, damping: 6 }
+    }
+};
 
 export default function Hero() {
+    const { isReady } = useAppState()
+
+    const isBot = typeof navigator !== 'undefined' && navigator.userAgent.includes("HeadlessChrome");
 
     return (
         <Container
@@ -25,62 +61,73 @@ export default function Hero() {
                         background: "linear-gradient(180deg , rgb(0,0,0,0.01) , black)",
                     }}
                 >
-                    <Row className="pt-5 text-center">
-                        <Col>
-                            <h1 className="d-flex flex-column justify-content-center align-items-center fw-bold text-uppercase hero-h1-main">
-                                <span className="d-block reveal-text delay-1 mainTxt">Алмазное сверление</span>
-                                <span className="col-4 d-block reveal-text hero-amp delay-2">&</span>
-                                <span className="d-block reveal-text delay-3 mainTxt">Услуги эвакуатора</span>
-                                <span className="d-block reveal-text fw-normal mt-2 hero-sub-city delay-4">
-                                    в Луганске и области
-                                </span>
-                            </h1>
-                        </Col>
-                    </Row>
+                    <motion.div
+                        variants={containerVariants}
+                        initial={isBot ? "visible" : "hidden"}
+                        animate={isReady || isBot ? "visible" : "hidden"}
+                    >
+                        <Row className="pt-5 text-center">
+                            <Col>
+                                <motion.h1 className="d-flex flex-column justify-content-center align-items-center fw-bold text-uppercase hero-h1-main">
+                                    <motion.span variants={itemVariants} className="d-block mainTxt">Алмазное сверление</motion.span>
+                                    <motion.span variants={itemVariants} className="col-4 d-block hero-amp">&</motion.span>
+                                    <motion.span variants={itemVariants} className="d-block mainTxt">Услуги эвакуатора</motion.span>
+                                    <motion.span variants={itemVariants} className="d-block fw-normal mt-2 hero-sub-city">
+                                        в Луганске и области
+                                    </motion.span>
+                                </motion.h1>
+                            </Col>
+                        </Row>
 
-                    <Row className="d-flex justify-content-center mt-1">
-                        <Col md={8} lg={6} className="p-1">
-                            <h3 className="hero-subtitle d-block px-4 py-2 delay-5">
-                                <span className="d-block p-1 reveal-text text-white">
-                                    Профессиональные решения для стройки.
-                                </span>
-                                <span className="d-block reveal-text text-white">
-                                    Быстрая помощь на дорогах
-                                </span>
-                            </h3>
-                        </Col>
-                    </Row>
+                        <Row className="d-flex justify-content-center mt-1">
+                            <Col md={8} lg={6} className="p-1">
+                                <motion.h3 variants={itemVariants} className="hero-subtitle d-block px-4 py-2">
+                                    <span className="d-block fw-bold callNumb">Звоните: {formatPhoneNumber(phone)}</span>
+                                    <span className="d-block p-1">Профессиональные решения для стройки.</span>
+                                    <span className="d-block">Быстрая помощь на дорогах</span>
+                                </motion.h3>
+                            </Col>
+                        </Row>
 
-                    <Row className="pt-2 pb-4">
-                        <Col className="d-flex flex-column align-items-center justify-content-center">
-                            <div className="col-12 col-md-8 d-flex flex-column flex-sm-row align-items-center justify-content-center">
-                                <Nav.Link
-                                    className="col-9 col-sm-5 col-md-6 col-lg-5 col-xl-4 m-0 p-1 d-flex text-center justify-content-center reveal-btn delay-6"
-                                    href={`tel:+${phone}`}
-                                >
-                                    <div className="btn-glitch-neon h5 p-3 m-0 px-lg-4">
-                                        Позвонить мастеру
-                                    </div>
-                                </Nav.Link>
-                                <Nav.Link
-                                    className="col-9 col-sm-5 col-md-6 col-lg-5 col-xl-4 m-0 p-1 d-flex text-center justify-content-center reveal-btn delay-7"
-                                    href={`tel:+${phoneTow}`}
-                                >
-                                    <div className="btn-glitch-neon h5 m-0 p-3 px-lg-4">
-                                        Вызвать эвакуатор
-                                    </div>
-                                </Nav.Link>
-                            </div>
-                            <Nav.Link
-                                href="#AddService"
-                                className="col-8 col-sm-6 col-md-6 col-lg-5 col-xl-4 pt-3 d-flex text-center justify-content-center reveal-btn delay-8"
-                            >
-                                <div className="btn-view-services">
-                                    Просмотреть услуги эвакуатора
+                        <Row className="pt-2 pb-4">
+                            <Col className="d-flex flex-column align-items-center justify-content-center">
+                                <div className="col-12 col-md-8 d-flex flex-column flex-sm-row align-items-center justify-content-center">
+                                    <Nav.Link
+                                        as={motion.a}
+                                        variants={btnVariants}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="m-0 p-0 col-9 col-sm-5 col-md-6 col-lg-5 col-xl-4 d-flex text-center justify-content-center"
+                                        href={`tel:+${phone}`}
+                                    >
+                                        <div className="btn-glitch-neon h5 p-3 m-0 px-lg-4">Позвонить мастеру</div>
+                                    </Nav.Link>
+
+                                    <Nav.Link
+                                        as={motion.a}
+                                        variants={btnVariants}
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="m-0 p-3 col-9 col-sm-5 col-md-6 col-lg-5 col-xl-4 d-flex text-center justify-content-center"
+                                        href={`tel:+${phoneTow}`}
+                                    >
+                                        <div className="btn-glitch-neon h5 m-0 p-3 px-lg-4">Вызвать эвакуатор</div>
+                                    </Nav.Link>
                                 </div>
-                            </Nav.Link>
-                        </Col>
-                    </Row>
+
+                                <Nav.Link
+                                    as={motion.a}
+                                    variants={btnVariants}
+                                    href="#AddService"
+                                    className="pt-2 col-8 col-sm-6 col-md-6 col-lg-5 col-xl-4 d-flex text-center justify-content-center"
+                                >
+                                    <div className="btn-view-services">
+                                        Просмотреть услуги эвакуатора
+                                    </div>
+                                </Nav.Link>
+                            </Col>
+                        </Row>
+                    </motion.div>
                 </Col>
             </Row >
         </Container >

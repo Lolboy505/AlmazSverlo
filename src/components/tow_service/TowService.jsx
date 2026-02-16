@@ -34,13 +34,18 @@ const SERVICE_DATA = [
 const InfoCard = ({ icon: Icon, title, description, subDescription }) => (
     <div className={styles.infoCardWrapper}>
         <div className={styles.infoCardIcon}>
-            <Icon size={24} color="white" />
+            <Icon size={28} color="white" />
         </div>
         <div className={styles.infoCardContent}>
-            <h4 className={styles.infoCardTitle}>{title}</h4>
+            <h4 className={styles.infoCardTitle}>
+                {title}
+            </h4>
             <p className={styles.infoCardText}>
                 {description}
-                {subDescription && <><br />{subDescription}</>}
+                {subDescription && <>
+                    <br />
+                    {subDescription}
+                </>}
             </p>
         </div>
     </div>
@@ -84,11 +89,11 @@ export default function TowService() {
                         >
                             <div className="gap-3 mb-2">
                                 <h3 className="text-white fw-bold mb-0 h4">
-                                    <span className="d-block">
-                                        Профессиональная помощь на дороге.
+                                    <span className={styles.titleTow}>
+                                        Профессиональная помощь на дороге
                                     </span>
-                                    <span className="d-block">
-                                        Быстро, надежно, качественно.
+                                    <span className={styles.titleTow}>
+                                        Быстро, надежно, качественно
                                     </span>
                                 </h3>
                             </div>

@@ -17,7 +17,7 @@
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1.5px;
-    font-size: 14px;
+    font-size: clamp(1rem, 4vw, 1.15rem);
     text-decoration: none;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);

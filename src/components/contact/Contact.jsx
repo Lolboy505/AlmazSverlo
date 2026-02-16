@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
 import { TelegramIcon } from '../additional/Icons';
-import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address } from '@/components/additional/contactData'
+import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address, toTimeTow, fromTimeTow } from '@/components/additional/contactData'
 import ContactItem from './ContactItem';
 
 let mapYa = "https://yandex.ru/map-widget/v1/?um=constructor%3A1ded36965ecc1573ead6054582cbf6ebe1a3b47973a7e664fbcec8ef85f755f9&amp;source=constructor"
@@ -36,7 +36,8 @@ export default function Contact() {
         },
         {
             label: "Режим работы",
-            value: `Ежедневно с ${fromTime} до ${toTime}, График: ${schedule}`,
+            value: `Алмазное сверление: ${schedule} с ${fromTime} до ${toTime}`,
+            valueSec: `Эвакуатор: ${schedule} с ${fromTimeTow} до ${toTimeTow}`,
             href: null,
             icon: <Clock size={30} style={filter} />,
         },

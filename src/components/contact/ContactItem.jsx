@@ -1,4 +1,4 @@
-export default function ContactItem({ icon, label, value, href }) {
+export default function ContactItem({ icon, label, value, valueSec, href }) {
     return (
         <div className="d-flex align-items-center gap-3">
             <div className="text-red-500 p-2 rounded-3" style={{ background: 'var(--color-red-700)' }}>
@@ -11,7 +11,17 @@ export default function ContactItem({ icon, label, value, href }) {
                         {value}
                     </a>
                 ) : (
-                    <p className="text-white mb-0">{value}</p>
+                    <>
+                        <p className="text-white mb-0">
+                            {value}
+                        </p>
+                        {valueSec && (
+                            <p className="text-white mb-0">
+                                {valueSec}
+                            </p>
+                        )
+                        }
+                    </>
                 )}
             </div>
         </div>

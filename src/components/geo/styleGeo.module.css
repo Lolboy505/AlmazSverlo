@@ -1,0 +1,40 @@
+.titleGeo {
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 4vw, 1.8rem);
+    letter-spacing: 1px;
+    margin: 0;
+}
+
+.iconsGeo {
+    height: auto;
+    width: clamp(45px, 5vw, 60px),
+}
+
+.dopDes {
+    display: block;
+    font-weight: 200;
+    font-size: clamp(1rem, 4vw, 1.5rem);
+    letter-spacing: 0.2px;
+}
+
+.footerDes {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    letter-spacing: 0.2px;
+
+    border-style: dashed;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px 20px;
+    text-align: center;
+    opacity: 0.5;
+}
+
+.city {
+    flex: 1;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    letter-spacing: 0.5px;
+}

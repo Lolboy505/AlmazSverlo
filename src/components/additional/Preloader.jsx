@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useAppState } from '@/components/additional/StateContext.jsx';
+
 
 export default function App({ children }) {
-    // return (<>{children}</>)
+    const { setReady } = useAppState()
     const [isLoading, setIsLoading] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
 
@@ -13,7 +15,8 @@ export default function App({ children }) {
         const handleLoad = () => {
             setTimeout(() => {
                 setIsLoading(false);
-            }, 10);
+                setReady()
+            }, 100);
         };
 
         if (document.readyState === 'complete') {

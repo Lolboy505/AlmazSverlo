@@ -29,12 +29,12 @@ async function run() {
                     clearInterval(timer);
                     resolve();
                 }
-            }, 100);
+            }, 300);
         });
     });
 
     // Ждем еще чуть-чуть для верности
-    await new Promise(r => setTimeout(r, 5000));
+    await new Promise(r => setTimeout(r, 3000));
 
     let html = await page.content();
 

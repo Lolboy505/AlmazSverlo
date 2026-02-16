@@ -26,10 +26,17 @@ export default function Footer() {
                         {fullName}
                     </div>
                     <div className="my-2 d-flex justify-content-center align-items-center flex-column flex-md-row">
-                        <p className="m-0 p-0 col-12 col-md-6">
+                        <p className="m-0 p-0 col-12 col-md-6 col-lg-3">
                             ИНН: {TIN}
                         </p>
-                        <a href="/privacy.html" style={{ color: 'white' }} target="_blank" rel="noreferrer">Политика конфиденциальности</a>
+                        <a
+                            className="m-0 p-0 col-12 col-md-6 col-lg-3"
+                            href="/privacy.html"
+                            style={{ color: 'white' }}
+                            target="_blank"
+                            rel="noreferrer">
+                            Политика конфиденциальности
+                        </a>
                     </div>
                 </div>
             </div>

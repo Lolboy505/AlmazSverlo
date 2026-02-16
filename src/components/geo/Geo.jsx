@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { MapPin, ChevronRight } from 'lucide-react';
-
+import style from './styleGeo.module.css'
 
 export default function GeoLocation() {
     const cities = [
@@ -8,13 +8,13 @@ export default function GeoLocation() {
         'Антрацит', 'Свердловск', 'Лутугино', 'Перевальск',
         'Счастье', 'Ровеньки'
     ];
-    let sizeTitle = 'clamp(1.1rem, 4vw, 1.8rem)'
-    let sizeDes = '1rem'
 
     return (
         <Container fluid className="py-5" style={{ background: '#000', color: '#fff' }}>
             <Row className="justify-content-center">
-                <Col xs={12} lg={11} xl={10}>
+                <Col
+                    className="p-0 col-12 col-sm-11 col-xl-10"
+                >
                     <div style={{
                         background: 'var(--color-card)',
                         border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -34,21 +34,12 @@ export default function GeoLocation() {
                             }} />
                             <div className="d-flex flex-row align-items-center">
                                 <MapPin size={50} color="var(--color-red-700)" className="me-3 flex-shrink-0" />
-                                <h2 className="fw-bold text-uppercase"
-                                    style={{
-                                        fontSize: sizeTitle,
-                                        letterSpacing: '1px',
-                                        margin: 0,
-                                    }}>
+                                <h2 className={`${style.titleGeo}`}>
                                     Работаю по Луганску и всей Луганской области
                                 </h2>
                             </div>
                             <p
-                                style={{
-                                    opacity: 0.6,
-                                    fontSize: sizeDes,
-                                }}
-                                className="mt-3 ps-1 ms-md-4"
+                                className={`${style.dopDes} mt-3 ps-1 ms-md-4`}
                             >
                                 Выезд на объекты и быстрая подача по договоренности в города:
                             </p>
@@ -81,23 +72,20 @@ export default function GeoLocation() {
                                             e.currentTarget.style.transform = 'translateY(0px)';
                                         }}
                                     >
-                                        <span style={{ fontSize: '0.95rem', fontWeight: '500', flex: 1 }}>{city}</span>
+                                        <span
+                                            className={style.city}
+                                        >
+                                            {city}
+                                        </span>
                                         <ChevronRight size={16} color="var(--color-red-600)" style={{ opacity: 0.5 }} />
                                     </div>
                                 </Col>
                             ))}
 
                             <Col xs={12} className="mt-4">
-                                <div style={{
-                                    borderStyle: 'dashed',
-                                    borderWidth: '1px',
-                                    borderColor: 'rgba(255,255,255,0.2)',
-                                    borderRadius: '12px',
-                                    padding: '10px 20px',
-                                    textAlign: 'center',
-                                    fontSize: '0.85rem',
-                                    opacity: 0.5
-                                }}>
+                                <div
+                                    className={`${style.footerDes}`}
+                                >
                                     и другие населенные пункты ЛНР и часть Ростовской области
                                 </div>
                             </Col>
