@@ -70,7 +70,7 @@ export default function TowService() {
                         </Col>
 
                         <Col lg={5} className={`${styles.mainCardAbout} p-4 px-md-5 py-md-4 d-flex flex-column align-items-center justify-content-center`}>
-                            <div className={`redLine`} />
+                            <div className={`redLineShadow mb-3`} />
                             <div className="mb-3 d-flex flex-column">
                                 <h3
                                     className={`${styles.titleTow1} col-12`}

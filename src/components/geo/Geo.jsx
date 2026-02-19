@@ -16,7 +16,7 @@ export default function GeoLocation() {
                     <div className={style.geoWrapper}>
 
                         <div className="mb-4">
-                            <div className={`redLine`} />
+                            <div className={`redLineShadow mb-3`} />
                             <div className="d-flex align-items-center">
                                 <MapPin
                                     size={50}

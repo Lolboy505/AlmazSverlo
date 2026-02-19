@@ -53,6 +53,7 @@ const Preview = ({ imgs, setCurrentIndex }) => {
           <h3>Загрузка{textLoading}</h3>
         </div>
       )}
+      <div class="redLineShadow mt-4 mb-1" style={{ width: '90%', transform: 'rotateZ(180deg)', margin: 'auto' }} />
     </div>
   )
 }
@@ -133,7 +134,7 @@ const GalleryAlm = ({ currentIndex, setCurrentIndex, IMAGES }) => {
               className={styles.mainImg}
               style={{
                 cursor: isZoomed ? 'zoom-out' : 'zoom-in',
-                transform: isZoomed ? 'scale(2.5)' : 'scale(1)',
+                transform: isZoomed ? 'scale(2.5)' : 'scale(.9)',
                 transformOrigin: `${zoomPoint.x}% ${zoomPoint.y}%`,
                 opacity: isLoadedGal ? 1 : 0,
                 display: isLoadedGal ? 'block' : 'none'
@@ -155,13 +156,12 @@ export default function Gallery(sizes) {
 
   return (
     <Col {...sizes} className={`ms-lg-4 p-0 overflow-hidden ${styles.galleryWrapper}`}>
-      <h2 className={`mb-4 px-4 pb-2 ${styles.galleryTitle}`}>
+      <h2 className={`mb-4 px-3 pb-2 ${styles.galleryTitle}`}>
         <div class="redLineShadow mb-2 mt-1" style={{ width: '94%', margin: 'auto' }} />
         Галерея работ по бурению и сверлению
       </h2>
       <Preview imgs={IMAGES} setCurrentIndex={setCurrentIndex} />
       <GalleryAlm IMAGES={IMAGES} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
-      <div class="redLineShadow mt-5 mb-1" style={{ width: '90%', transform: 'rotateZ(180deg)', margin: 'auto' }} />
     </Col>
   )
 }
