@@ -39,8 +39,8 @@ const SERVICES_DATA = [
 function ServiceCard({ service }) {
   const Icon = service.icon;
   return (
-    <Col className="overflow-hidden px-3 px-md-3 col-11 col-sm-10 col-md-6 col-lg-6 col-xl-5 col-xxl-4">
-      <div className={cardStyle.cardContainer}>
+    <Col className="px-3 px-md-3 col-11 col-sm-10 col-md-6 col-lg-6 col-xl-5 col-xxl-4">
+      <div className={`overflow-hidden ${cardStyle.cardContainer}`}>
         <div className={`redLineShadow mb-3`} />
         <div className={cardStyle.iconWrapper}>
           <Icon size={32} color="white" />
