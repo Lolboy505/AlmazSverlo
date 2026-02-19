@@ -1,0 +1,12 @@
+.aboutContainer {
+    color: white;
+    font-family: "Golos Text", sans-serif;
+}
+
+.mainRow {
+    text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+}
+
+.mainRow :global(.col) {
+    line-height: 1.5;
+}

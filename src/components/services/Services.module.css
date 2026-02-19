@@ -1,39 +1,55 @@
 .cardContainer {
-    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    border-radius: 30px;
     height: 100%;
+    padding: 24px;
+    border-radius: 24px;
+
+    background: var(--color-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transform: translateY(0px);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        box-shadow 0.4s ease,
-        border-color 0.4s ease;
 
     will-change: transform;
-
-    background-image: var(--color-card);
-    background-repeat: no-repeat;
+    /* Подсказка для GPU */
+    transition: transform 0.3s ease-out,
+        box-shadow 0.3s ease-out,
+        border-color 0.3s ease-out;
 }
 
 .cardContainer:hover {
-    transform: translateY(-12px);
-    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
 .iconWrapper {
-    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--color-red-700);
-    border-radius: 18px;
+    flex-shrink: 0;
     width: 60px;
     height: 60px;
-    box-shadow: 0 8px 20px rgba(185, 28, 28, 0.4);
-    flex-shrink: 0;
+    margin-bottom: 1.5rem;
+
+    background-color: var(--color-red-700);
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(185, 28, 28, 0.3);
+}
+
+.cardTitle {
+    color: white;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    font-size: clamp(--size-title);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.cardDescription {
+    margin: 0;
+    font-size: var(--size-description);
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
 }

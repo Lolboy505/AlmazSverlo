@@ -1,150 +1,48 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import cursorImg from '@/images/WhiteCursor.png'
-import stylePointer from "./PointerMover.module.css"
+import styleTitle from "./Materials.module.css"
 import MaterialsContent from './MaterialsContent'
 import { useInView } from 'react-intersection-observer'
 
-const materials = [
-    'ЖЕЛЕЗОБЕТОН',
-    'МОНОЛИТ',
-    'ДИКАРЬ',
-    'КИРПИЧ',
-    'БЕТОН',
-    'ПЕНОБЕТОН',
-    'ГАЗОБЕТОН',
-    'ПРИРОДНЫЙ КАМЕНЬ',
-    'АСФАЛЬТ',
-    'КЕРАМЗИТОБЕТОН',
+const MATERIALS_LIST = [
+    'ЖЕЛЕЗОБЕТОН', 'МОНОЛИТ', 'ДИКАРЬ', 'КИРПИЧ', 'БЕТОН',
+    'ПЕНОБЕТОН', 'ГАЗОБЕТОН', 'ПРИРОДНЫЙ КАМЕНЬ', 'АСФАЛЬТ', 'КЕРАМЗИТОБЕТОН',
 ];
 
 export default function Materials() {
     const { ref, inView } = useInView({
-        threshold: 0.4,
+        threshold: 0.2,
         triggerOnce: true,
     });
 
     return (
-        <Container
-            fluid
-        >
-            <Row
-                className='my-5 d-flex justify-content-center'
-            >
-                <Col
-                    className='py-4 col-12 col-lg-11 col-xl-10'
-                    style={{
-                        background: "var(--color-card)",
-                        border: "1px solid rgba(255,255,255,0.18)",
-                        borderRadius: "30px",
-                        boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-                        transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                    }}
-                >
-                    <Row
-                        className="mb-4 d-flex justify-content-center"
-                    >
-                        <Col
-                            className="col-11 col-lg-9"
-                            style={{
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'center',
-                                backgroundImage: "var(--color-card)",
-                                borderRadius: "20px",
-                                border: "2px solid rgba(64, 64, 64)",
-                                boxShadow: "0 0 20px rgba(0,0,0,0.5), inset 0 0 30px rgba(0,0,0,0.5)",
-                                padding: "18px 25px",
-                            }}
-                        >
-                            <h2
-                                className="text-center"
-                                style={{
-                                    textShadow: '0 0 10px black',
-                                    fontSize: 'clamp(2rem,5vw,2.5rem)',
-                                }}>
+        <Container className="my-5">
+            <Row className='justify-content-center overflow-hidden'>
+                <Col className={`col-12 col-lg-12 ${styleTitle.mainWrapper}`}>
+                    <Row className="mb-4 justify-content-center">
+                        <Col className={`col-10 ${styleTitle.headerCard}`}>
+                            <div className={`redLineShadow`} />
+                            <h2 className={`${styleTitle.title} mt-1`}>
                                 Алмазное сверление по типам поверхностей
                             </h2>
-                            <div className="pointer_container">
-                                <div
-                                    ref={ref}
-                                    className={`${stylePointer.pointer} ${inView ? stylePointer.animate : ''}`}
-                                    style={{
-                                        backgroundImage: `url(${cursorImg})`,
-                                    }}
-                                >
-                                </div>
-                                <div
-                                    className={`${stylePointer.shadow} ${inView ? stylePointer.animateShadow : ''}`}
-                                >
-                                </div>
+                            <div className={styleTitle.pointer_container}>
+                                <div ref={ref} className={`${styleTitle.pointer} ${inView ? styleTitle.animate : ''}`} />
+                                <div className={`${styleTitle.shadow} ${inView ? styleTitle.animateShadow : ''}`} />
                             </div>
+                            <div className={`redLineShadow mt-1`} />
                         </Col>
                     </Row>
-                    <Row
-                        className='d-flex justify-content-center'
-                    >
-                        <Col
-                            className="col-12 d-flex row justify-content-center"
-                        >
-                            <Row className="p-0 col-12 d-flex justify-content-center">
-                                <ul className="d-flex flex-wrap justify-content-center list-unstyled p-0 m-0 w-100" >
-                                    {materials.map((material, index) => (
-                                        <MaterialsContent
-                                            key={index}
-                                            {...paramForContent}
-                                            material={material}
-                                        />
-                                    ))}
-                                </ul>
-                            </Row>
-                        </Col>
+                    <Row className='justify-content-center'>
+                        <ul className="m-0 p-0 col-10 d-flex flex-wrap justify-content-center g-md-4">
+                            {MATERIALS_LIST.map((material, index) => (
+                                <MaterialsContent
+                                    key={index}
+                                    material={material}
+                                />
+                            ))}
+                        </ul>
                     </Row>
                 </Col>
             </Row>
         </Container>
     )
-}
-
-const paramForContent = {
-    styleImg: {
-        background: "white",
-        width: "35px",
-        height: "35px",
-        borderRadius: "100%",
-        display: "flex",
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexShrink: "0",
-    },
-    styleBorder: {
-        userSelect: 'none',
-        WebkitUserSelect: 'none',
-        msUserSelect: 'none',
-        WebkitTapHighlightColor: 'transparent',
-        backgroundSize: "100.1% 100.1%",
-        backgroundRepeat: "no-repeat",
-        backgroundClip: "padding-box",
-
-        willChange: "transform",
-        backgroundImage: "var(--color-card)",
-        border: "1px solid rgba(255,255,255,0.18)",
-        borderRadius: "30px",
-        transition: "transform 0.5s cubic-bezier(0.175, 0.885, 0.22, 1.875)",
-        cursor: "pointer",
-        minWidth: "250px",
-        height: "100%",
-        width: "100%",
-    },
-    styleText: {
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        paddingLeft: '5px',
-        textOverflow: 'ellipsis',
-        fontSize: "clamp(1.2rem, 3vw, 1.5rem)",
-        textTransform: 'uppercase',
-    },
-    classNameFullContent: "py-1 p-1 mb-1 col-12 col-sm-6 col-lg-5 d-flex justify-content-center justify-content-md-center",
-    classNameContent: "py-2 px-3 gap-3 d-flex align-items-center",
-    imgSize: 25,
-    classNameStyleText: "fw-bold mb-0",
 }

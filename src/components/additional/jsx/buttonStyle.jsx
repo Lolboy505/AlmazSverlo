@@ -1,4 +1,3 @@
-import '@/components/additional/buttonStyle.module.css';
 
 export default function ActionButton({ text, icon: Icon }) {
     return (

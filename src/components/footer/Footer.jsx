@@ -1,4 +1,4 @@
-import { TIN, fullName, nameOrg } from '@/components/additional/contactData'
+import { TIN, fullName, nameOrg } from '@/components/additional/js/contactData'
 
 
 export default function Footer() {

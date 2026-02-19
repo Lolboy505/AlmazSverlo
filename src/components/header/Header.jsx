@@ -1,45 +1,49 @@
 import { useState } from 'react'
 import { Phone, Mail } from 'lucide-react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
-import { TelegramIcon, VkIcon } from '../additional/Icons'
-import { nameOrg } from '../additional/contactData'
-import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../additional/contactData'
+import { TelegramIcon, VkIcon } from '../additional/jsx/Icons'
+import { nameOrg } from '../additional/js/contactData'
+import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../additional/js/contactData'
 import style from './Header.module.css'
-import ImageWithFallback from "../additional/ImageWithFallback"
+import ImageWithFallback from "../additional/jsx/ImageWithFallback"
 
 const logo = "/mLogo.jpg";
-
+let icons = {
+    height: 'auto',
+    width: 'clamp(28px, 5vw , 35px)',
+}
 let themeColor = "black"
+
+let dataLink = [
+    {
+        text: "Контакты",
+        child: null,
+        href: "#contact",
+    },
+    {
+        text: null,
+        child: <Mail style={{ ...icons, filter: "drop-shadow(0px 1px 0.5px rgba(0, 0, 0, 1))" }} />,
+        href: "mailto:" + email,
+    },
+    // {
+    //     text: null,
+    //     child: <VkIcon />,
+    //     href: vkontakte,
+    // },
+    {
+        text: null,
+        child: <TelegramIcon style={{ ...icons }} />,
+        href: telegram,
+    },
+    {
+        text: formatPhoneNumber(phone),
+        child: <Phone />,
+        href: "tel:+" + phone,
+    },
+]
 
 export default function Header() {
     const [expanded, setExpanded] = useState(false);
-    let dataLink = [
-        {
-            text: "Контакты",
-            child: null,
-            href: "#contact",
-        },
-        {
-            text: null,
-            child: <Mail style={{ filter: "drop-shadow(0px 1px 0.5px rgba(0, 0, 0, 1))" }} />,
-            href: "mailto:" + email,
-        },
-        // {
-        //     text: null,
-        //     child: <VkIcon />,
-        //     href: vkontakte,
-        // },
-        {
-            text: null,
-            child: <TelegramIcon />,
-            href: telegram,
-        },
-        {
-            text: formatPhoneNumber(phone),
-            child: <Phone />,
-            href: "tel:+" + phone,
-        },
-    ]
 
     return (
         <header className="sticky-top" style={{
@@ -48,8 +52,8 @@ export default function Header() {
         }}>
             <Navbar
                 expanded={expanded}
-                onToggle={() => setExpanded(!expanded)}
-                expand="lg"
+                onToggle={() => setExpanded((exp) => !exp)}
+                expand="xl"
                 variant="dark"
                 className="m-0 p-0 px-3"
                 style={{
@@ -63,13 +67,13 @@ export default function Header() {
                         <ImageWithFallback
                             src={logo}
                             alt="LogoBrand"
-                            style={{ maxWidth: "clamp(90px,10vw,100px)", height: "auto" }}
+                            style={{ maxWidth: "clamp(82px,10vw,100px)", height: "auto" }}
                         />
                     </Navbar.Brand>
 
                     <Navbar.Toggle
                         aria-controls="responsive-navbar-nav"
-                        className={`border-0 shadow-none d-flex d-lg-none align-items-center justify-content-center ${style.custom_toggler}`}
+                        className={`d-flex d-xl-none align-items-center justify-content-center ${style.custom_toggler}`}
                     >
                         <div className={style.burger_icon}>
                             <span className={style.burger_line}></span>

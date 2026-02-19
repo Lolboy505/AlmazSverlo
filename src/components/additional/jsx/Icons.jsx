@@ -1,4 +1,4 @@
-export function TelegramIcon({ size = 24, color = "white" }) {
+export function TelegramIcon({ size = 24, color = "white", style }) {
     return (
         <svg
             width={size}
@@ -11,6 +11,7 @@ export function TelegramIcon({ size = 24, color = "white" }) {
             strokeLinejoin="round"
             style={{
                 // drop-shadow ложится именно по контуру линий (path)
+                ...style,
                 filter: "drop-shadow(0px 1px 0.5px rgba(0, 0, 0, 1))",
                 overflow: 'visible'
             }}

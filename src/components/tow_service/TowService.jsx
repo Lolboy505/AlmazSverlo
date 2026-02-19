@@ -1,17 +1,16 @@
+import { memo } from 'react';
 import { Clock, MapPin, Shield, Phone } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap";
-import ImageWithFallback from "../additional/ImageWithFallback";
-import { addressTow, fromTimeTow, phone, scheduleTow, toTimeTow, phoneTow, formatPhoneNumber } from '../additional/contactData';
+import ImageWithFallback from "../additional/jsx/ImageWithFallback";
+import { fromTimeTow, toTimeTow, phone, scheduleTow, addressTow, phoneTow, formatPhoneNumber } from '../additional/js/contactData';
 import busImg from "@/images/BusEd.webp";
 import styles from './TowStyle.module.css';
-import { uslugi } from '../additional/sizes';
 
 const SERVICE_DATA = [
     {
         icon: Clock,
         title: "время работы",
-        description: `С ${fromTimeTow} до ${toTimeTow} часов`,
-        subDescription: `График работы: ${scheduleTow}`,
+        description: `С ${fromTimeTow} до ${toTimeTow} ч. ${scheduleTow}`,
     },
     {
         icon: MapPin,
@@ -21,101 +20,83 @@ const SERVICE_DATA = [
     {
         icon: Shield,
         title: "любое авто",
-        description: "До 5 тонн, а также перевозка бусов с МАКСИ базой",
+        description: "До 5 тонн, бусы c MAXI базой т.д.",
     },
     {
         icon: Phone,
         title: "контакты",
-        description: `Номер телефона:`,
-        subDescription: formatPhoneNumber(phoneTow)
+        description: `Тел: ${formatPhoneNumber(phoneTow)}`,
     },
 ];
 
-const InfoCard = ({ icon: Icon, title, description, subDescription }) => (
+const InfoCard = memo(({ icon: Icon, title, description, subDescription }) => (
     <div className={styles.infoCardWrapper}>
         <div className={styles.infoCardIcon}>
-            <Icon size={28} color="white" />
+            <Icon size={32} color="white" />
         </div>
         <div className={styles.infoCardContent}>
-            <h4 className={styles.infoCardTitle}>
-                {title}
-            </h4>
+            <h4 className={styles.infoCardTitle}>{title}</h4>
             <p className={styles.infoCardText}>
                 {description}
-                {subDescription && <>
-                    <br />
-                    {subDescription}
-                </>}
+                {subDescription && <><br />{subDescription}</>}
             </p>
         </div>
     </div>
-);
+));
 
 export default function TowService() {
     return (
-        <Container fluid className={styles.towServiceSection}>
-            <Row className="pt-5 mx-0">
+        <Container className={`overflow-hidden ${styles.towServiceSection}`}>
+            <Row className="mx-0">
                 <Col>
-                    <h2
-                        id="AddService"
-                        className="mt-5 mb-lg-4 text-center text-uppercase"
-                        style={{
-                            letterSpacing: '1.5px',
-                            fontSize: uslugi,
-                        }}
-                    >
-                        Эвакуатор Луганск
-                        Вызов круглосуточно 24/7
+                    <h2 id="AddService" className={styles.mainTitle}>
+                        Эвакуатор Луганск <br className="d-lg-none" />
+                        <span>вызов 24/7</span>
                     </h2>
                 </Col>
             </Row>
 
-            <Row className="py-4 justify-content-center">
-                <Col
-                    className={`${styles.mainCardContainer} col-12 col-sm-10`}
-                >
-                    <Row >
-                        <Col className="col-12 col-lg-7 p-0">
+            <Row className="justify-content-center pb-5">
+                <Col xs={12} sm={11} xxl={11} className={styles.mainCardContainer}>
+                    <Row>
+                        <Col lg={7} className="p-0">
                             <div className={styles.imageWrapper}>
                                 <ImageWithFallback
                                     src={busImg}
-                                    alt="Услуги эвакуатора"
+                                    alt="Эвакуатор для микроавтобусов Луганск"
                                     className={styles.imgCover}
                                 />
                             </div>
                         </Col>
 
-                        <Col className={`${styles.mainCardAbout} p-4 p-md-5 col-12 col-lg-5 d-flex flex-column justify-content-center`}
-                        >
-                            <div className="gap-3 mb-2">
-                                <h3 className="text-white fw-bold mb-0 h4">
-                                    <span className={styles.titleTow}>
-                                        Профессиональная помощь на дороге
-                                    </span>
-                                    <span className={styles.titleTow}>
-                                        Быстро, надежно, качественно
-                                    </span>
+                        <Col lg={5} className={`${styles.mainCardAbout} p-4 px-md-5 py-md-4 d-flex flex-column align-items-center justify-content-center`}>
+                            <div className={`redLine`} />
+                            <div className="mb-3 d-flex flex-column">
+                                <h3
+                                    className={`${styles.titleTow1} col-12`}
+                                >
+                                    Помощь на дороге
+                                </h3>
+                                <h3
+                                    className={`${styles.titleTow2} col-12`}
+                                >
+                                    Быстро и надежно
                                 </h3>
                             </div>
 
-                            <div className={`${styles.infoGrid} my-4`}>
+                            <div className={styles.infoGrid}>
                                 {SERVICE_DATA.map((item, idx) => (
                                     <InfoCard key={idx} {...item} />
                                 ))}
                             </div>
 
-                            <a
-                                href={`tel:+${phone}`}
-                                className={styles.btnCallAction}
-                                style={{
-                                    margin: '0 auto',
-                                }}>
+                            <a href={`tel:+${phone}`} className={`text-nowrap btn-glitch-neon px-4 py-2 mt-3`}>
                                 вызвать эвакуатор
                             </a>
                         </Col>
-                    </Row >
-                </Col >
-            </Row >
-        </Container >
+                    </Row>
+                </Col>
+            </Row>
+        </Container>
     );
 }

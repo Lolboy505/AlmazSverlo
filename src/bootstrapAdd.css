@@ -1,0 +1,48 @@
+/* --- Настройка адаптивности контейнеров (Mobile First) --- */
+
+/* 1. Мобильные устройства (по умолчанию) */
+/* .container { */
+/* width: 100%; */
+/* Убираем "ахрененные" отступы на смартфонах, делаем контент в край */
+/* padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+} */
+
+/* 2. Маленькие планшеты (от 576px) */
+/* @media (min-width: 576px) { */
+/* .container { */
+/* max-width: 540px; */
+/* Возвращаем небольшие поля, чтобы текст не касался краев */
+/* padding-left: 15px;
+        padding-right: 15px;
+    }
+} */
+
+/* 3. Средние экраны и ноутбуки (от 768px до 1400px) */
+/* @media (min-width: 768px) { .container { max-width: 720px; } }
+@media (min-width: 992px) { .container { max-width: 960px; } }
+@media (min-width: 1200px) { .container { max-width: 1140px; } } */
+
+/* 4. Большие мониторы (XXL - от 1400px) */
+/* @media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+} */
+
+/* 5. ТВОЙ 2K МОНИТОР (QHD - от 1920px) */
+@media (min-width: 1920px) {
+    .container {
+        /* Расширяем контейнер, чтобы убрать пустоту по бокам */
+        max-width: 1600px;
+    }
+}
+
+/* 6. Задел на будущее (4K мониторы - от 2560px) */
+@media (min-width: 2560px) {
+    .container {
+        max-width: 1900px;
+    }
+}

@@ -7,14 +7,32 @@ import express from 'express'; // установи: npm i -D express
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 async function run() {
+    console.log('___Запуск программы запекания сайта___');
     const app = express();
     app.use(express.static(path.join(__dirname, 'dist')));
     const server = app.listen(8080);
 
-    const browser = await puppeteer.launch({ headless: "new" });
-    const page = await browser.newPage();
+    const browser = await puppeteer.launch({
+        // new для откл
+        headless: false,
+        slowMo: 100,
+        // devtools: true,
+    }).finally(() => {
+        console.log('# Заголовки установленны');
+    })
 
-    await page.goto('http://localhost:8080', { waitUntil: 'networkidle0' });
+    const page = await browser.newPage().finally(() => {
+        console.log('# Браузер запущен');
+    })
+
+    await page.setViewport({ width: 1280, height: 800 })
+        .catch((err) => {
+            console.log("Page ERR: ", err)
+        });
+
+    await page.goto('http://localhost:8080', { waitUntil: 'networkidle0' }).finally(() => {
+        console.log('# Процесс запекания начался');
+    });
 
     // ТРЮК: Прокрутка вниз, чтобы подгрузить lazy-картинки и галерею
     await page.evaluate(async () => {
@@ -29,7 +47,7 @@ async function run() {
                     clearInterval(timer);
                     resolve();
                 }
-            }, 300);
+            }, 200);
         });
     });
 

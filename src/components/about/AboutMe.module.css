@@ -1,0 +1,67 @@
+.mainCard {
+    background: var(--color-card);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sliderContainer {
+    width: 100%;
+    background: var(--color-card);
+    border-radius: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.sliderInner {
+    display: flex;
+    will-change: transform;
+    padding: 0;
+    margin: 0;
+}
+
+.slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px 20px;
+    margin: 0;
+}
+
+.accent {
+    padding: 5px;
+    color: white;
+    text-transform: uppercase;
+    font-size: var(--size-about-title);
+}
+
+/* Остальное оставляем без изменений */
+.descriptionMain {
+    padding: 24px 16px 16px;
+    text-align: center;
+    max-width: 800px;
+    letter-spacing: 0.5px;
+    font-size: var(--size-about-title-second);
+}
+
+.featuresGrid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 15px;
+    row-gap: 20px;
+    align-items: start;
+    padding: 12px;
+}
+
+.iconSize {
+    height: auto;
+    width: var(--size-icon);
+    color: white;
+}
+
+.featureText {
+    font-size: var(--size-about-text);
+    line-height: 1.4;
+}

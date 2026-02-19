@@ -1,52 +1,28 @@
 import { Check } from 'lucide-react';
-import { useEffect, useState } from "react";
-import { useRef } from 'react';
+import { useState, memo } from "react";
+import styles from "./MaterialsContent.module.css";
 
-export default function MaterialsContent({ styleBorder, styleImg, styleText, classNameFullContent, classNameContent, imgSize, classNameStyleText, material, index }) {
-    let [flag, setFlag] = useState(true)
-    let box = useRef(null)
-    let text = useRef(null)
+// Используем memo, чтобы карточки не перерендеривались просто так
+const MaterialsContent = memo(({ material }) => {
+    const [isActive, setIsActive] = useState(false);
 
-    useEffect(() => {
-        text.current.style.whiteSpace = "nowrap"
-    }, [text])
-
-    const handleClick = (e) => {
-        if (flag) {
-            box.current.style.transform = "translateY(-12px)"
-            box.current.style.backgroundImage = "var(--color-card-red-700-right)";
-            text.current.style.whiteSpace = ""
-        }
-        else {
-            box.current.style.transform = "translateY(0px)"
-            box.current.style.backgroundImage = "var(--color-card)";
-            text.current.style.whiteSpace = "nowrap"
-        }
-        setFlag((prev) => (!prev))
-    }
+    const toggleActive = () => setIsActive(!isActive);
 
     return (
-        <li
-            className={classNameFullContent}
-        >
+        <li className={`${styles.fullContent} col-12 col-md-6 col-xxl-4 `}>
             <div
-                ref={box}
-                className={classNameContent}
-                style={{ ...styleBorder }}
-                onClick={(e) => handleClick(e)}
+                className={`${styles.cardBorder} ${isActive ? styles.activeCard : ''}`}
+                onClick={toggleActive}
             >
-                <div style={styleImg}>
-                    <Check size={imgSize} width={100} color={"black"} />
+                <div className={styles.iconCircle}>
+                    <Check size={20} strokeWidth={3} color="black" />
                 </div>
-                <span
-                    ref={text}
-                    className={classNameStyleText}
-                    style={{ ...styleText }}
-                >
+                <span className={`${styles.text} ${isActive ? styles.textFull : styles.textTruncate}`}>
                     {material}
                 </span>
             </div>
         </li>
-    )
-}
+    );
+});
 
+export default MaterialsContent;

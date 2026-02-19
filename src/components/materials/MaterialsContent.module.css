@@ -1,0 +1,58 @@
+.fullContent {
+    padding: 4px;
+    margin-bottom: 4px;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cardBorder {
+    display: flex;
+    align-items: center;
+    padding: 5px 0px 5px 10px;
+    gap: 10px;
+    min-width: 250px;
+    width: 100%;
+    border-radius: 30px;
+    background: var(--color-line);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.4s ease-out, background 0.4s ease;
+    will-change: transform;
+}
+
+.activeCard {
+    transform: translateY(-8px);
+    background: var(--color-card-red-700);
+    background-size: 101% 101%;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.iconCircle {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text {
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: var(--size-materials-description-title);
+    transition: color 0.3s ease, opacity 0.3 ease;
+}
+
+.textTruncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.textFull {
+    white-space: normal;
+}

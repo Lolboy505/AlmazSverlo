@@ -1,344 +1,167 @@
-import { useState, useEffect } from 'react';
-import previewImg from './previewImg.module.css'
-import './GalleryMe.css';
+import { useState, useEffect, useCallback, memo } from 'react';
+import styles from './previewImg.module.css';
+import { Col } from 'react-bootstrap';
 
-//jpg,jpeg,png НЕТ только WEBP
+// Выносим обработку картинок за пределы компонента
+const imagesModules = import.meta.glob('@/gallery/*.webp', { eager: true });
+const IMAGES = Object.entries(imagesModules).map(([path, module], index) => ({
+  id: index + 1,
+  src: module.default,
+  title: `Объект №${index + 1}`,
+}));
 
-const imagesModules = import.meta.glob('@/gallery/*.{webp,}', { eager: true });
+const GalleryItem = memo(({ img, index, onClick }) => (
+  <div className="col-5 col-md-5 mx-1 mx-md-1">
+    <div className={styles.galleryCard} onClick={() => onClick(index)}>
+      <img
+        src={img.src}
+        alt={img.title}
+        loading="lazy"
+        className="w-100 h-100 object-fit-cover"
+      />
+      <div className={styles.hoverOverlay}>
+        <span className="text-white text-center h5">Увеличить &#128269;</span>
+      </div>
+    </div>
+  </div>
+));
 
-const images = Object.entries(imagesModules).map(([path, module], index) => {
-  return {
-    id: index + 1,
-    src: module.default,
-    title: `Обьект №${index + 1}`,
-  };
-});
-
-export default function Gallery() {
-  const [currentIndex, setCurrentIndex] = useState(null);
-  const [isZoomed, setIsZoomed] = useState(false);
-  const [zoomPoint, setZoomPoint] = useState({ x: 50, y: 50 });
-  const [isLoadedPrew, setLoadedPrew] = useState(false)
-  const [isLoadedGal, setLoadedGal] = useState(false)
+const Preview = ({ imgs, setCurrentIndex }) => {
+  const [textLoading, setTextLoading] = useState("");
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (!e.key) return;
-      const key = e.key.toLowerCase();
-
-      if (currentIndex === null) return;
-      if (key === 'Escape') closeGallery();
-      if (/^(arrowright|d|в|w|ц)$/.test(key)) nextSlide();
-      if (/^(arrowleft|a|ф|s|ы)$/.test(key)) prevSlide();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [currentIndex]);
-
-  const closeGallery = () => {
-    setCurrentIndex(null);
-    setIsZoomed(false);
-  };
-
-  const nextSlide = () => {
-    setIsZoomed(false);
-    setLoadedGal(false);
-    setCurrentIndex((prev) => (prev + 1 === images.length ? 0 : prev + 1));
-  };
-
-  const prevSlide = () => {
-    setIsZoomed(false);
-    setLoadedGal(false);
-    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
-  };
-
-  const handleImageClick = (e) => {
-    if (!isZoomed) {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      setZoomPoint({ x, y });
-      setIsZoomed(true);
-    } else {
-      setIsZoomed(false);
-    }
-  };
+    if (IMAGES.length > 0) return;
+    const interval = setInterval(() => {
+      setTextLoading((prev) => (prev.length >= 3 ? "" : prev + "."));
+    }, 800);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="py-0 pb-4 px-0"
-      style={{
-        background: "var(--color-card)",
-        borderRadius: "12px",
-        border: "1px solid rgba(255, 255, 255, 0.1)",
-        padding: "20px",
-      }}
-    >
-      <div
-        style={{
-          marginBottom: '20px',
-          display: 'flex',
-          justifyContent: 'center',
-        }}
-      >
-        <h2
-          className="
-          mb-3 px-4 px-sm-5 px-md-6 px-lg-7 py-2
-          d-flex justify-content-center 
-          text-center text-uppercase"
-          style={{
-            color: 'white',
-            background: "var(--color-card)",
-            borderRadius: "12px",
-            borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            boxShadow: 'inset 0 0 10px rgba(0, 0, 0, 0.5)',
-          }}
-        >
-          Галерея моих работ по бурению и сверлению в ЛНР
-        </h2>
-      </div>
-
-      <div
-        className="row g-2 g-lg-3 gap-2 
-          justify-content-center"
-      >
-        {
-          (!images.length) ?
-            (
-              <>
-                <div className="text-center">
-                  <h1>404</h1>
-                  <br />
-                  Sorry
-                  <br />
-                  something went wrong
-                </div>
-              </>
-            )
-            :
-            (
-              <>
-                {!isLoadedPrew && (
-                  <>
-                    <div className="spinner-border "></div>
-                    <br />
-                    <div className="text-center">Загрузка...</div>
-                  </>
-                )}
-
-
-                {
-                  images.slice(0, 4).map((img, index) => (
-                    <div
-                      key={index}
-                      className="col-5 col-md-5"
-                      style={{
-                      }}
-                    >
-                      <div
-                        className="
-                        position-relative overflow-hidden 
-                        rounded shadow-sm bg-dark"
-                        style={{
-                          width: 'auto',
-                          height: 'clamp(250px, 18vw , 900px)',
-                          cursor: 'pointer',
-                        }}
-                        onClick={() => setCurrentIndex(index)}
-                      >
-                        {!isLoadedPrew && <div className="spinner">Загрузка...</div>}
-                        <img
-                          src={img.src}
-                          alt={img.title}
-                          loading="lazy"
-                          onLoad={() => setLoadedPrew(true)}
-                          style={{
-                            opacity: isLoadedPrew ? 1 : 0,
-                            transition: 'opacity 0.3s ease-in-out',
-                          }}
-                          className="w-100 h-100 object-fit-cover"
-                        />
-                        <div
-                          className={previewImg.hoverImg}
-                        >
-                          <span className="text-white text-center h5">Увеличить &#128269;</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                }
-              </>
-            )
-        }
-      </div>
-
-      {currentIndex !== null && (
-        <div
-          className="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center p-2"
-          style={{ zIndex: 10, background: 'rgba(0,0,0,0.95)' }}
-          onClick={closeGallery}
-        >
-          {!isZoomed && (
-            <>
-              <div
-                className=" position-fixed start-0 top-50 translate-middle-y px-3 d-block"
-                style={{
-                  fontSize: '3rem',
-                  zIndex: 11,
-                  textDecoration: 'none',
-                  background: 'linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.35) 100%)',
-                  borderRadius: '0 10px 10px 0',
-                  cursor: 'pointer',
-                }}
-                onClick={(e) => { e.stopPropagation(); prevSlide(); }}
-              >
-                <div
-                  style={{
-                    zIndex: 13,
-                    userSelect: 'none',
-                    WebkitUserSelect: 'none',
-                    msUserSelect: 'none',
-                    WebkitTapHighlightColor: 'transparent',
-                  }}
-                >
-                  <div>
-                    ‹
-                  </div>
-                </div>
-              </div>
-              <div
-                className=" position-fixed end-0 top-50 translate-middle-y px-3 d-block"
-                style={{
-                  fontSize: '3rem',
-                  zIndex: 11,
-                  textDecoration: 'none',
-                  background: 'linear-gradient(-90deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0.35) 100%)',
-                  borderRadius: '10px 0 0 10px',
-                  cursor: 'pointer',
-                }}
-                onClick={(e) => { e.stopPropagation(); nextSlide(); }}
-              >
-                <div
-                  style={{
-                    zIndex: 13,
-                    userSelect: 'none',
-                    WebkitUserSelect: 'none',
-                    msUserSelect: 'none',
-                    WebkitTapHighlightColor: 'transparent',
-                  }}
-                >
-                  <div
-                    style={{ pointerEvents: 'none' }}
-                  >
-                    ›
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-
-          <div
-            className="position-relative"
-            style={{
-              maxWidth: '90%',
-              maxHeight: '90%',
-              minHeight: '40%',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="overflow-hidden rounded shadow-lg bg-black">
-              {isLoadedGal && (<>
-                <div
-                  className="position-absolute top-0 end-0 m-0"
-                  style={{
-                    display: "flex",
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: 'clamp(2rem, 2.5vw , 2.2rem)',
-                    height: 'clamp(2rem, 2.5vw , 2.2rem)',
-                    borderRadius: "0 0 0 10px",
-                    background: "var(--color-red-600)",
-                    color: "var(--color-red-700)",
-                    cursor: 'pointer',
-                    zIndex: 10,
-                  }}
-                  onClick={closeGallery}
-                >
-                  <span
-                    style={{
-                      background: 'var(--color-red-800)',
-                      display: 'flex',
-                      position: 'absolute',
-                      height: '5px',
-                      width: 'clamp(1rem, 2.5vw , 1.5rem)',
-                      transform: 'rotate(45deg)'
-                    }}>
-                  </span>
-                  <span
-                    style={{
-                      background: 'var(--color-red-800)',
-                      display: 'flex',
-                      position: 'absolute',
-                      height: '5px',
-                      width: 'clamp(1rem, 2.5vw , 1.5rem)',
-                      transform: 'rotate(-45deg)'
-                    }}
-                  >
-                  </span>
-                </div>
-
-              </>)}
-
-              {!isLoadedGal && (
-                <div
-                  className="position-relative d-flex flex-column align-items-center"
-                  style={{
-                    zIndex: 11,
-                    margin: 'auto',
-                    width: '300px',
-                    height: '300px',
-                  }}
-                >
-                  <div
-                    className="spinner-border"
-                    role="status"
-                    style={{
-                      marginTop: '60%',
-                      marginRight: '5%',
-                      width: '4rem',
-                      height: '4rem'
-                    }}
-                  >
-                  </div>
-                </div>
-              )}
-
-              <img
-                key={currentIndex}
-                src={images[currentIndex].src}
-                alt={images[currentIndex].title}
-                onLoad={() => setLoadedGal(true)}
-                style={{
-                  cursor: isZoomed ? 'zoom-out' : 'zoom-in',
-                  transform: isZoomed ? 'scale(2.5)' : 'scale(1)',
-                  transition: 'transform 0.3s ease-in-out',
-                  transformOrigin: `${zoomPoint.x}% ${zoomPoint.y}%`,
-                  maxHeight: isZoomed ? '90vh' : '80vh',
-                  opacity: isLoadedGal ? 1 : 0,
-                }}
-                className="img-fluid d-block"
-                onClick={handleImageClick}
-              />
-            </div>
-
-            {!isZoomed && isLoadedGal && (
-              <div className="mt-3 text-center text-white position-relative">
-                <div className="fs-4 mb-0">{images[currentIndex].title}</div>
-              </div>
-            )}
-          </div>
+    <div className="row g-2 g-lg-3 gap-2 justify-content-center">
+      {IMAGES.length > 0 ? (
+        IMAGES.slice(0, 4).map((img, index) => (
+          <GalleryItem
+            key={img.id}
+            img={img}
+            index={index}
+            onClick={setCurrentIndex}
+          />
+        ))
+      ) : (
+        <div className="text-center py-5">
+          <h3>Загрузка{textLoading}</h3>
         </div>
       )}
     </div>
-  );
+  )
+}
+
+const GalleryAlm = ({ currentIndex, setCurrentIndex, IMAGES }) => {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [zoomPoint, setZoomPoint] = useState({ x: 50, y: 50 });
+  const [isLoadedGal, setLoadedGal] = useState(false);
+
+  const closeGallery = useCallback(() => {
+    setCurrentIndex(null);
+    setIsZoomed(false);
+    setLoadedGal(false);
+  }, []);
+
+  const navigate = useCallback((direction) => {
+    setIsZoomed(false);
+    setLoadedGal(false);
+    setCurrentIndex((prev) => {
+      if (direction === 'next') return prev + 1 === IMAGES.length ? 0 : prev + 1;
+      return prev === 0 ? IMAGES.length - 1 : prev - 1;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (currentIndex === null) return;
+
+    const handleKeyDown = (e) => {
+      const key = e.key.toLowerCase();
+      if (key === 'escape') closeGallery();
+      if (/^(arrowright|d|в)$/.test(key)) navigate('next');
+      if (/^(arrowleft|a|ф)$/.test(key)) navigate('prev');
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentIndex, closeGallery, navigate]);
+
+  const handleZoom = (e) => {
+    if (!isZoomed) {
+      const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+      setZoomPoint({
+        x: ((e.clientX - left) / width) * 100,
+        y: ((e.clientY - top) / height) * 100
+      });
+    }
+    setIsZoomed(!isZoomed);
+  };
+
+  return (
+    <>
+      {currentIndex !== null && (
+        <div className={styles.modalOverlay} onClick={closeGallery}>
+          <button className={styles.closeBtn} onClick={closeGallery}>
+            <div className={styles.closeBtnX}>
+              &times;
+            </div>
+          </button>
+
+          {!isZoomed && (
+            <>
+              <div className={`${styles.navBtn} ${styles.prev}`} onClick={(e) => { e.stopPropagation(); navigate('prev'); }}>‹</div>
+              <div className={`${styles.navBtn} ${styles.next}`} onClick={(e) => { e.stopPropagation(); navigate('next'); }}>›</div>
+            </>
+          )}
+
+          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            {!isLoadedGal && (
+              <div className="d-flex justify-content-center align-items-center" style={{ height: '300px' }}>
+                <div className={`${styles.spinner} spinner-border text-light`}></div>
+              </div>
+            )}
+            <img
+              src={IMAGES[currentIndex].src}
+              alt={IMAGES[currentIndex].title}
+              onLoad={() => setLoadedGal(true)}
+              onClick={handleZoom}
+              className={styles.mainImg}
+              style={{
+                cursor: isZoomed ? 'zoom-out' : 'zoom-in',
+                transform: isZoomed ? 'scale(2.5)' : 'scale(1)',
+                transformOrigin: `${zoomPoint.x}% ${zoomPoint.y}%`,
+                opacity: isLoadedGal ? 1 : 0,
+                display: isLoadedGal ? 'block' : 'none'
+              }}
+            />
+            {!isZoomed && isLoadedGal && (
+              <div className={styles.imgTitle}>{IMAGES[currentIndex].title}</div>
+            )}
+          </div>
+        </div>
+      )
+      }
+    </>
+  )
+}
+
+export default function Gallery(sizes) {
+  const [currentIndex, setCurrentIndex] = useState(null);
+
+  return (
+    <Col {...sizes} className={`ms-lg-4 p-0 overflow-hidden ${styles.galleryWrapper}`}>
+      <h2 className={`mb-4 px-4 pb-2 ${styles.galleryTitle}`}>
+        <div class="redLineShadow mb-2 mt-1" style={{ width: '94%', margin: 'auto' }} />
+        Галерея работ по бурению и сверлению
+      </h2>
+      <Preview imgs={IMAGES} setCurrentIndex={setCurrentIndex} />
+      <GalleryAlm IMAGES={IMAGES} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
+      <div class="redLineShadow mt-5 mb-1" style={{ width: '90%', transform: 'rotateZ(180deg)', margin: 'auto' }} />
+    </Col>
+  )
 }

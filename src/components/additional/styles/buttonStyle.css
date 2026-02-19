@@ -1,9 +1,6 @@
 .btn-glitch-neon {
     display: inline-flex;
-    align-items: center;
     justify-content: center;
-    gap: 12px;
-    padding: 10px 20px;
 
     /* Динамический фон — увеличиваем размер для анимации перемещения */
     background: linear-gradient(135deg,
@@ -13,11 +10,11 @@
     background-size: 200% 200%;
     animation: gradientMove 5s ease infinite, neonPulse 3s infinite alternate;
 
-    color: #ffffff !important;
+    color: var(--color-text-global);
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    font-size: clamp(1rem, 4vw, 1.15rem);
+    letter-spacing: 2px;
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
     text-decoration: none;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);

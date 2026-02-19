@@ -1,10 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Drill, Home, Droplet, Wind, Zap, Settings } from 'lucide-react';
-import { uslugi } from '../additional/sizes.js';
 import cardStyle from "./Services.module.css"
 
 
-const services = [
+const SERVICES_DATA = [
   {
     icon: Home,
     title: 'Вентиляционные системы',
@@ -37,67 +36,55 @@ const services = [
   },
 ];
 
+function ServiceCard({ service }) {
+  const Icon = service.icon;
+  return (
+    <Col className="overflow-hidden px-3 px-md-3 col-11 col-sm-10 col-md-6 col-lg-6 col-xl-5 col-xxl-4">
+      <div className={cardStyle.cardContainer}>
+        <div className={`redLineShadow mb-3`} />
+        <div className={cardStyle.iconWrapper}>
+          <Icon size={32} color="white" />
+        </div>
+        <h3 className={cardStyle.cardTitle}>
+          {service.title}
+        </h3>
+        <p className={cardStyle.cardDescription}>
+          {service.description}
+        </p>
+      </div>
+    </Col>
+  );
+}
+
 export default function Services() {
-  let sizeTitle = "clamp(1.3rem, 3vw, 1.4rem)"
-  let sizeDes = "clamp(1rem, 2.5vw, 1.3rem)"
 
   return (
     <Container
-      className="py-0 py-lg-5 px-3"
-      style={{
-        background: "black",
-        color: "white",
-      }}
-      fluid
+      className="py-lg-5 px-0 overflow-hidden"
     >
       <Row>
-        <h2
-          className="mb-4 mb-lg-5 text-center text-uppercase"
-          style={{
-            fontSize: uslugi,
-          }}
-        >
-          Алмазное бурение и сверление отверстий в Луганске
-        </h2>
+        <Col className="p-3 mb-4 mb-lg-5">
+          <h2
+            className="text-center text-uppercase"
+            style={{
+              fontSize: 'var(--size-main-title)',
+            }}
+          >
+            Алмазное бурение и сверление отверстий в Луганске
+          </h2>
+        </Col>
       </Row>
-      <Row className="mx-sm-5 mx-md-2 mx-xl-5 g-4 justify-content-center">
-        {services.map((service, index) => {
-          const Icon = service.icon;
-          return (
-            <Col
-              key={index}
-              className="col-11 col-xs-11 col-sm-11 col-md-8 col-lg-5"
-            >
-              <div className={cardStyle.cardContainer}>
-                <div
-                  className={cardStyle.iconWrapper}
-                >
-                  <Icon size={32} color="white" />
-                </div>
-
-                <h3
-                  className="text-white fw-bold mb-3"
-                  style={{
-                    fontSize: sizeTitle,
-                    textShadow: "0 0 10px rgba(255,0,0,0.2)"
-                  }}
-                >
-                  {service.title}
-                </h3>
-
-                <p
-                  className="m-0 p-0"
-                  style={{
-                    fontSize: sizeDes,
-                    lineHeight: "1.6"
-                  }}
-                >
-                  {service.description}
-                </p>
-              </div>
-            </Col>
-          );
-        })}
+      <Row className="d-flex justify-content-center">
+        {/* <Col xs={12} className="d-none d-md-flex">
+          <div className="redLineShadow mb-4" />
+        </Col> */}
+        <Col xs={12} className="">
+          <Row className={`g-4 d-flex justify-content-center`}>
+            {SERVICES_DATA.map((service, index) => (
+              <ServiceCard key={index} service={service} />
+            ))}
+          </Row>
+        </Col>
       </Row>
     </Container>
   );

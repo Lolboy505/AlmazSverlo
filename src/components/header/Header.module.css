@@ -1,12 +1,12 @@
 /* Контейнер кнопки */
 .custom_toggler {
     position: relative;
-    width: clamp(4rem, 5vw, 8rem);
-    height: clamp(4rem, 5vw, 8rem);
+    width: 3.5rem;
+    height: 3.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, opacity 0.4s ease-out;
     background: linear-gradient(135deg, var(--color-red-600) 0%, #d32f2f 100%) !important;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3) !important;
@@ -21,23 +21,22 @@
     transform: scale(0.95);
 }
 
-/* Бургер-иконка */
 .burger_icon {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    /* Выравнивание по правому краю для асимметрии */
-    width: clamp(3rem, 5vw, 8rem);
-    gap: clamp(5px, 5vw, 8px);
+    width: 100%;
+    gap: .5rem;
 }
 
 .burger_line {
     display: block;
     height: 3px;
-    /* Тоньше = элитнее */
+
     background-color: white;
     border-radius: 2px;
-    transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+    ;
 }
 
 /* Асимметрия длин */

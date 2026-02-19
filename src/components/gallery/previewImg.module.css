@@ -1,22 +1,168 @@
-/* position-absolute 
-top-0 start-0 w-100 h-100 
-d-flex align-items-center justify-content-center 
-bg-dark bg-opacity-50 opacity-0 
-hover-opacity-100 transition-opacity */
+.galleryWrapper {
+    background: var(--color-card);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-.hoverImg {
-    display: flex;
-    position: absolute;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.250);
+.galleryTitle {
+    display: block;
+    color: white;
+    background: var(--color-card);
+    border-radius: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+    font-size: var(--size-about-title);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+.galleryCard {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #1a1a1a;
+    height: var(--size-img-preview-height);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.galleryCard:hover {
+    transform: translateY(-5px);
+}
+
+.galleryCard img {
     width: 100%;
     height: 100%;
-    top: 0;
-    opacity: 0;
-} 
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
 
-.hoverImg:hover {
-    transition: 500ms;
+.galleryCard:hover img {
+    transform: scale(1.05);
+}
+
+.hoverOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    /* Чтобы текст не выделялся при клике */
+    user-select: none;
+}
+
+.galleryCard:hover .hoverOverlay {
     opacity: 1;
-} 
+}
+
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 2000;
+    /* Поднял z-index, чтобы точно перекрывал всё */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    /* Легкий блюр задника для стиля */
+}
+
+.closeBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--color-red-700);
+    border: none;
+    color: white;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    z-index: 2010;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.closeBtn:hover {
+    background: var(--color-red-600);
+    transform: scale(1.1);
+}
+
+.closeBtnX {
+    font-size: 3rem;
+    line-height: 1;
+    display: block;
+}
+
+.navBtn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4rem;
+    color: white;
+    padding: 10px 25px;
+    cursor: pointer;
+    z-index: 2005;
+    user-select: none;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.navBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-red-700);
+}
+
+.prev {
+    left: 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.next {
+    right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.mainImg {
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: 4px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.imgTitle {
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.4rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* Спиннер - добавим анимацию вращения, если её нет */
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.1);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

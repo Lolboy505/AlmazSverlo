@@ -8,7 +8,7 @@ import Geo from '../geo/Geo';
 
 export default function MainData() {
     return (
-        <main className="">
+        <main>
             <Hero />
             <Services />
             <Materials />
