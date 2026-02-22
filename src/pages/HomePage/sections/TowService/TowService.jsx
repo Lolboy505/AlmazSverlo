@@ -1,8 +1,16 @@
 import { memo } from 'react';
 import { Clock, MapPin, Shield, Phone } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap";
-import ImageWithFallback from "../additional/jsx/ImageWithFallback";
-import { fromTimeTow, toTimeTow, phone, scheduleTow, addressTow, phoneTow, formatPhoneNumber } from '../additional/js/contactData';
+import ImageWithFallback from "@components/additional/jsx/ImageWithFallback";
+import {
+    fromTimeTow,
+    toTimeTow,
+    phone,
+    scheduleTow,
+    addressTow,
+    phoneTow,
+    formatPhoneNumber
+} from '@constants/contactData.js';
 import busImg from "@/images/BusEd.webp";
 import styles from './TowStyle.module.css';
 

@@ -1,4 +1,4 @@
-.hero-main-container {
+.HeroMainContainer {
     background-image: url('@images/RedWall_light.webp');
     background-size: cover;
     background-position: center;
@@ -6,29 +6,28 @@
     text-shadow: 1px 2px 0px rgba(0, 0, 0, 0.8);
 }
 
-.hero-overlay {
+.HeroOverlay {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, black 100%);
     width: 100%;
     height: 100%;
     min-height: 45vh;
 }
 
-.mainTxt {
+.MainTxt {
     font-size: clamp(1.8rem, 5vw, 2.8rem);
 }
 
 @media (width <=363px) {
-    .mainTxt {
+    .MainTxt {
         font-size: 1.7rem;
     }
 }
 
-.hero-h1-main {
+.HeroH1Main {
     line-height: 1.1;
-    /* letter-spacing: 0rem; */
 }
 
-.btn-view-services {
+.BtnViewServices {
     margin: 1rem 0 0 0;
     padding: 10px 12px;
     font-size: var(--size-action-btn);
@@ -42,14 +41,14 @@
     transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn-view-services:hover {
+.BtnViewDervices:hover {
     color: rgba(255, 255, 255, 0.9);
     border-bottom: 1px solid rgba(170, 0, 6, 0.8);
     transform: translateY(-2px);
 }
 
 
-.hero-amp {
+.HeroAmp {
     will-change: transform;
     display: flex;
     align-items: center;
@@ -76,7 +75,7 @@
     }
 }
 
-.hero-sub-city {
+.HeroSubCity {
     letter-spacing: 0.2rem;
     color: rgba(255, 255, 255, 0.5);
     display: inline-block;
@@ -84,12 +83,12 @@
     font-size: clamp(1.2rem, 4vw, 2rem);
 }
 
-.hero-subtitle {
+.HeroSubTitle {
     color: rgba(255, 255, 255, 0.85);
     line-height: 1.1;
     font-size: clamp(1rem, 3vw, 1.4rem);
 }
 
-.callNumb {
+.CallNumb {
     font-size: clamp(1.3rem, 5vw, 1.6rem);
 }

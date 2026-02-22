@@ -17,14 +17,26 @@ const toTimeTow = '22:00'
 
 const fullName = "Полушин Павел Леонтьевич"
 const TIN = "940201505065" // ИНН
-const PSRNSP = "372487349973274" // ОГРНИП
+const PSRNSP = "" // ОГРНИП
 
 function formatPhoneNumber(phone = null) {
     if (phone === null) return
     return `+${phone[0]} (${phone[1]}${phone[2]}${phone[3]}) ${phone[4]}${phone[5]}${phone[6]}-${phone[7]}${phone[8]}-${phone[9]}${phone[10]}`;
 }
 
+const HEADER = {
+    f1: "Алмазное сверление",
+    f2: "&",
+    f3: "Услуги эвакуатора",
+    f4: "в Луганске и области",
+    call: `Звоните: ${formatPhoneNumber(phone)}`,
+    d1: "Профессиональные решения для стройки",
+    d2: "Быстрая помощь на дорогах",
+}
+
 export {
+    // обьекты
+    HEADER,
     // переменные
     phone,
     email,

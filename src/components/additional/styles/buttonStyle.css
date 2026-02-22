@@ -2,7 +2,6 @@
     display: inline-flex;
     justify-content: center;
 
-    /* Динамический фон — увеличиваем размер для анимации перемещения */
     background: linear-gradient(135deg,
             var(--color-red-600),
             var(--color-red-800),
@@ -23,15 +22,12 @@
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 
-    /* Начальная тень */
     box-shadow:
         0 8px 15px rgba(170, 0, 6, 0.3),
         inset 0 2px 3px rgba(255, 255, 255, 0.3),
         inset 0 -2px 3px rgba(0, 0, 0, 0.3);
-
 }
 
-/* 1. Анимация перелива градиента */
 @keyframes gradientMove {
     0% {
         background-position: 0% 50%;
@@ -46,7 +42,6 @@
     }
 }
 
-/* 2. Анимация пульсации неоновой тени */
 @keyframes neonPulse {
     from {
         box-shadow: 0 8px 15px rgba(170, 0, 6, 0.3),
@@ -59,15 +54,12 @@
     }
 }
 
-/* Эффект при наведении — ускоряем всё */
 .btn-glitch-neon:hover {
     transform: translateY(-5px) scale(1.04);
     filter: brightness(1.2);
     animation: gradientMove 1.5s ease infinite;
-    /* При наведении градиент течет быстрее */
 }
 
-/* Бегущий блик (Glare effect) - без изменений, он и так хорош */
 .btn-glitch-neon::before {
     content: '';
     position: absolute;

@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
-import { TelegramIcon } from '../additional/jsx/Icons';
-import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address, toTimeTow, fromTimeTow } from '@/components/additional/js/contactData'
+import { TelegramIcon } from '../../../../components/additional/jsx/Icons';
+import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address, toTimeTow, fromTimeTow } from '@/constants/contactData'
 import ContactItem from './ContactItem';
 import style from './Contact.module.css'
 

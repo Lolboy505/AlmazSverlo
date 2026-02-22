@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import GalleryMe from '@/components/gallery/GalleryMe';
+import GalleryMe from '@/pages/HomePage/sections/gallery/GalleryMe';
 import AboutMe from './AboutMe';
-import styles from './About.module.css'; // Создадим мини-файл для стилей текста
+import styles from './About.module.css';
 
 export default function About() {
     return (
@@ -9,7 +9,6 @@ export default function About() {
             className={`overflow-hidden d-flex flex-column text-white ${styles.aboutContainer}`}
         >
             <Row className="mt-2 justify-content-center">
-                {/* <div className={`redLine`} /> */}
                 <Col xs={12} sm={12} className="p-0">
                     <Row
                         className={`g-2 gap-lg-2

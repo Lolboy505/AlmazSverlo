@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import '@fontsource/golos-text'
 
 import '@/components/additional/styles/buttonStyle.css';
-import '@/components/hero/HeroStyle.css'
 import '@/components/cookie/Cookie.css'
 import './index.css'
 

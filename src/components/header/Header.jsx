@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Phone, Mail } from 'lucide-react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
 import { TelegramIcon, VkIcon } from '../additional/jsx/Icons'
-import { nameOrg } from '../additional/js/contactData'
-import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../additional/js/contactData'
+import { nameOrg } from '../../constants/contactData'
+import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../../constants/contactData'
 import style from './Header.module.css'
 import ImageWithFallback from "../additional/jsx/ImageWithFallback"
 
