@@ -1,5 +1,5 @@
 .hero-main-container {
-    background-image: url('/RedWall_light.webp');
+    background-image: url('@images/RedWall_light.webp');
     background-size: cover;
     background-position: center;
     color: white;
