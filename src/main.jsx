@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { AppStateProvider } from '@/components/additional/jsx/StateContext.jsx'
+import { AppStateProvider } from '@/context/AppState/AppStateContext.jsx'
 
 import "bootstrap/dist/css/bootstrap.min.css"
 import '@fontsource/golos-text'

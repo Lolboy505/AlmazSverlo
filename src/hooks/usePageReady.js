@@ -1,4 +1,4 @@
-import { useAppState } from "@/components/additional/jsx/StateContext.jsx";
+import { useAppState } from "@/context/AppState/AppStateContext.jsx";
 
 export const usePageReady = () => {
     const { isReady } = useAppState();

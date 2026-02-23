@@ -21,4 +21,10 @@ export const AppStateProvider = ({ children }) => {
 };
 
 // 3. Создаем короткую команду для вызова (наш личный хук)
-export const useAppState = () => useContext(AppStateContext);
+export const useAppState = () => {
+    const context = useContext(AppStateContext);
+    if (!context) {
+        throw new Error('AppStateProvider must be');
+    }
+    return context;
+};

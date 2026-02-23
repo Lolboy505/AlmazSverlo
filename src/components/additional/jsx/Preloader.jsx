@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useAppState } from '@/components/additional/jsx/StateContext.jsx';
+import { useAppState } from '@/context/AppState/AppStateContext.jsx';
 
 
 export default function App({ children }) {
