@@ -12,7 +12,14 @@ body {
   background-color: black;
 }
 
+header {
+  z-index: 5;
+  background-image: var(--color-theme);
+}
+
 :root {
+  --color-theme: black;
+
   --color-text-global: white;
 
   /* old style color */

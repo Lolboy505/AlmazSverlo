@@ -8,11 +8,11 @@ import style from './Header.module.css'
 import ImageWithFallback from "../additional/jsx/ImageWithFallback"
 
 const logo = "/mLogo.jpg";
+
 let icons = {
     height: 'auto',
     width: 'clamp(28px, 5vw , 35px)',
 }
-let themeColor = "black"
 
 let dataLink = [
     {
@@ -46,34 +46,26 @@ export default function Header() {
     const [expanded, setExpanded] = useState(false);
 
     return (
-        <header className="sticky-top" style={{
-            zIndex: 5,
-            backgroundImage: themeColor,
-        }}>
+        <header className="sticky-top">
             <Navbar
                 expanded={expanded}
                 onToggle={() => setExpanded((exp) => !exp)}
                 expand="xl"
                 variant="dark"
-                className="m-0 p-0 px-3"
-                style={{
-                    backgroundColor: themeColor,
-                    textShadow: "0px 1.5px 0px rgba(0, 0, 0, 0.8)",
-                    transition: 'all 0.3s ease'
-                }}
+                className={`${style.NavbarStyle} m-0 p-0 px-3`}
             >
                 <Container fluid className="px-2 px-lg-5 py-1 d-flex justify-content-between align-items-center">
                     <Navbar.Brand href="#home" className="m-0">
                         <ImageWithFallback
                             src={logo}
                             alt="LogoBrand"
-                            style={{ maxWidth: "clamp(82px,10vw,100px)", height: "auto" }}
+                            className={`${style.Logo}`}
                         />
                     </Navbar.Brand>
 
                     <Navbar.Toggle
                         aria-controls="responsive-navbar-nav"
-                        className={`d-flex d-xl-none align-items-center justify-content-center ${style.custom_toggler}`}
+                        className={`${style.custom_toggler} d-flex d-xl-none align-items-center justify-content-center`}
                     >
                         <div className={style.burger_icon}>
                             <span className={style.burger_line}></span>
@@ -86,23 +78,12 @@ export default function Header() {
                         <Nav className="align-items-center w-100">
                             <div className="pb-1 d-flex flex-column flex-lg-row w-100 align-items-center justify-content-between">
                                 <span
-                                    className="m-0 p-2 pt-0"
-                                    style={{
-                                        fontFamily: "'Golos Text', sans-serif",
-                                        fontSize: "clamp(1.4rem, 3.5vw, 1.7rem)",
-                                        fontWeight: 900,
-                                        textTransform: "uppercase",
-                                        letterSpacing: ".4rem",
-                                        lineHeight: "0.9",
-                                    }}
+                                    className={`${style.NameOrg} m-0 p-2 pt-0`}
                                 >
                                     {nameOrg}
                                 </span>
                                 <div
                                     className="gap-2 p-1 d-flex flex-wrap justify-content-center"
-                                    style={{
-                                        minWidth: "2px",
-                                    }}
                                 >
                                     {dataLink.map((link, iter) => (
                                         link.href && (
@@ -110,11 +91,10 @@ export default function Header() {
                                                 key={iter}
                                                 href={link.href}
                                                 onClick={() => setExpanded(false)}
-                                                className="
-                                                p-2
+                                                className="p-2 gap-1
                                                 btn-glitch-neon 
                                                 text-white d-flex 
-                                                align-items-center gap-1"
+                                                align-items-center"
                                             >
                                                 {link.child}
                                                 {link.text}
@@ -129,12 +109,7 @@ export default function Header() {
 
             </Navbar>
             <div
-                style={{
-                    backgroundColor: 'black',
-                    borderBottom: '1px solid var(--color-red-900)',
-                    width: '100%',
-                    height: '2px',
-                }}
+                className={`${style.BottomLine}`}
             >
             </div>
         </header >

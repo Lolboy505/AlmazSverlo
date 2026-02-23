@@ -4,7 +4,7 @@ const phoneTow = "79592022681"
 const email = "paul.poluschin@yandex.ru"
 const telegram = "https://t.me/AlmazPomosh"
 const vkontakte = "https://vk.com"
-const address = "Работаем по всему городу и области"
+const address = "Работаю по всему городу и области"
 const addressTow = "По всему городу и области"
 
 const schedule = "Пн-Cб"
