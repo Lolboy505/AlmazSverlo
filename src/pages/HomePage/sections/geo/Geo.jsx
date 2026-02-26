@@ -1,12 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { MapPin, ChevronRight } from 'lucide-react';
+import { GEO } from '@/constants/contactData';
 import style from './styleGeo.module.css';
-
-const CITIES = [
-    'Луганск', 'Алчевск', 'Краснодон', 'Стаханов',
-    'Антрацит', 'Свердловск', 'Лутугино', 'Перевальск',
-    'Счастье', 'Ровеньки'
-];
 
 export default function GeoLocation() {
     return (
@@ -24,16 +19,16 @@ export default function GeoLocation() {
                                     className="me-3 flex-shrink-0"
                                 />
                                 <h2 className={style.titleGeo}>
-                                    Работаю по Луганску и ЛНР
+                                    {GEO.title}
                                 </h2>
                             </div>
                             <p className={`${style.dopDes} mt-3 ps-1 ms-md-4`}>
-                                Выезд на объекты и быстрая подача по договоренности в города:
+                                {GEO.des1}
                             </p>
                         </div>
 
                         <Row className="g-3 ms-md-4">
-                            {CITIES.map((city) => (
+                            {GEO.cites.map((city) => (
                                 <Col key={city} xs={6} md={4} lg={3}>
                                     <div className={style.cityCard}>
                                         <span className={style.city}>
@@ -53,7 +48,7 @@ export default function GeoLocation() {
 
                             <Col xs={12} className="mt-4">
                                 <div className={style.footerDes}>
-                                    и другие населенные пункты ЛНР и часть Ростовской области
+                                    {GEO.des2}
                                 </div>
                             </Col>
                         </Row>

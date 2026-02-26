@@ -1,41 +1,10 @@
 import { memo } from 'react';
-import { Clock, MapPin, Shield, Phone } from 'lucide-react';
 import { Container, Row, Col } from "react-bootstrap";
 import ImageWithFallback from "@components/additional/jsx/ImageWithFallback";
-import {
-    fromTimeTow,
-    toTimeTow,
-    phone,
-    scheduleTow,
-    addressTow,
-    phoneTow,
-    formatPhoneNumber
-} from '@constants/contactData.js';
+import { TOW_SERVICE, phone } from '@constants/contactData.js';
 import busImg from "@/images/BusEd.webp";
 import styles from './TowStyle.module.css';
 
-const SERVICE_DATA = [
-    {
-        icon: Clock,
-        title: "время работы",
-        description: `С ${fromTimeTow} до ${toTimeTow} ч. ${scheduleTow}`,
-    },
-    {
-        icon: MapPin,
-        title: "работаю",
-        description: addressTow,
-    },
-    {
-        icon: Shield,
-        title: "любое авто",
-        description: "До 5 тонн, бусы c MAXI базой т.д.",
-    },
-    {
-        icon: Phone,
-        title: "контакты",
-        description: `Тел: ${formatPhoneNumber(phoneTow)}`,
-    },
-];
 
 const InfoCard = memo(({ icon: Icon, title, description, subDescription }) => (
     <div className={styles.infoCardWrapper}>
@@ -58,8 +27,8 @@ export default function TowService() {
             <Row className="mx-0">
                 <Col>
                     <h2 id="AddService" className={styles.mainTitle}>
-                        Эвакуатор Луганск <br className="d-lg-none" />
-                        <span>вызов 24/7</span>
+                        {TOW_SERVICE.title1} <br className="d-lg-none" />
+                        <span>{TOW_SERVICE.title2}</span>
                     </h2>
                 </Col>
             </Row>
@@ -83,23 +52,23 @@ export default function TowService() {
                                 <h3
                                     className={`${styles.titleTow1} col-12`}
                                 >
-                                    Помощь на дороге
+                                    {TOW_SERVICE.des1}
                                 </h3>
                                 <h3
                                     className={`${styles.titleTow2} col-12`}
                                 >
-                                    Быстро и надежно
+                                    {TOW_SERVICE.des2}
                                 </h3>
                             </div>
 
                             <div className={styles.infoGrid}>
-                                {SERVICE_DATA.map((item, idx) => (
+                                {TOW_SERVICE.ServiceData.map((item, idx) => (
                                     <InfoCard key={idx} {...item} />
                                 ))}
                             </div>
 
                             <a href={`tel:+${phone}`} className={`text-nowrap btn-glitch-neon px-4 py-2 mt-3`}>
-                                вызвать эвакуатор
+                                {TOW_SERVICE.btn1}
                             </a>
                         </Col>
                     </Row>

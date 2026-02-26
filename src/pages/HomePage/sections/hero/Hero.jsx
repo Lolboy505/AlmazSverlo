@@ -1,6 +1,5 @@
 import { Container, Row, Col, Nav } from "react-bootstrap"
-import { phone, phoneTow, HEADER } from "@/constants/contactData.js"
-import { useAppState } from "@/context/AppState/AppStateContext.jsx"
+import { phone, phoneTow, HERO } from "@/constants/contactData.js"
 import { usePageReady } from "@/hooks/usePageReady"
 import { motion } from "framer-motion"
 import style from "./HeroStyle.module.css"
@@ -45,16 +44,16 @@ export default function Hero() {
                             <Col className="p-0 m-0">
                                 <h1 className={`${style.HeroH1Main} p-0 m-0 d-flex flex-column justify-content-center align-items-center fw-bold text-uppercase`}>
                                     <motion.span variants={itemVariants} className={`d-block ${style.MainTxt}`}>
-                                        {HEADER.f1}
+                                        {HERO.f1}
                                     </motion.span>
                                     <motion.span variants={itemVariants} className={`col-4 d-block ${style.HeroAmp}`}>
-                                        {HEADER.f2}
+                                        {HERO.f2}
                                     </motion.span>
                                     <motion.span variants={itemVariants} className={`d-block ${style.MainTxt}`}>
-                                        {HEADER.f3}
+                                        {HERO.f3}
                                     </motion.span>
                                     <motion.span variants={itemVariants} className={`d-block fw-normal mt-2 ${style.HeroSubCity}`}>
-                                        {HEADER.f4}
+                                        {HERO.f4}
                                     </motion.span>
                                 </h1>
                             </Col>
@@ -63,9 +62,9 @@ export default function Hero() {
                         <Row className="d-flex justify-content-center mt-1 m-0">
                             <Col md={8} lg={6} className="p-1">
                                 <motion.div variants={itemVariants} className={`${style.HeroSubTitle} d-block px-4 py-2`}>
-                                    <span className={`d-block fw-bold ${style.CallNumb}`}>{HEADER.call}</span>
-                                    <span className="d-block p-1">{HEADER.d1}</span>
-                                    <span className="d-block">{HEADER.d2}</span>
+                                    <span className={`d-block fw-bold ${style.CallNumb}`}>{HERO.call}</span>
+                                    <span className="d-block p-1">{HERO.d1}</span>
+                                    <span className="d-block">{HERO.d2}</span>
                                 </motion.div>
                             </Col>
                         </Row>
@@ -81,7 +80,9 @@ export default function Hero() {
                                         className="m-0 p-0 col-8 col-sm-5 col-md-6 col-xl-5 col-xxl-4"
                                         href={`tel:+${phone}`}
                                     >
-                                        <div className="btn-glitch-neon h5 p-3 m-0">Позвонить мастеру</div>
+                                        <div className="btn-glitch-neon h5 p-3 m-0">
+                                            {HERO.btn1}
+                                        </div>
                                     </Nav.Link>
 
                                     <Nav.Link
@@ -92,17 +93,21 @@ export default function Hero() {
                                         className="m-0 p-0 col-8 col-sm-5 col-md-6 col-xl-5 col-xxl-4"
                                         href={`tel:+${phoneTow}`}
                                     >
-                                        <div className="btn-glitch-neon h5 p-3 m-0">Вызвать эвакуатор</div>
+                                        <div className="btn-glitch-neon h5 p-3 m-0">
+                                            {HERO.btn2}
+                                        </div>
                                     </Nav.Link>
                                 </div>
                                 <Nav.Link
                                     as={motion.a}
                                     variants={itemVariants}
                                     href="#AddService"
-                                    className="pt-2 col-8 col-sm-6 col-md-6 col-lg-5 col-xl-4 d-flex text-center justify-content-center"
+                                    className="
+                                    pt-2 col-8 col-sm-6 col-md-6 col-lg-5 col-xl-4 
+                                    d-flex text-center justify-content-center"
                                 >
                                     <div className={`${style.BtnViewServices}`}>
-                                        Просмотреть услуги эвакуатора
+                                        {HERO.btn3}
                                     </div>
                                 </Nav.Link>
                             </Col>

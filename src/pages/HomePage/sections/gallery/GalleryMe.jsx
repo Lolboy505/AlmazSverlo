@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback, memo } from 'react';
 import styles from './previewImg.module.css';
 import { Col } from 'react-bootstrap';
+import { GALLERY } from '@/constants/contactData';
 
 // Выносим обработку картинок за пределы компонента
 const imagesModules = import.meta.glob('@/gallery/*.webp', { eager: true });
@@ -20,7 +21,9 @@ const GalleryItem = memo(({ img, index, onClick }) => (
         className="w-100 h-100 object-fit-cover"
       />
       <div className={styles.hoverOverlay}>
-        <span className="text-white text-center h5">Увеличить &#128269;</span>
+        <span className="text-white text-center h5">
+          Увеличить &#128269;
+        </span>
       </div>
     </div>
   </div>
@@ -158,7 +161,7 @@ export default function Gallery(sizes) {
     <Col {...sizes} className={`ms-lg-4 p-0 overflow-hidden ${styles.galleryWrapper}`}>
       <h2 className={`mb-4 px-3 pb-2 ${styles.galleryTitle}`}>
         <div className="redLineShadow mb-2 mt-1" style={{ width: '94%', margin: 'auto' }} />
-        Галерея работ по бурению и сверлению
+        {GALLERY.title}
       </h2>
       <Preview imgs={IMAGES} setCurrentIndex={setCurrentIndex} />
       <GalleryAlm IMAGES={IMAGES} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />

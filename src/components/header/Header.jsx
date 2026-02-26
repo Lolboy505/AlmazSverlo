@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { Phone, Mail } from 'lucide-react'
 import { Nav, Navbar, Container } from 'react-bootstrap'
-import { TelegramIcon, VkIcon } from '../additional/jsx/Icons'
-import { nameOrg } from '../../constants/contactData'
-import { email, phone, telegram, vkontakte, formatPhoneNumber } from '../../constants/contactData'
+import { TelegramIcon, VkIcon } from '@/components/additional/jsx/Icons'
+import { HEADER } from '@/constants/contactData.js'
+import { email, phone, telegram, vkontakte, formatPhoneNumber } from '@/constants/contactData.js'
+import ImageWithFallback from "@/components/additional/jsx/ImageWithFallback"
 import style from './Header.module.css'
-import ImageWithFallback from "../additional/jsx/ImageWithFallback"
 
 const logo = "/mLogo.jpg";
 
@@ -78,9 +78,9 @@ export default function Header() {
                         <Nav className="align-items-center w-100">
                             <div className="pb-1 d-flex flex-column flex-lg-row w-100 align-items-center justify-content-between">
                                 <span
-                                    className={`${style.NameOrg} m-0 p-2 pt-0`}
+                                    className={`${style.NameOrg} ms-lg-2 m-0 p-2 pt-0`}
                                 >
-                                    {nameOrg}
+                                    {HEADER.nameOrg}
                                 </span>
                                 <div
                                     className="gap-2 p-1 d-flex flex-wrap justify-content-center"

@@ -1,4 +1,4 @@
-import { TIN, fullName, nameOrg } from '@/constants/contactData'
+import { FOOTER } from '@/constants/contactData'
 
 
 export default function Footer() {
@@ -16,18 +16,18 @@ export default function Footer() {
                 <div className="text-center">
                     <div className="d-flex row mx-2">
                         <span className="d-block">
-                            ©2026 {nameOrg}. Все права защищены.
+                            {FOOTER.nameOrg}
                         </span>
                         <span className="d-block">
-                            Информация на сайте не является публичной офертой (ст. 437 ГК РФ).
+                            {FOOTER.publicOferta}
                         </span>
                     </div>
                     <div className="m-0 p-0 col-12 mt-3">
-                        {fullName}
+                        {FOOTER.fullName}
                     </div>
                     <div className="my-2 d-flex justify-content-center align-items-center flex-column flex-md-row">
                         <p className="m-0 p-0 col-12 col-md-6 col-lg-3">
-                            ИНН: {TIN}
+                            ИНН: {FOOTER.tin}
                         </p>
                         <a
                             className="m-0 p-0 col-12 col-md-6 col-lg-3"

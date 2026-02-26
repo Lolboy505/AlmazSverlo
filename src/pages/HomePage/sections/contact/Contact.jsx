@@ -1,7 +1,7 @@
-import { Container, Row, Col } from 'react-bootstrap';
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
-import { TelegramIcon } from '../../../../components/additional/jsx/Icons';
-import { phone, email, formatPhoneNumber, fromTime, toTime, schedule, address, toTimeTow, fromTimeTow } from '@/constants/contactData'
+import { Container, Row, Col } from 'react-bootstrap'
+import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react'
+import { TelegramIcon } from "@/components/additional/jsx/Icons"
+import { CONTACT } from '@/constants/contactData'
 import ContactItem from './ContactItem';
 import style from './Contact.module.css'
 
@@ -11,39 +11,38 @@ let mapYa = "https://yandex.ru/map-widget/v1/?um=constructor%3A1ded36965ecc1573e
 let contactData = [
     {
         label: "Телефон",
-        value: formatPhoneNumber(phone),
-        href: "tel:+" + phone,
+        value: CONTACT.formatedPhone,
+        href: "tel:+" + CONTACT.phone,
         icon: <Phone size={30} style={filter} />,
     },
     {
         label: "Telegram",
-        value: "@AlmazPomosh",
-        href: "https://t.me/AlmazPomosh",
+        value: CONTACT.telegramName,
+        href: CONTACT.telegram,
         icon: <TelegramIcon size={30} style={filter} />
     },
     {
         label: "Email",
-        value: email,
-        href: "mailto:" + email,
+        value: CONTACT.email,
+        href: "mailto:" + CONTACT.email,
         icon: <Mail size={30} style={filter} />,
     },
     {
         label: "Адрес",
-        value: address,
+        value: CONTACT.address,
         href: null,
         icon: <MapPin size={30} style={filter} />,
     },
     {
         label: "Режим работы",
-        value: `Алмазное сверление: ${schedule} с ${fromTime} до ${toTime}`,
-        valueSec: `Эвакуатор: ${schedule} с ${fromTimeTow} до ${toTimeTow}`,
+        value: `Алмазное сверление: ${CONTACT.schedule} с ${CONTACT.fromTime} до ${CONTACT.toTime}`,
+        valueSec: `Эвакуатор: ${CONTACT.schedule} с ${CONTACT.fromTimeTow} до ${CONTACT.toTimeTow}`,
         href: null,
         icon: <Clock size={30} style={filter} />,
     },
 ]
 
 export default function Contact() {
-
     // maybe logic form here
     return (
         <Container id="contact" className="py-5" >
@@ -52,9 +51,9 @@ export default function Contact() {
                     className="text-white mb-3 text-uppercase"
                     style={{ fontSize: "var(--size-main-title)" }}
                 >
-                    Заказать услуги частного мастера
-                    <br />
-                    Контакты
+                    {CONTACT.title1}
+                    <br className="d-lg-none" />
+                    {CONTACT.title2}
                 </h2>
             </div>
 

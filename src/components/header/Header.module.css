@@ -12,7 +12,7 @@
 
 .NameOrg {
     font-family: Golos Text, sans-serif;
-    font-size: clamp(1.4rem, 3.5vw, 1.7rem);
+    font-size: clamp(1.4rem, 3.5vw, 2.1rem);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: .4rem;

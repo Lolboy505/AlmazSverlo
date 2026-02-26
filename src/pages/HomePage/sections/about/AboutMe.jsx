@@ -1,22 +1,12 @@
 import { Sparkles, GraduationCap, ShieldPlus } from 'lucide-react';
-import { useState, useEffect, useRef, memo } from 'react';
-import { Col } from 'react-bootstrap';
-import styles from './AboutMe.module.css';
-import animation from './Animation.module.css';
+import { useState, useEffect, useRef } from 'react'
+import { Col } from 'react-bootstrap'
+import { ABOUT } from '@/constants/contactData';
+import styles from './AboutMe.module.css'
+import animation from './Animation.module.css'
 
-const SLIDE_TEXTS = [
-    { id: 1, text: "Работаю без посредников — отвечаю за результат лично" },
-    { id: 2, text: "Мой опыт — ваша гарантия результата" },
-    { id: 3, text: "Прямой контакт с мастером — гарантия лучшей цены" },
-];
-const TEXTS_FIN = [...SLIDE_TEXTS, SLIDE_TEXTS[0]];
 
-const CONTENT = {
-    desc: `Обращаясь ко мне, вы не платите диспетчерам и менеджерам.`,
-    exp: `Мой опыт и современные технологии позволяют добиваться идеального результата даже в самых сложных материалах.`,
-    rep: "Ценю свою репутацию, поэтому обеспечиваю персональный подход к каждому заказу",
-    work: "Работаю чисто, оперативно и на совесть — будь то частный сектор или крупный строительный объект."
-};
+const TEXTS_FIN = [...ABOUT.SlideTexts, ABOUT.SlideTexts[0]]
 
 const AboutMe = (sizes) => {
     const [isTransitioning, setIsTransitioning] = useState(true);
@@ -80,18 +70,18 @@ const AboutMe = (sizes) => {
 
             <div className="px-3 pb-3 d-flex flex-column justify-content-center align-items-center">
                 <div className={styles.descriptionMain}>
-                    {CONTENT.desc}
+                    {ABOUT.Content.desc}
                 </div>
 
                 <div className={styles.featuresGrid}>
                     <GraduationCap className={`${animation.animSvg} ${animation.d1} ${styles.iconSize}`} />
-                    <div className={styles.featureText}>{CONTENT.exp}</div>
+                    <div className={styles.featureText}>{ABOUT.Content.exp}</div>
 
                     <ShieldPlus className={`${animation.animSvg} ${animation.d2} ${styles.iconSize}`} />
-                    <div className={styles.featureText}>{CONTENT.rep}</div>
+                    <div className={styles.featureText}>{ABOUT.Content.rep}</div>
 
                     <Sparkles className={`${animation.animSvg} ${animation.d3} ${styles.iconSize}`} />
-                    <div className={styles.featureText}>{CONTENT.work}</div>
+                    <div className={styles.featureText}>{ABOUT.Content.work}</div>
                 </div>
             </div>
         </Col>
