@@ -29,7 +29,3 @@ export default function Page() {
         </>
     );
 }
-
-// export default function Page() {
-//     return <h1 style={{ color: 'white', background: 'black', padding: '100px' }}>Vike Жив!</h1>
-// }

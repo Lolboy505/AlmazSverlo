@@ -4,10 +4,10 @@ import Header from '@/components/header/Header'
 import Footer from '@/components/footer/Footer'
 
 import "bootstrap/dist/css/bootstrap.min.css"
-import '@/pages/bootstrapAdd.css'
+import '@styles/bootstrapAdd.css'
+import '@styles/index.css'
 import '@/components/additional/styles/redLine.css'
 import '@/components/additional/styles/buttonStyle.css'
-import '@/pages/index.css'
 
 export default function Layout({ children }) {
     return (

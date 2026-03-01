@@ -14,7 +14,7 @@
 @media (min-width: 768px) {
     .redLineShadow {
         height: 4.5px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         /* На ПК больше четкости в центре и огромный размах */
         box-shadow:
             0 10px 30px var(--color-red-600),

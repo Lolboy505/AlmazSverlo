@@ -2,13 +2,26 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "node",
     "jsx": "react-jsx",
+    "checkJs": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@images/*": ["./src/assets/images/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@footer/*": ["./src/components/footer/*"],
+      "@header/*": ["./src/components/header/*"],
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"],
+      "@HomePage/*": ["./src/pages/HomePage/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@styles/*": ["./src/styles/*"],
     }
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
 // для того что бы VisualCode понимал что @ это путь в папку src
 // без этого редактор будет подчеркивать путь и незнать где это

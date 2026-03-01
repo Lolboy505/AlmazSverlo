@@ -33,7 +33,8 @@ export default defineConfig({
       '@layouts': path.resolve(__dirname, './src/layouts'),
       '@HomePage': path.resolve(__dirname, './src/pages/HomePage'),
       '@constants': path.resolve(__dirname, './src/constants'),
-
+      '@styles': path.resolve(__dirname, './src/styles'),
+      
     },
   },
   base:
