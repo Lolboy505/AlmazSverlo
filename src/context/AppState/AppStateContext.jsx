@@ -1,7 +1,7 @@
 import { createContext, useState, useContext } from 'react';
 
 // 1. Создаем сам контекст (пустую коробочку)
-const AppStateContext = createContext();
+const AppStateContext = createContext(null);
 
 // 2. Создаем Провайдер (этот компонент будет "раздавать" данные)
 export const AppStateProvider = ({ children }) => {
