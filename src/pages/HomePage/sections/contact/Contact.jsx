@@ -88,9 +88,9 @@ export default function Contact() {
                     className={`col-12 col-lg-8`}
                 >
                     <div
-                        className="rounded-4 overflow-hidden h-100"
+                        className="rounded-4 overflow-hidden"
                         style={{
-                            minHeight: '300px',
+                            // maxHeight: '480px',
                             border: '1px solid rgba(255,255,255,0.1)'
                         }}
                     >
