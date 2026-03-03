@@ -1,0 +1,22 @@
+.map-dark-container {
+    width: 100%;
+    min-height: 400px;
+    background-color: #121212;
+    position: relative;
+    overflow: hidden;
+}
+
+.yandex-map-frame {
+    filter: invert(94%) hue-rotate(180deg) brightness(100%) contrast(98%);
+    transition: opacity 0.8s ease-in-out;
+}
+
+.yandex-map-frame [class*="ymaps-2-1-79-map"],
+.yandex-map-frame ymaps {
+    background-color: #121212 !important;
+}
+
+.yandex-map-frame .ymaps-2-1-79-copyright__text,
+.yandex-map-frame .ymaps-2-1-79-logotype {
+    filter: invert(100%);
+}

@@ -3,11 +3,11 @@ import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react'
 import { TelegramIcon } from "@/components/additional/jsx/Icons"
 import { CONTACT } from '@/constants/contactData'
 import ContactItem from './ContactItem';
+import YandexMap from './YandexMap.jsx';
+// @ts-ignore
 import style from './Contact.module.css'
 
 let filter = { filter: "drop-shadow(0px 1px 0.5px rgba(0, 0, 0, 1))" }
-let mapYa = "https://yandex.ru/map-widget/v1/?um=constructor%3A1ded36965ecc1573ead6054582cbf6ebe1a3b47973a7e664fbcec8ef85f755f9&amp;source=constructor"
-
 let contactData = [
     {
         label: "Телефон",
@@ -43,7 +43,7 @@ let contactData = [
 ]
 
 export default function Contact() {
-    // maybe logic form here
+
     return (
         <Container id="contact" className="py-5" >
             <div className="text-center mb-5">
@@ -94,15 +94,7 @@ export default function Contact() {
                             border: '1px solid rgba(255,255,255,0.1)'
                         }}
                     >
-                        <iframe
-                            loading="lazy"
-                            src={mapYa}
-                            width="100%"
-                            height="100%"
-                            allowFullScreen={true}
-                            className={`${style.yaMaps}`}
-                        >
-                        </iframe>
+                        <YandexMap />
                     </div>
                 </Col>
             </Row>
