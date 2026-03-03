@@ -22,12 +22,12 @@ export default function GeoLocation() {
                                     {GEO.title}
                                 </h2>
                             </div>
-                            <p className={`${style.dopDes} mt-3 ps-1 ms-md-4`}>
+                            <p className={`${style.dopDes} mt-3 `}>
                                 {GEO.des1}
                             </p>
                         </div>
 
-                        <Row className="g-3 ms-md-4">
+                        <Row className="g-3">
                             {GEO.cites.map((city) => (
                                 <Col key={city} xs={6} md={4} lg={3}>
                                     <div className={style.cityCard}>
